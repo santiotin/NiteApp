@@ -1,0 +1,127 @@
+{
+  "project_info": {
+    "project_number": "1031970507915",
+    "firebase_url": "https://nitedevelopment-5e197.firebaseio.com",
+    "project_id": "nitedevelopment-5e197",
+    "storage_bucket": "nitedevelopment-5e197.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031970507915:android:d2e8c4771adf91d6e2188e",
+        "android_client_info": {
+          "package_name": "com.santiotin.niteapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031970507915-pph725jidvujrhp8p97fkainiv2u36tt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.santiotin.niteapp",
+            "certificate_hash": "60c5e753b77d2b42a534008bcad1e05dbde3f74f"
+          }
+        },
+        {
+          "client_id": "1031970507915-729i6tat5tac6ej9lvnpji40pnakqf8d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-9fUZ_ZNPUZjXadEd2sxz8rhTkFCPGsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031970507915-729i6tat5tac6ej9lvnpji40pnakqf8d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1031970507915-jtr0irmi7raffm4mishpp22ur43spgdq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.santiotin.niteflutter"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031970507915:android:9bbc5d9895382f82e2188e",
+        "android_client_info": {
+          "package_name": "com.santiotin.niteclubs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031970507915-729i6tat5tac6ej9lvnpji40pnakqf8d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-9fUZ_ZNPUZjXadEd2sxz8rhTkFCPGsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031970507915-729i6tat5tac6ej9lvnpji40pnakqf8d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1031970507915-jtr0irmi7raffm4mishpp22ur43spgdq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.santiotin.niteflutter"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031970507915:android:f05021adfdcd9847e2188e",
+        "android_client_info": {
+          "package_name": "com.santiotin.niteflutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031970507915-729i6tat5tac6ej9lvnpji40pnakqf8d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-9fUZ_ZNPUZjXadEd2sxz8rhTkFCPGsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031970507915-729i6tat5tac6ej9lvnpji40pnakqf8d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1031970507915-jtr0irmi7raffm4mishpp22ur43spgdq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.santiotin.niteflutter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
