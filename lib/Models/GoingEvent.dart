@@ -20,13 +20,12 @@ class GoingEvent {
 
   Map toMap() {
     var data = Map<String, dynamic>();
-    data['id'] = this.id;
     data['eventClub'] = this.clubName;
     data['eventImageUrl'] = this.imageUrl;
     data['eventName'] = this.name;
     data['eventDay'] = this.day;
     data['eventMonth'] = this.month;
-    data['eventDay'] = this.year;
+    data['eventYear'] = this.year;
     return data;
   }
 

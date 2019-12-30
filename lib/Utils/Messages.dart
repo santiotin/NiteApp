@@ -199,11 +199,11 @@ class EmptyFavoriteEvents extends StatelessWidget {
   }
 }
 
-class EmptyClubs extends StatelessWidget {
+class EmptyFavoriteClubs extends StatelessWidget {
 
   final String msg;
 
-  const EmptyClubs({Key key, this.msg}) : super(key: key);
+  const EmptyFavoriteClubs({Key key, this.msg}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

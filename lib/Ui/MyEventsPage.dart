@@ -58,6 +58,7 @@ class _MyEventsPageState extends State<MyEventsPage> {
         builder: (context, snapshot) {
           if(snapshot == null ||snapshot.connectionState == ConnectionState.waiting || snapshot.data == null) return LoadingView();
           else if(snapshot.hasError) return ErrorView();
+          else if(snapshot.data.documents.isEmpty) return Center(child: EmptyTodayAndSearch(msg: "No asistes a ningun evento",));
           else return ListView.builder(
             itemCount: snapshot.data.documents.length,
             itemBuilder: (context, index) {

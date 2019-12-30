@@ -29,7 +29,7 @@ class _FavoriteClubsPageState extends State<FavoriteClubsPage> {
           builder: (context, snapshot) {
             if(snapshot == null ||snapshot.connectionState == ConnectionState.waiting || snapshot.data == null) return LoadingView();
             else if(snapshot.hasError) return ErrorView();
-            else if(snapshot.data.documents.isEmpty) return EmptyClubs(msg: 'No tienes clubs favoritos',);
+            else if(snapshot.data.documents.isEmpty) return EmptyFavoriteClubs(msg: 'No tienes clubs favoritos',);
             else return FavoriteClubList(favoriteClubs: documentsToFavoriteClubs(snapshot.data.documents), uid: widget.uid,);
           }
       ),

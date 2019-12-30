@@ -12,7 +12,6 @@ class BasicUser {
 
   Map toMap() {
     var data = Map<String, dynamic>();
-    data['id'] = this.id;
     data['userImageUrl'] = this.imageUrl;
     data['userName'] = this.name;
     return data;

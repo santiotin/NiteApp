@@ -105,6 +105,7 @@ class FirebaseProvider {
                 "numFollowing": 0,
                 "searchNames": searchNames,
                 "phones": phones,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/nitedevelopment-5e197.appspot.com/o/userPics%2FniteLogoBcn.png?alt=media&token=a92e534a-52c2-497e-b974-eb45e8bdd14b",
               })
               .whenComplete(() {
                 firestoreUser = true;
@@ -163,7 +164,7 @@ class FirebaseProvider {
     BasicUser basicUser = new BasicUser(id: user.id, imageUrl: user.imageUrl, name: user.name);
     await _firestore
         .collection('users').document(currentUser.uid)
-        .collection('following').document(user.uid)
+        .collection('following').document(user.id)
         .setData(basicUser.toMap())
         .whenComplete(() {
           result = true;

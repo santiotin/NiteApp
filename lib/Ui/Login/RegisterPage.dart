@@ -63,7 +63,6 @@ class _RegisterPageState extends State<RegisterPage> {
           :Container(
             padding: EdgeInsets.symmetric(horizontal: 25),
             child: ListView(
-              physics: NeverScrollableScrollPhysics(),
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.only(top: 20.0),
@@ -420,7 +419,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 50.0),
+                  padding: EdgeInsets.only(top: 30.0, bottom: 20),
                   child: RawMaterialButton(
                     elevation: 4.0,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

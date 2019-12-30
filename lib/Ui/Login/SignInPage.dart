@@ -190,7 +190,7 @@ class _SignInPageState extends State<SignInPage> {
                                 "Registrarse",
                                 style: TextStyle(
                                     color: Constants.accent,
-                                    fontSize: 15.0,
+                                    fontSize: 14.0,
                                     fontFamily: "WorkSansBold"
                                 ),
                               ),
@@ -222,7 +222,7 @@ class _SignInPageState extends State<SignInPage> {
                                 "Iniciar sesión",
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 15.0,
+                                    fontSize: 14.0,
                                     fontFamily: "WorkSansBold"
                                 ),
                               ),
