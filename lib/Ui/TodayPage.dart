@@ -1,0 +1,268 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter/services.dart';
+import 'package:niteapp/Backend/repository.dart';
+import 'package:niteapp/Models/Event.dart';
+import 'package:niteapp/Ui/EventDetailsPage.dart';
+import 'package:niteapp/Ui/Login/SignInPage.dart';
+import 'package:niteapp/Utils/Constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:niteapp/Ui/Widgets/HorizontalSlideFavorites.dart';
+import 'package:niteapp/Ui/Widgets/HorizontalSlider.dart';
+import 'package:niteapp/Utils/Messages.dart';
+
+class TodayPage extends StatefulWidget {
+
+  const TodayPage({Key key}) : super(key: key);
+
+  @override
+  _TodayPageState createState() => _TodayPageState();
+
+}
+
+class _TodayPageState extends State<TodayPage> {
+  var _repository = Repository();
+  var _dateText;
+  int day, month, year;
+
+  FirebaseUser mUser;
+
+  List<DocumentSnapshot> favoriteEvents = new List<DocumentSnapshot>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkAndGetCurrentUser();
+    initializeDateFormatting();
+    _dateText = retDateString(DateTime.now());
+    day = DateTime.now().day;
+    month = DateTime.now().month;
+    year = DateTime.now().year;
+  }
+
+  void checkAndGetCurrentUser() async {
+    FirebaseUser currentUser = await _repository.getCurrentUser();
+    if(currentUser != null ) {
+      setState(() {
+        mUser = currentUser;
+      });
+    } else {
+      Navigator.pushAndRemoveUntil(
+        context,
+        CupertinoPageRoute<Null>(
+          builder: (context) => SignInPage(),
+          settings: RouteSettings(name: 'SignInPage'),
+        ),
+            (_) => false,
+      );
+    }
+  }
+
+  static String retDateString(DateTime now) {
+    return DateFormat.yMMMEd('es').format(now).toString();
+  }
+
+  void onDatePressed() {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ));
+    Future<DateTime> selectedDate = showDatePicker(
+        context: context,
+        initialDate: DateTime(year,month,day),
+        firstDate: DateTime(year-1),
+        lastDate: DateTime(2025),
+        locale: const Locale('es' , 'ES'),
+        builder: (BuildContext context, Widget child) {
+          return Theme(
+            data: ThemeData(
+              primaryColor: Color(0xff14212D),
+              accentColor: Colors.pink,
+            ),
+            child: child,
+          );
+        });
+
+    selectedDate.then((value) {
+      setState(() {
+        _dateText = retDateString(value);
+        day = value.day;
+        month = value.month;
+        year = value.year;
+        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+          statusBarColor: Colors.white,
+        ));
+      });
+    });
+
+
+  }
+
+  List<Event> documentsToEvents(List<DocumentSnapshot> documents) {
+    List<Event> events = new List<Event>();
+    for(int i = 0; i < documents.length; i++) {
+      events.add(Event.fromMap(documents[i].data, documents[i].documentID));
+    }
+    return events;
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 4,
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
+            child: Icon(
+              Icons.map,
+              color: Constants.main,),
+          ),
+        ],
+        title: GestureDetector(
+          child: Text(_dateText),
+          onTap: onDatePressed,
+        ),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: ListView(
+          shrinkWrap: true,
+          physics: BouncingScrollPhysics(
+              parent: FixedExtentScrollPhysics()),
+          children: <Widget>[
+            StreamBuilder<QuerySnapshot>(
+                stream: _repository.getSponsoredEvents(day.toString(), month.toString(), year.toString()),
+                builder: (context, snapshot) {
+                  if(snapshot == null || snapshot.data == null || snapshot.data.documents == null
+                      || snapshot.data.documents.isEmpty || snapshot.connectionState == ConnectionState.waiting) return EmptyView();
+                  else if(snapshot.hasError) return ErrorView();
+                  else return Container(
+                    width: double.infinity,
+                    child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            CupertinoPageRoute<Null>(
+                              builder: (context) => EventDetailsPage(eid: snapshot.data.documents[0].documentID, uid: mUser.uid,),
+                              settings: RouteSettings(name: 'EventDetailsPage'),
+                            ),
+                          );
+                        },
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              width: double.infinity,
+                              height: MediaQuery.of(context).size.height * 0.3,
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: MediaQuery.of(context).size.height * 0.3,
+                              child: Image.network(
+                                snapshot.data.documents[0]["imageUrl"],
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            Positioned(
+                              left: 20.0,
+                              top: 15.0,
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Constants.white,
+                                  ),
+                                  padding: EdgeInsets.all(10),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                      child: Text('Recomendación'),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        )
+                    ),
+                  );
+                }
+            ),
+            SizedBox(height: 20.0),
+            StreamBuilder<QuerySnapshot>(
+                stream: _repository.getEvents(day.toString(), month.toString(), year.toString()),
+                builder: (context, snapshot) {
+                  if(snapshot == null || snapshot.data == null || snapshot.data.documents == null ) return EmptyView();
+                  else if(snapshot.hasError) return ErrorView();
+                  else if(snapshot.connectionState == ConnectionState.waiting) return LoadingView();
+                  else if(snapshot.data.documents.isEmpty) return EmptyTodayAndSearch(msg: 'No hay eventos para este día',);
+                  else return Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                'Eventos del día',
+                                style: TextStyle(
+                                  color: Constants.main,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Icon(
+                                  Icons.filter_list,
+                                  color: Constants.main,
+                                  size: 20.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        HorizontalSlider(
+                          events: documentsToEvents(snapshot.data.documents),
+                          uid: mUser.uid,
+                        ),
+                        SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                'Tus favoritos de hoy',
+                                style: TextStyle(
+                                  color: Constants.main,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        HorizontalSliderFavorites(
+                          events: documentsToEvents(snapshot.data.documents),
+                          uid: mUser.uid,
+                        ),
+                      ],
+                    );
+                }
+            ),
+            SizedBox(height: 20.0),
+          ],
+        ),
+      ),
+    );
+  }
+
+
+}
