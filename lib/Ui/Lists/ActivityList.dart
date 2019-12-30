@@ -70,7 +70,7 @@ class _ActivityListState extends State<ActivityList> {
                           ),
                           children: <TextSpan>[
                             TextSpan(text: activity.userName),
-                            TextSpan(text: ' ha indicado que assistirá a '),
+                            TextSpan(text: ' ha indicado que asistirá a '),
                             TextSpan(
                               text: activity.eventName,
                               style: TextStyle(

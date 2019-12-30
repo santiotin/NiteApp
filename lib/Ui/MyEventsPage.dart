@@ -21,22 +21,22 @@ class _MyEventsPageState extends State<MyEventsPage> {
   var _repository = new Repository();
 
   TimelineNodeStyle getTimeLineNodeStyle(int i, int total) {
-    if(i == total) return TimelineNodeStyle(
+    if(i == 0 && i == total) return TimelineNodeStyle(
         pointType: TimelineNodePointType.Circle,
         pointColor: Constants.main,
-        lineType: TimelineNodeLineType.TopHalf,
+        lineType: TimelineNodeLineType.None,
         lineColor: Constants.main);
 
-    if(i == 0 && i != total) return TimelineNodeStyle(
+    else if(i == 0 && i != total) return TimelineNodeStyle(
         pointType: TimelineNodePointType.Circle,
         pointColor: Constants.main,
         lineType: TimelineNodeLineType.BottomHalf,
         lineColor: Constants.main);
 
-    if(i == 0 && i == total) return TimelineNodeStyle(
+    else if(i == total) return TimelineNodeStyle(
         pointType: TimelineNodePointType.Circle,
         pointColor: Constants.main,
-        lineType: TimelineNodeLineType.None,
+        lineType: TimelineNodeLineType.TopHalf,
         lineColor: Constants.main);
 
     else return TimelineNodeStyle(
@@ -60,6 +60,8 @@ class _MyEventsPageState extends State<MyEventsPage> {
           else if(snapshot.hasError) return ErrorView();
           else if(snapshot.data.documents.isEmpty) return Center(child: EmptyTodayAndSearch(msg: "No asistes a ningun evento",));
           else return ListView.builder(
+            physics: BouncingScrollPhysics(
+              parent: FixedExtentScrollPhysics()),
             itemCount: snapshot.data.documents.length,
             itemBuilder: (context, index) {
               GoingEvent goingEvent = GoingEvent.fromMap(snapshot.data.documents[index].data, snapshot.data.documents[index].documentID);
