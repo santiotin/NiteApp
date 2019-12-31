@@ -5,6 +5,8 @@ import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/Event.dart';
 import 'package:niteapp/Ui/AssistantsPage.dart';
 import 'package:niteapp/Ui/BuyListPage.dart';
+import 'package:niteapp/Ui/ContactsPage.dart';
+import 'package:niteapp/Ui/GoogleMapsPage.dart';
 import 'package:niteapp/Ui/TicketsWebView.dart';
 import 'package:niteapp/Utils/Messages.dart';
 import 'package:niteapp/Utils/Constants.dart';
@@ -715,8 +717,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                 Navigator.push(
                                     context,
                                     CupertinoPageRoute<Null>(
-                                      builder: (context) => BuyListPage(eid: widget.eid),
-                                      settings: RouteSettings(name: 'BuyListPage'),
+                                      builder: (context) => ContactsPage(),
+                                      settings: RouteSettings(name: 'ContactsPage'),
                                     )
                                 );
                               },
@@ -927,7 +929,15 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           child: Center(
                             child: FlatButton(
                               color: Constants.white,
-                              onPressed: (){},
+                              onPressed: (){
+                                Navigator.push(
+                                    context,
+                                    CupertinoPageRoute<Null>(
+                                      builder: (context) => GoogleMapsPage(),
+                                      settings: RouteSettings(name: 'GoogleMapsPage'),
+                                    )
+                                );
+                              },
                               shape: CircleBorder(),
                               padding: EdgeInsets.all(10),
                               child: Icon(
