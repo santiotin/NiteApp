@@ -16,51 +16,23 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  BottomNavigationBadge badger = new BottomNavigationBadge(
-      backgroundColor: Constants.accent,
-      badgeShape: BottomNavigationBadgeShape.circle,
-      textColor: Colors.white,
-      position: BottomNavigationBadgePosition.topRight,
-      textSize: 6);
-
-  List<BottomNavigationBarItem> items = [
-    BottomNavigationBarItem(
-      icon: Icon(Icons.brightness_2),
-      title: Text('Today'),
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.search),
-      title: Text('Search'),
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.notifications_none),
-      title: Text('Notifications'),
-      activeIcon: Icon(Icons.notifications),
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.person_outline),
-      title: Text('Profile'),
-      activeIcon: Icon(Icons.person),
-    ),
-  ];
-
-  static TodayPage _todayPage = new TodayPage();
-  static SearchPage _searchPage = new SearchPage();
-  static NotificationsPage _notificationsPage = new NotificationsPage();
-  static ProfilePage _profilePage = new ProfilePage();
-
-  List<Widget> _widgetOptions = <Widget>[
-    _todayPage,
-    _searchPage,
-    _notificationsPage,
-    _profilePage,
-  ];
+  BottomNavigationBadge badger;
+  List<BottomNavigationBarItem> items;
+  TodayPage _todayPage;
+  SearchPage _searchPage;
+  NotificationsPage _notificationsPage;
+  ProfilePage _profilePage;
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      if(index == 2) items = badger.setBadge(items, "1", index);
-      else items = badger.removeBadge(items, 2);
+      if(index == 2) items = badger.removeBadge(items, 2);
+    });
+  }
+
+  void createBadge() {
+    setState(() {
+      items = badger.setBadge(items, "", 2);
     });
   }
 
@@ -69,14 +41,47 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _selectedIndex = 0;
     });
+    iniItemsAndBadge();
     super.initState();
+  }
 
+  void iniItemsAndBadge() {
+    badger = new BottomNavigationBadge(
+        backgroundColor: Constants.accent,
+        badgeShape: BottomNavigationBadgeShape.circle,
+        textColor: Colors.white,
+        position: BottomNavigationBadgePosition.topRight,
+        textSize: 6);
+
+    items = [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.brightness_2),
+        title: Text('Today'),
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.search),
+        title: Text('Search'),
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.notifications_none),
+        title: Text('Notifications'),
+        activeIcon: Icon(Icons.notifications),
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.person_outline),
+        title: Text('Profile'),
+        activeIcon: Icon(Icons.person),
+      ),
+    ];
+
+    _todayPage = new TodayPage();
+    _searchPage = new SearchPage();
+    _notificationsPage = new NotificationsPage(createBadge: createBadge,);
+    _profilePage = new ProfilePage();
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-
     return Scaffold(
       appBar: null,
       body: new Stack(

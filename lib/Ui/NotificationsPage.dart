@@ -6,6 +6,7 @@ import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/Activity.dart';
 import 'package:niteapp/Models/Request.dart';
 import 'package:niteapp/Models/User.dart';
+import 'package:niteapp/Ui/HomePage.dart';
 import 'package:niteapp/Ui/Lists/ActivityList.dart';
 import 'package:niteapp/Ui/Lists/RequestList.dart';
 import 'package:niteapp/Ui/Login/SignInPage.dart';
@@ -14,7 +15,9 @@ import 'package:niteapp/Utils/Constants.dart';
 
 class NotificationsPage extends StatefulWidget {
 
-  const NotificationsPage({Key key}) : super(key: key);
+  final Function createBadge;
+
+  const NotificationsPage({Key key, this.createBadge}) : super(key: key);
 
   @override
   _NotificationsPageState createState() => _NotificationsPageState();
@@ -26,6 +29,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
   var _repository = new Repository();
   FirebaseUser mUser;
   User user;
+  int activityLenght;
+  int requestsLenght = 0;
+
 
   @override
   void initState() {
@@ -50,6 +56,10 @@ class _NotificationsPageState extends State<NotificationsPage> {
             (_) => false,
       );
     }
+  }
+
+  Future<void> createAsyncBadge() async {
+    widget.createBadge();
   }
 
   @override
@@ -101,6 +111,13 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 else if(snapshot.hasError) return ErrorView();
                 else if(snapshot.data.documents.isEmpty) return EmptyNotifications(msg: 'No hay actividad reciente',);
                 else {
+                  if(activityLenght == null) activityLenght = snapshot.data.documents.length;
+                  else if(snapshot.data.documents.length > activityLenght) {
+                    createAsyncBadge();
+                    activityLenght = snapshot.data.documents.length;
+                    print(activityLenght);
+                  }
+
                   List<Activity> activities = new List<Activity>();
                   for(int i = 0; i < snapshot.data.documents.length; i++){
                     activities.add(Activity.fromMap(snapshot.data.documents[i].data, snapshot.data.documents[i].documentID));
