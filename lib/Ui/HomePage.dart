@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:niteapp/Ui/SearchPage.dart';
 import 'package:niteapp/Ui/NotificationsPage.dart';
@@ -31,9 +32,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void createBadge() {
-    setState(() {
-      items = badger.setBadge(items, "", 2);
-    });
+    items = badger.setBadge(items, "", 2);
   }
 
   @override
@@ -55,7 +54,7 @@ class _HomePageState extends State<HomePage> {
 
     items = [
       BottomNavigationBarItem(
-        icon: Icon(Icons.brightness_2),
+        icon: Icon(Icons.today),
         title: Text('Today'),
       ),
       BottomNavigationBarItem(
@@ -65,12 +64,12 @@ class _HomePageState extends State<HomePage> {
       BottomNavigationBarItem(
         icon: Icon(Icons.notifications_none),
         title: Text('Notifications'),
-        activeIcon: Icon(Icons.notifications),
+        activeIcon: Icon(Icons.notifications_none),
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.person_outline),
         title: Text('Profile'),
-        activeIcon: Icon(Icons.person),
+        activeIcon: Icon(Icons.person_outline),
       ),
     ];
 

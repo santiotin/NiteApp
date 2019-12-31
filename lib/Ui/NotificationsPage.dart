@@ -58,10 +58,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
     }
   }
 
-  Future<void> createAsyncBadge() async {
-    widget.createBadge();
-  }
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -113,9 +109,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 else {
                   if(activityLenght == null) activityLenght = snapshot.data.documents.length;
                   else if(snapshot.data.documents.length > activityLenght) {
-                    createAsyncBadge();
+                    widget.createBadge();
                     activityLenght = snapshot.data.documents.length;
-                    print(activityLenght);
                   }
 
                   List<Activity> activities = new List<Activity>();

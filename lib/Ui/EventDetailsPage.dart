@@ -5,6 +5,7 @@ import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/Event.dart';
 import 'package:niteapp/Ui/AssistantsPage.dart';
 import 'package:niteapp/Ui/BuyListPage.dart';
+import 'package:niteapp/Ui/TicketsWebView.dart';
 import 'package:niteapp/Utils/Messages.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -818,7 +819,15 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           child: Center(
                             child: FlatButton(
                               color: Constants.white,
-                              onPressed: (){},
+                              onPressed: (){
+                                Navigator.push(
+                                    context,
+                                    CupertinoPageRoute<Null>(
+                                      builder: (context) => TicketWebView(),
+                                      settings: RouteSettings(name: 'TicketWebView'),
+                                    )
+                                );
+                              },
                               shape: CircleBorder(),
                               padding: EdgeInsets.all(10),
                               child: Icon(
