@@ -28,14 +28,20 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
         title: const Text('Wikipedia Explorer'),
         // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
       ),
-      body: Stack(
-        children: <Widget>[
-          GoogleMap(
+      body: Center(
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.8,
+          height: MediaQuery.of(context).size.height * 0.3,
+          child: GoogleMap(
             onMapCreated: _onMapCreated,
             initialCameraPosition: _initialPosition,
+            scrollGesturesEnabled: false,
+            zoomGesturesEnabled: false,
+            rotateGesturesEnabled: false,
+            minMaxZoomPreference: MinMaxZoomPreference(15,15),
           ),
-        ],
-      )
+        )
+      ),
     );
   }
 }

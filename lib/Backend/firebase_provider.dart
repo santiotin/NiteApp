@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:niteapp/Models/Club.dart';
@@ -6,11 +8,13 @@ import 'package:niteapp/Models/BasicUser.dart';
 import 'package:niteapp/Models/GoingEvent.dart';
 import 'package:niteapp/Models/User.dart';
 import 'package:niteapp/Models/Event.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class FirebaseProvider {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final Firestore _firestore = Firestore.instance;
+  final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
 
   Future<bool> signIn(String email, String password) async {
@@ -345,6 +349,13 @@ class FirebaseProvider {
     }
     return users;
 
+  }
+
+  Future<bool> uploadPhoto(File image) async {
+    FirebaseUser currentUser = await getCurrentUser();
+    StorageTaskSnapshot storageTaskSnapshot = await _firebaseStorage.ref().child("userPics/" + currentUser.uid + ".png").putFile(image).onComplete;
+    if(storageTaskSnapshot != null) return true;
+    else return false;
   }
 
 

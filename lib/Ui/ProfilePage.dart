@@ -7,6 +7,7 @@ import 'package:niteapp/Ui/FriendsPage.dart';
 import 'package:niteapp/Ui/Login/SignInPage.dart';
 import 'package:niteapp/Ui/SettingsPage.dart';
 import 'package:niteapp/Ui/MyEventsPage.dart';
+import 'package:niteapp/Ui/Widgets/CircularImage.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -74,10 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Container(
                       height: MediaQuery.of(context).size.height * 0.15,
                       child: Center(
-                        child: Image.network(
-                          user.imageUrl,
-                          fit: BoxFit.cover,
-                        ),
+                        child: CircularImage(size: MediaQuery.of(context).size.height*0.15, image: user.imageUrl,),
                       ),
                     ),
                     Container(

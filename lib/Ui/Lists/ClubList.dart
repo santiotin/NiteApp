@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:niteapp/Models/Club.dart';
+import 'package:niteapp/Ui/Widgets/CircularImage.dart';
 import 'package:niteapp/Utils/Constants.dart';
 
 class SearchClubList extends StatefulWidget {
@@ -38,15 +39,7 @@ class _SearchClubListState extends State<SearchClubList> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    ClipRRect(
-                      borderRadius: new BorderRadius.circular(MediaQuery.of(context).size.width * 0.10),
-                      child: Image.network(
-                        widget.clubs[index].imageUrl,
-                        width: MediaQuery.of(context).size.width * 0.16,
-                        height: MediaQuery.of(context).size.width * 0.16,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                    CircularImage(size: MediaQuery.of(context).size.width * 0.16,image: widget.clubs[index].imageUrl,),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.7,
                       padding: EdgeInsets.only(left: 25),

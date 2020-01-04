@@ -1,15 +1,18 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/Event.dart';
 import 'package:niteapp/Ui/AssistantsPage.dart';
-import 'package:niteapp/Ui/GoogleMapsPage.dart';
+import 'package:niteapp/Ui/BuyListPage.dart';
+import 'package:niteapp/Pruebas/GoogleMapsPage.dart';
 import 'package:niteapp/Ui/TicketsWebView.dart';
 import 'package:niteapp/Utils/Messages.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 
 class EventDetailsPage extends StatefulWidget {
@@ -28,6 +31,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
   bool going = false;
   Event event;
   bool favoriteClub;
+
+  CameraPosition _initialPosition = CameraPosition(target: LatLng(26.8206, 30.8025));
+  Completer<GoogleMapController> _controller = Completer();
 
 
   Widget _AgeCard() {
@@ -291,6 +297,13 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
     });
   }
 
+  void iniCameraPosition() {
+    _initialPosition = CameraPosition(target: LatLng(double.parse(event.latitude), double.parse(event.longitude)));
+  }
+  void _onMapCreated(GoogleMapController controller) {
+    _controller.complete(controller);
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -416,6 +429,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
         else {
           event = Event.fromMap(snapshot.data.data, snapshot.data.documentID);
           isFavoriteClub();
+          iniCameraPosition();
           return Scaffold(
             appBar: AppBar(
               elevation: 0,
@@ -585,24 +599,22 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                       width: MediaQuery.of(context).size.width,
                       child: Stack(
                         children: <Widget>[
-                          Hero(
-                            tag: 'maps',
-                            child: Image.asset(
-                              'assets/images/googlemaps.png',
-                              height: 200,
-                              width: MediaQuery.of(context).size.width,
-                              fit: BoxFit.cover,
-                            ),
+                          GoogleMap(
+                            onMapCreated: _onMapCreated,
+                            initialCameraPosition: _initialPosition,
+                            scrollGesturesEnabled: false,
+                            zoomGesturesEnabled: false,
+                            rotateGesturesEnabled: false,
+                            minMaxZoomPreference: MinMaxZoomPreference(15,15),
+                            myLocationButtonEnabled: false,
                           ),
-
                           Positioned(
-                            left: 20.0,
-                            bottom: 15.0,
-                            child: FlatButton(
-                              color: Constants.white,
-                              onPressed: (){},
-                              shape: RoundedRectangleBorder(
+                            left: 5.0,
+                            bottom: 5.0,
+                            child: Container(
+                              decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
+                                color: Constants.white,
                               ),
                               padding: EdgeInsets.all(10),
                               child: Row(
@@ -712,7 +724,13 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             child: FlatButton(
                               color: Constants.white,
                               onPressed: (){
-
+                                Navigator.push(
+                                    context,
+                                    CupertinoPageRoute<Null>(
+                                      builder: (context) => BuyListPage(eid: event.id,),
+                                      settings: RouteSettings(name: 'BuyListPage'),
+                                    )
+                                );
                               },
                               shape: CircleBorder(),
                               padding: EdgeInsets.all(10),

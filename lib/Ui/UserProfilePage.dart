@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/User.dart';
+import 'package:niteapp/Ui/Widgets/CircularImage.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:niteapp/Utils/Messages.dart';
@@ -88,15 +89,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.15,
-                  child: Center(
-                    child: Image.network(
-                      user.imageUrl,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+                CircularImage(size: MediaQuery.of(context).size.width * 0.15,image: user.imageUrl,),
                 Container(
                   margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.02),
                   child: Column(

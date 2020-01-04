@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:niteapp/Models/Request.dart';
 import 'package:niteapp/Ui/UserProfilePage.dart';
+import 'package:niteapp/Ui/Widgets/CircularImage.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -48,15 +49,7 @@ class _RequestListState extends State<RequestList> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    ClipRRect(
-                      borderRadius: new BorderRadius.circular(MediaQuery.of(context).size.width * 0.10),
-                      child: Image.network(
-                        request.userImageUrl,
-                        width: MediaQuery.of(context).size.width * 0.16,
-                        height: MediaQuery.of(context).size.width * 0.16,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                    CircularImage(size: MediaQuery.of(context).size.width * 0.16,image: request.userImageUrl,),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.70,
                       child: Padding(

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:niteapp/Ui/EditPhotoPage.dart';
 import 'package:niteapp/Ui/EditProfilePage.dart';
 import 'package:niteapp/Ui/Login/SignInPage.dart';
-import 'package:niteapp/Ui/SearchFriendsPage.dart';
+import 'package:niteapp/Pruebas/SearchFriendsPage.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -41,6 +42,39 @@ class SettingsPage extends StatelessWidget {
                   ),
                   Text(
                     'Editar perfil',
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      color: Constants.main,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          RawMaterialButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  CupertinoPageRoute<Null>(
+                    builder: (context) => EditPhotoPage(),
+                    settings: RouteSettings(name: 'EditPhotoPage'),
+                  )
+              );
+            },
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.07,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: 30.0, right: 20.0),
+                    child: Icon(
+                      Icons.face,
+                    ),
+                  ),
+                  Text(
+                    'Editar foto',
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       color: Constants.main,

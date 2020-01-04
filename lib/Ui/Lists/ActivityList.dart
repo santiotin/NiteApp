@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:niteapp/Models/Activity.dart';
 import 'package:niteapp/Ui/EventDetailsPage.dart';
 import 'package:niteapp/Ui/UserProfilePage.dart';
+import 'package:niteapp/Ui/Widgets/CircularImage.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -50,15 +51,7 @@ class _ActivityListState extends State<ActivityList> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    ClipRRect(
-                      borderRadius: new BorderRadius.circular(MediaQuery.of(context).size.width * 0.10),
-                      child: Image.network(
-                        activity.userImageUrl,
-                        width: MediaQuery.of(context).size.width * 0.16,
-                        height: MediaQuery.of(context).size.width * 0.16,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                    CircularImage(size: MediaQuery.of(context).size.width * 0.16,image: activity.userImageUrl,),
                     Container(
                       padding: EdgeInsets.only(left: 10),
                       width: MediaQuery.of(context).size.width * 0.50,

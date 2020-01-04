@@ -33,8 +33,9 @@ dependencies:
   fw_ticket: ^0.1.1
   webview_flutter: ^0.3.18+1
   google_maps_flutter: ^0.5.21+15
+  image_picker: ^0.6.2+3
+  firebase_storage: ^3.1.1
   contacts_service: ^0.3.10
-  #simple_permissions: ^0.1.9
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

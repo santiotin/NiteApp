@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:niteapp/Backend/firebase_provider.dart';
@@ -41,6 +43,8 @@ class Repository {
   Future<bool> addToList(Event event) => _firebaseProvider.addToList(event);
 
   Future<Club> getClub(String cid) => _firebaseProvider.getClub(cid);
+
+  Future<bool> uploadPhoto(File image) => _firebaseProvider.uploadPhoto(image);
 
 
   //----------------------------------------------------------STREAMS-------------------------------------------------------------------

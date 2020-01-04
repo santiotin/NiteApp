@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:niteapp/Models/BasicUser.dart';
 import 'package:niteapp/Ui/UserProfilePage.dart';
+import 'package:niteapp/Ui/Widgets/CircularImage.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -48,15 +49,7 @@ class _BasicUserListState extends State<BasicUserList> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    ClipRRect(
-                      borderRadius: new BorderRadius.circular(MediaQuery.of(context).size.width * 0.10),
-                      child: Image.network(
-                        widget.basicUsers[index].imageUrl,
-                        width: MediaQuery.of(context).size.width * 0.16,
-                        height: MediaQuery.of(context).size.width * 0.16,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                    CircularImage(size: MediaQuery.of(context).size.width * 0.16,image: widget.basicUsers[index].imageUrl,),
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0),
                       child: Text(
