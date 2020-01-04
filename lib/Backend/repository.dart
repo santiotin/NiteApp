@@ -45,6 +45,8 @@ class Repository {
   Future<Club> getClub(String cid) => _firebaseProvider.getClub(cid);
 
   Future<bool> uploadPhoto(File image) => _firebaseProvider.uploadPhoto(image);
+  Future<List<User>> getUsersInApp(List<String> phones) => _firebaseProvider.getUsersInApp(phones);
+  Future<List<User>> getUserInApp(String phone) => _firebaseProvider.getUserInApp(phone);
 
 
   //----------------------------------------------------------STREAMS-------------------------------------------------------------------

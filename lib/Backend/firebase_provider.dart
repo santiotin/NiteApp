@@ -338,17 +338,26 @@ class FirebaseProvider {
     return Club.fromMap(_documentSnapshot.data, _documentSnapshot.documentID);
   }
 
-  Future<List<User>> isUserInApp(List<String> phones) async {
+  Future<List<User>> getUsersInApp(List<String> phones) async {
     List<User> users = new List<User>();
 
     for(int i = 0; i < phones.length; i++) {
-      QuerySnapshot querySnapshot = await _firestore.collection("users").where("searchPhones", arrayContains: phones[i]).getDocuments();
+      QuerySnapshot querySnapshot = await _firestore.collection("users").where("phones", arrayContains: phones[i]).getDocuments();
       for(int i = 0; i < querySnapshot.documents.length; i++) {
         users.add(User.fromMap(querySnapshot.documents[i].data, querySnapshot.documents[i].documentID));
       }
     }
     return users;
 
+  }
+
+  Future<List<User>> getUserInApp(String phone) async {
+    List<User> users = new List<User>();
+    QuerySnapshot querySnapshot = await _firestore.collection("users").where("phones", arrayContains: phone).getDocuments();
+    for(int i = 0; i < querySnapshot.documents.length; i++) {
+      users.add(User.fromMap(querySnapshot.documents[i].data, querySnapshot.documents[i].documentID));
+    }
+    return users;
   }
 
   Future<bool> uploadPhoto(File image) async {

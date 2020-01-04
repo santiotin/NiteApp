@@ -2,41 +2,25 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:easy_permission_validator/easy_permission_validator.dart';
+import 'package:niteapp/Backend/repository.dart';
+import 'package:niteapp/Models/User.dart';
 
 
 class ContactsPage extends StatefulWidget {
   ContactsPage({Key key}) : super(key: key);
 
-  final String title = 'Contacts';
-  final String reloadLabel = 'Reload!';
-  final String fireLabel = 'Fire in the hole!';
-  final Color floatingButtonColor = Colors.red;
-  final IconData reloadIcon = Icons.refresh;
-  final IconData fireIcon = Icons.filter_center_focus;
-
   @override
-  _ContactsPageState createState() => new _ContactsPageState(
-    floatingButtonLabel: this.fireLabel,
-    icon: this.fireIcon,
-    floatingButtonColor: this.floatingButtonColor,
-  );
+  _ContactsPageState createState() => new _ContactsPageState();
 }
 
 class _ContactsPageState extends State<ContactsPage> {
-  List<Contact> _contacts = new List<Contact>();
-  List<CustomContact> _uiCustomContacts = List<CustomContact>();
-  List<CustomContact> _allContacts = List<CustomContact>();
-  bool _isLoading = false;
-  bool _isSelectedContactsView = false;
-  String floatingButtonLabel;
-  Color floatingButtonColor;
-  IconData icon;
 
-  _ContactsPageState({
-    this.floatingButtonLabel,
-    this.icon,
-    this.floatingButtonColor,
-  });
+  var _repository = new Repository();
+  var contacts;
+  List<User> _usersInApp = new List<User>();
+  bool _isLoading = false;
+  int totalPhones = 1;
+  int numPhones = 1;
 
   @override
   void initState() {
@@ -65,125 +49,78 @@ class _ContactsPageState extends State<ContactsPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text(widget.title),
+        title: new Text('Contactos'),
       ),
       body: !_isLoading
           ? Container(
-        child: ListView.builder(
-          itemCount: _uiCustomContacts?.length,
-          itemBuilder: (BuildContext context, int index) {
-            CustomContact _contact = _uiCustomContacts[index];
-            var _phonesList = _contact.contact.phones.toList();
-
-            return _buildListTile(_contact, _phonesList);
-          },
-        ),
-      )
+              child: _usersInApp.isEmpty ?
+                  Center(child: Text('No tienes amigos')) :
+                  ListView.builder(
+                    itemCount: _usersInApp.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      User user = _usersInApp.elementAt(index);
+                      return _buildListTile(user);
+                    },
+                  ),
+            )
           : Center(
-        child: CircularProgressIndicator(),
-      ),
-      floatingActionButton: new FloatingActionButton.extended(
-        backgroundColor: floatingButtonColor,
-        onPressed: _onSubmit,
-        icon: Icon(icon),
-        label: Text(floatingButtonLabel),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+              child: CircularProgressIndicator(),
+          ),
     );
   }
 
-  void _onSubmit() {
-    setState(() {
-      if (!_isSelectedContactsView) {
-        _uiCustomContacts =
-            _allContacts.where((contact) => contact.isChecked == true).toList();
-        _isSelectedContactsView = true;
-        _restateFloatingButton(
-          widget.reloadLabel,
-          Icons.refresh,
-          Colors.green,
-        );
-      } else {
-        _uiCustomContacts = _allContacts;
-        _isSelectedContactsView = false;
-        _restateFloatingButton(
-          widget.fireLabel,
-          Icons.filter_center_focus,
-          Colors.red,
-        );
-      }
-    });
-  }
 
-  ListTile _buildListTile(CustomContact c, List<Item> list) {
+  ListTile _buildListTile(User u) {
     return ListTile(
-      leading: (c.contact.avatar != null)
-          ? CircleAvatar(backgroundImage: MemoryImage(c.contact.avatar))
-          : CircleAvatar(
-        child: Text(
-            (c.contact.displayName[0] +
-                c.contact.displayName[1].toUpperCase()),
-            style: TextStyle(color: Colors.white)),
-      ),
-      title: Text(c.contact.displayName ?? ""),
-      subtitle: list.length >= 1 && list[0]?.value != null
-          ? Text(list[0].value)
-          : Text(''),
+      leading: Icon(Icons.contacts, size: 50,),
+      title: Text(u.name),
+      subtitle: Text(u.id),
       trailing: Checkbox(
           activeColor: Colors.green,
-          value: c.isChecked,
-          onChanged: (bool value) {
-            setState(() {
-              c.isChecked = value;
-            });
-          }),
+          value: false,
+      )
     );
-  }
-
-  void _restateFloatingButton(String label, IconData icon, Color color) {
-    floatingButtonLabel = label;
-    icon = icon;
-    floatingButtonColor = color;
   }
 
   refreshContacts() async {
     setState(() {
       _isLoading = true;
     });
-    var contacts = await ContactsService.getContacts();
-    _populateContacts(contacts);
-  }
-
-  void _populateContacts(Iterable<Contact> contacts) {
-    _contacts = contacts.where((item) => item.displayName != null).toList();
-    _contacts.sort((a, b) => a.displayName.compareTo(b.displayName));
-    _allContacts =
-        _contacts.map((contact) => CustomContact(contact: contact)).toList();
-    setState(() {
-      _uiCustomContacts = _allContacts;
-      _isLoading = false;
-    });
+    contacts = await ContactsService.getContacts();
+    for(int i = 0; i < contacts.length; i++) {
+      if(contacts.elementAt(i).phones.isNotEmpty && contacts.elementAt(i).phones.elementAt(0) != null){
+        getUserInApp(contacts.elementAt(i).phones.elementAt(0).value.replaceAll(new RegExp(r"\s+\b|\b\s"), ""));
+        totalPhones++;
+      }
+    }
+    //getUsersInApp();
   }
 
   Future<bool>_permissionContactsRequest() async {
     final permissionValidator = EasyPermissionValidator(
       context: context,
-      appName: 'Easy Permission Validator',
+      appName: 'NiteApp',
     );
     var result = await permissionValidator.contacts();
     if (result) return true;
     else return false;
   }
 
+  Future<List<User>> getUserInApp(String phone) async{
+    List<User> auxUsers = await _repository.getUserInApp(phone);
+    numPhones++;
+    for(int i = 0; i < auxUsers.length; i++) {
+      setState(() {
+        _usersInApp.add(auxUsers.elementAt(i));
+        _isLoading = false;
+      });
+    }
+    if(numPhones == totalPhones) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
-}
 
-class CustomContact {
-  final Contact contact;
-  bool isChecked;
-
-  CustomContact({
-    this.contact,
-    this.isChecked = false,
-  });
 }
