@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:niteapp/Pruebas/ContactsPage.dart';
 import 'package:niteapp/Ui/EditPhotoPage.dart';
 import 'package:niteapp/Ui/EditProfilePage.dart';
 import 'package:niteapp/Ui/Login/SignInPage.dart';
@@ -90,7 +91,7 @@ class SettingsPage extends StatelessWidget {
               Navigator.push(
                   context,
                   CupertinoPageRoute<Null>(
-                    builder: (context) => SearchFriendsPage(),
+                    builder: (context) => ContactsPage(),
                     settings: RouteSettings(name: 'SearchFriendsPage'),
                   )
               );
