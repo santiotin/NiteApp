@@ -89,7 +89,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                CircularImage(size: MediaQuery.of(context).size.width * 0.15,image: user.imageUrl,),
+                CircularImage(size: MediaQuery.of(context).size.height * 0.15,image: user.imageUrl,),
                 Container(
                   margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.02),
                   child: Column(

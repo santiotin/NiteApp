@@ -70,11 +70,11 @@ class _ContactsPageState extends State<ContactsPage> {
   }
 
 
-  ListTile _buildListTile(User u) {
+  ListTile _buildListTile(User user) {
     return ListTile(
       leading: Icon(Icons.contacts, size: 50,),
-      title: Text(u.name),
-      subtitle: Text(u.id),
+      title: Text(user.name),
+      subtitle: Text(user.id),
       trailing: Checkbox(
           activeColor: Colors.green,
           value: false,
