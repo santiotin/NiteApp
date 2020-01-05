@@ -1,9 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:easy_permission_validator/easy_permission_validator.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/User.dart';
+import 'package:niteapp/Ui/UserProfilePage.dart';
+import 'package:niteapp/Ui/Widgets/CircularImage.dart';
+import 'package:niteapp/Utils/Constants.dart';
 
 
 class ContactsPage extends StatefulWidget {
@@ -49,17 +53,54 @@ class _ContactsPageState extends State<ContactsPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Contactos'),
+        title: new Text('Buscar amigos'),
       ),
       body: !_isLoading
           ? Container(
               child: _usersInApp.isEmpty ?
-                  Center(child: Text('No tienes amigos')) :
+                  Center(child: Text('Ningun contacto en la aplicación')) :
                   ListView.builder(
                     itemCount: _usersInApp.length,
                     itemBuilder: (BuildContext context, int index) {
                       User user = _usersInApp.elementAt(index);
-                      return _buildListTile(user);
+                      return GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              CupertinoPageRoute<Null>(
+                                builder: (context) => UserProfilePage(uid: user.id,),
+                                settings: RouteSettings(name: 'UserProfilePage'),
+                              )
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 20, 10 , 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              CircularImage(size: MediaQuery.of(context).size.width * 0.16,image: user.imageUrl,),
+                              Container(
+                                width: MediaQuery.of(context).size.width*0.5,
+                                padding: const EdgeInsets.only(left: 30.0),
+                                child: Text(
+                                  user.name,
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                      color: Constants.main,
+                                      fontSize: 16
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(),
+                              ),
+                              Container()
+                            ],
+                          ),
+                        ),
+                      );
                     },
                   ),
             )

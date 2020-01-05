@@ -3,6 +3,7 @@ import 'package:niteapp/Models/Activity.dart';
 import 'package:niteapp/Ui/EventDetailsPage.dart';
 import 'package:niteapp/Ui/UserProfilePage.dart';
 import 'package:niteapp/Ui/Widgets/CircularImage.dart';
+import 'package:niteapp/Ui/Widgets/RoundedImage.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -83,17 +84,9 @@ class _ActivityListState extends State<ActivityList> {
                                 settings: RouteSettings(name: 'EventDetailsPage'),
                               )
                           ),
-                      child: ClipRRect(
-                        borderRadius: new BorderRadius.circular(MediaQuery.of(context).size.width * 0.025),
-                        child: Hero(
-                          tag: 'event' + index.toString(),
-                          child: Image.network(
-                            activity.eventImageUrl,
-                            width: MediaQuery.of(context).size.width * 0.16,
-                            height: MediaQuery.of(context).size.width * 0.16,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                      child: RoundedImage(
+                        size: MediaQuery.of(context).size.width * 0.16,
+                        image: activity.eventImageUrl,
                       ),
                     ),
                   ],

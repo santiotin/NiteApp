@@ -28,7 +28,7 @@ class EventDetailsPage extends StatefulWidget {
 class _EventDetailsPageState extends State<EventDetailsPage> {
 
   var _repository = new Repository();
-  bool going = false;
+  bool going;
   Event event;
   bool favoriteClub;
 
@@ -548,7 +548,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             ],
                           ),
                         ),
-                        Padding(
+                        if(going != null)Padding(
                           padding: const EdgeInsets.only(right: 25.0),
                           child:  FloatingActionButton(
                             onPressed: () {

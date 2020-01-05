@@ -1,18 +1,18 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 
-class CircularImage extends StatefulWidget {
+class RoundedImage extends StatefulWidget {
   final double size;
   final String image;
   final File file;
 
-  CircularImage({Key key, this.size, this.image, this.file}) : super(key: key);
+  RoundedImage({Key key, this.size, this.image, this.file}) : super(key: key);
 
   @override
-  _CircularImageState createState() => new _CircularImageState();
+  _RoundedImageState createState() => new _RoundedImageState();
 }
 
-class _CircularImageState extends State<CircularImage> {
+class _RoundedImageState extends State<RoundedImage> {
 
 
   @override
@@ -27,9 +27,9 @@ class _CircularImageState extends State<CircularImage> {
               width: widget.size * 0.20,
               height: widget.size * 0.20,
               child: Center(
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                  ),
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                ),
               ),
             ),
           ),
@@ -38,7 +38,8 @@ class _CircularImageState extends State<CircularImage> {
             width: widget.size,
             height: widget.size,
             decoration: new BoxDecoration(
-                shape: BoxShape.circle,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(widget.size*0.2),
                 image: new DecorationImage(
                     fit: BoxFit.cover,
                     image: widget.image == null ?

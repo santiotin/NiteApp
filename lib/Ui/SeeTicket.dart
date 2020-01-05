@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:niteapp/Backend/repository.dart';
@@ -7,6 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:niteapp/Utils/Messages.dart';
 import 'package:fw_ticket/fw_ticket.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class SeeTicketPage extends StatefulWidget {
 
@@ -24,6 +27,16 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
   var _repository = new Repository();
   Event event;
 
+  CameraPosition _initialPosition = CameraPosition(target: LatLng(26.8206, 30.8025));
+  Completer<GoogleMapController> _controller = Completer();
+
+  void iniCameraPosition() {
+    _initialPosition = CameraPosition(target: LatLng(double.parse(event.latitude), double.parse(event.longitude)));
+  }
+  void _onMapCreated(GoogleMapController controller) {
+    _controller.complete(controller);
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot>(
@@ -33,6 +46,7 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
           else if(snapshot.hasError) return ErrorView();
           else {
             event = Event.fromMap(snapshot.data.data, snapshot.data.documentID);
+            iniCameraPosition();
             return Scaffold(
               appBar: AppBar(
                 title: Text('Entrada'),
@@ -43,6 +57,7 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Container(
+                        height: MediaQuery.of(context).size.height * 0.2,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: Ticket(
                           innerRadius: BorderRadius.only(
@@ -58,8 +73,14 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
                               color: Color.fromRGBO(196, 196, 196, .76),
                             )
                           ],
-                          child: Image.asset(
-                            'assets/images/googlemaps.png',
+                          child: GoogleMap(
+                            onMapCreated: _onMapCreated,
+                            initialCameraPosition: _initialPosition,
+                            scrollGesturesEnabled: false,
+                            zoomGesturesEnabled: false,
+                            rotateGesturesEnabled: false,
+                            minMaxZoomPreference: MinMaxZoomPreference(16,16),
+                            myLocationButtonEnabled: false,
                           ),
                         ),
                       ),
@@ -103,7 +124,7 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text('Fecha'),
                                               FittedBox(
@@ -122,7 +143,7 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
                                               children: <Widget>[
                                                 Text('Empieza'),
                                                 FittedBox(
@@ -140,7 +161,7 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
                                               children: <Widget>[
                                                 Text('Acaba'),
                                                 FittedBox(
@@ -183,12 +204,12 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
                                 Container(
                                   width: double.infinity,
                                   color: Constants.main,
-                                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                                  padding: EdgeInsets.symmetric(vertical: 15.0),
                                   child: Center(
                                     child: Text(
-                                      'BUY TICKETS',
+                                      'Con Nite entras por lista sin hacer cola',
                                       style:
-                                      TextStyle(color: Constants.main, fontSize: 16.0),
+                                      TextStyle(color: Constants.white, fontSize: 14.0),
                                     ),
                                   ),
                                 )
