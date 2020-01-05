@@ -21,6 +21,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
 
   var _repository = Repository();
   bool following;
+  bool itsMe = true;
 
   User user;
 
@@ -57,7 +58,16 @@ class _UserProfilePageState extends State<UserProfilePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    checkIfItsMe();
     isFollowing();
+  }
+
+  void checkIfItsMe() {
+    _repository.checkIfItsMe(widget.uid).then((value) {
+      setState(() {
+        itsMe = value;
+      });
+    });
   }
 
   @override
@@ -232,7 +242,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
               ],
             ),
           ),
-          if(following != null)Container(
+          if(!itsMe && following != null)Container(
             margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
             child:RawMaterialButton(
                 elevation: 4.0,

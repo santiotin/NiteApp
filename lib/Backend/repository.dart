@@ -15,6 +15,7 @@ class Repository {
   Future<void> signOut() => _firebaseProvider.signOut();
 
   Future<bool> checkCurrentUser() => _firebaseProvider.checkCurrentUser();
+  Future<bool> checkIfItsMe(String uid) => _firebaseProvider.checkIfItsMe(uid);
   Future<FirebaseUser> getCurrentUser() => _firebaseProvider.getCurrentUser();
   Future<User> getCurrentUserDetails() => _firebaseProvider.getCurrentUserDetails();
   Future<void> updateCurrentUserName(String name, List<String> searchNames) => _firebaseProvider.updateCurrentUserName(name, searchNames);

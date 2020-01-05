@@ -308,6 +308,8 @@ class _SignInPageState extends State<SignInPage> {
       setState(() {
         isLoading = false;
       });
+      signInEmailContrl.clear();
+      signInPasswdContrl.clear();
       showInSnackBar('Usuario o contraseña incorrectos');
     }
   }

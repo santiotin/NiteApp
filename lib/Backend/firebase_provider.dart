@@ -18,11 +18,17 @@ class FirebaseProvider {
 
 
   Future<bool> signIn(String email, String password) async {
+    bool error = false;
     AuthResult authResult = await _auth
         .signInWithEmailAndPassword(
           email: email,
-          password: password);
+          password: password)
+        .catchError((value){
+            error = true;
+        });
 
+    if(error) return false;
+    if(authResult == null) return false;
     if(authResult.user != null) return true;
     else return false;
   }
@@ -34,6 +40,12 @@ class FirebaseProvider {
     FirebaseUser currentUser;
     currentUser = await _auth.currentUser();
     if(currentUser != null) return true;
+    else return false;
+  }
+  Future<bool> checkIfItsMe(String uid) async {
+    FirebaseUser currentUser;
+    currentUser = await _auth.currentUser();
+    if(currentUser.uid == uid) return true;
     else return false;
   }
   Future<FirebaseUser> getCurrentUser() async {
