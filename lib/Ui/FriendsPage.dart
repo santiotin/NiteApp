@@ -8,16 +8,26 @@ import 'package:niteapp/Utils/Messages.dart';
 
 class FriendsPage extends StatefulWidget {
   final String uid;
+  final int index;
 
-  const FriendsPage({Key key, this.uid}) : super(key: key);
+  const FriendsPage({Key key, this.uid, this.index}) : super(key: key);
 
   _FriendsPageState createState() => _FriendsPageState();
 }
 
 
-class _FriendsPageState  extends State<FriendsPage> {
+class _FriendsPageState  extends State<FriendsPage> with SingleTickerProviderStateMixin{
 
   var _repository = new Repository();
+  TabController tabController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    tabController = new TabController(length: 2, vsync: this);
+    tabController.index = widget.index;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +43,7 @@ class _FriendsPageState  extends State<FriendsPage> {
             ),
           ),
           bottom: TabBar(
+            controller: tabController,
             tabs: [
               Tab(
                   child: Padding(
@@ -62,6 +73,7 @@ class _FriendsPageState  extends State<FriendsPage> {
           ),
         ),
         body: TabBarView(
+          controller: tabController,
           children: [
             StreamBuilder<QuerySnapshot>(
               stream: _repository.getFollowers(widget.uid),

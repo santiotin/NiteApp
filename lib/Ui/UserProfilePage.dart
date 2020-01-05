@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/User.dart';
+import 'package:niteapp/Ui/FriendsPage.dart';
 import 'package:niteapp/Ui/Widgets/CircularImage.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -169,73 +170,97 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(0.0),
-                  width: MediaQuery.of(context).size.width * 0.25,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(top: 5.0),
-                          child: Text(
-                            user.numFollowers,
-                            style: TextStyle(
-                                fontFamily: 'Roboto',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: Constants.main
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute<Null>(
+                        builder: (context) => FriendsPage(uid: widget.uid, index: 0,),
+                        settings: RouteSettings(name: 'FriendsPage'),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(0.0),
+                    width: MediaQuery.of(context).size.width * 0.25,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(top: 5.0),
+                            child: Text(
+                              user.numFollowers,
+                              style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Constants.main
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 5.0),
-                          child: Text(
-                            'Seguidores',
-                            style: TextStyle(
-                                fontFamily: 'Roboto',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14,
-                                color: Constants.main
+                          Padding(
+                            padding: EdgeInsets.only(top: 5.0),
+                            child: Text(
+                              'Seguidores',
+                              style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 14,
+                                  color: Constants.main
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(0.0),
-                  width: MediaQuery.of(context).size.width * 0.25,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(top: 5.0),
-                          child: Text(
-                            user.numFollowing,
-                            style: TextStyle(
-                                fontFamily: 'Roboto',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: Constants.main
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute<Null>(
+                        builder: (context) => FriendsPage(uid: widget.uid, index: 1,),
+                        settings: RouteSettings(name: 'FriendsPage'),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(0.0),
+                    width: MediaQuery.of(context).size.width * 0.25,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(top: 5.0),
+                            child: Text(
+                              user.numFollowing,
+                              style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Constants.main
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 5.0),
-                          child: Text(
-                            'Seguidos',
-                            style: TextStyle(
-                                fontFamily: 'Roboto',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14,
-                                color: Constants.main
+                          Padding(
+                            padding: EdgeInsets.only(top: 5.0),
+                            child: Text(
+                              'Seguidos',
+                              style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 14,
+                                  color: Constants.main
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

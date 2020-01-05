@@ -366,7 +366,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Navigator.push(
                       context,
                       CupertinoPageRoute<Null>(
-                        builder: (context) => FriendsPage(uid: user.id),
+                        builder: (context) => FriendsPage(uid: user.id, index: 0,),
                         settings: RouteSettings(name: 'FriendsPage'),
                       ),
                     );
