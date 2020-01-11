@@ -413,55 +413,107 @@ class FirebaseProvider {
         .snapshots();
   }
   Stream<DocumentSnapshot> getEvent(String eid) {
-    return _firestore.collection("events").document(eid).snapshots();
+    return _firestore
+        .collection("events").document(eid)
+        .snapshots();
   }
 
   Stream<QuerySnapshot> getGoingEvents(String uid) {
-    return _firestore.collection("users").document(uid).collection("assistingEvents").snapshots();
+    return _firestore
+        .collection("users").document(uid)
+        .collection("assistingEvents")
+        .orderBy("eventYear", descending: true)
+        .orderBy("eventMonth", descending: true)
+        .orderBy("eventDay", descending: true)
+        .snapshots();
   }
   Stream<DocumentSnapshot> getGoingEvent(String uid, String eid) {
-    return _firestore.collection("users").document(uid).collection("assistingEvents").document(eid).snapshots();
+    return _firestore
+        .collection("users").document(uid)
+        .collection("assistingEvents").document(eid)
+        .snapshots();
   }
 
   Stream<DocumentSnapshot> getUser(String uid) {
-    return _firestore.collection("users").document(uid).snapshots();
+    return _firestore
+        .collection("users").document(uid)
+        .snapshots();
   }
   Stream<QuerySnapshot> getGoingUsers(String eid){
-    return _firestore.collection("events").document(eid).collection("assistingUsers").snapshots();
+    return _firestore
+        .collection("events").document(eid)
+        .collection("assistingUsers")
+        .orderBy("userName")
+        .snapshots();
   }
 
   Stream<QuerySnapshot> getSearchEvents(String searchNames) {
-    return _firestore.collection("events").where("searchNames", arrayContains: searchNames.toLowerCase()).snapshots();
+    return _firestore
+        .collection("events")
+        .where("searchNames", arrayContains: searchNames.toLowerCase())
+        .snapshots();
   }
   Stream<QuerySnapshot> getSearchUsers(String searchNames) {
-    return _firestore.collection("users").where("searchNames", arrayContains: searchNames.toLowerCase()).snapshots();
+    return _firestore
+        .collection("users")
+        .where("searchNames", arrayContains: searchNames.toLowerCase())
+        .snapshots();
   }
   Stream<QuerySnapshot> getSearchClubs(String searchNames) {
-    return _firestore.collection("clubs").where("searchNames", arrayContains: searchNames.toLowerCase()).snapshots();
+    return _firestore
+        .collection("clubs")
+        .where("searchNames", arrayContains: searchNames.toLowerCase())
+        .snapshots();
   }
 
   Stream<QuerySnapshot> getRequests(String uid) {
-    return _firestore.collection("users").document(uid).collection("notiFriendshipReq").orderBy("time", descending: true).snapshots();
+    return _firestore
+        .collection("users").document(uid)
+        .collection("notiFriendshipReq")
+        .orderBy("time", descending: true)
+        .snapshots();
   }
   Stream<QuerySnapshot> getActivity(String uid) {
-    return _firestore.collection("users").document(uid).collection("notiFriendEvent").orderBy("time", descending: true).snapshots();
+    return _firestore
+        .collection("users").document(uid)
+        .collection("notiFriendEvent")
+        .orderBy("time", descending: true)
+        .snapshots();
   }
 
   Stream<QuerySnapshot> getFollowers(String uid) {
-    return _firestore.collection("users").document(uid).collection("followers").snapshots();
+    return _firestore
+        .collection("users").document(uid)
+        .collection("followers")
+        .orderBy("userName")
+        .snapshots();
   }
   Stream<QuerySnapshot> getFollowings(String uid) {
-    return _firestore.collection("users").document(uid).collection("following").snapshots();
+    return _firestore
+        .collection("users").document(uid)
+        .collection("following")
+        .orderBy("userName")
+        .snapshots();
   }
   Stream<DocumentSnapshot> getFollowing(String uid, String fid) {
-    return _firestore.collection("users").document(uid).collection("following").document(fid).snapshots();
+    return _firestore
+        .collection("users").document(uid)
+        .collection("following").document(fid)
+        .snapshots();
   }
 
   Stream<QuerySnapshot> getFavoriteClubs(String uid) {
-    return _firestore.collection("users").document(uid).collection("favoriteClubs").snapshots();
+    return _firestore
+        .collection("users").document(uid)
+        .collection("favoriteClubs")
+        .orderBy("clubName")
+        .snapshots();
   }
 
   Stream<DocumentSnapshot> getFavoriteClub(String uid, String cid) {
-    return _firestore.collection("users").document(uid).collection("favoriteClubs").document(cid).snapshots();
+    return _firestore
+        .collection("users").document(uid)
+        .collection("favoriteClubs").document(cid)
+        .snapshots();
   }
 }
