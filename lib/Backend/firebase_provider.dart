@@ -412,11 +412,12 @@ class FirebaseProvider {
         .where("day", isEqualTo: day)
         .snapshots();
   }
-  Stream<QuerySnapshot> getGoingEvents(String uid) {
-    return _firestore.collection("users").document(uid).collection("assistingEvents").snapshots();
-  }
   Stream<DocumentSnapshot> getEvent(String eid) {
     return _firestore.collection("events").document(eid).snapshots();
+  }
+
+  Stream<QuerySnapshot> getGoingEvents(String uid) {
+    return _firestore.collection("users").document(uid).collection("assistingEvents").snapshots();
   }
   Stream<DocumentSnapshot> getGoingEvent(String uid, String eid) {
     return _firestore.collection("users").document(uid).collection("assistingEvents").document(eid).snapshots();
@@ -440,10 +441,10 @@ class FirebaseProvider {
   }
 
   Stream<QuerySnapshot> getRequests(String uid) {
-    return _firestore.collection("users").document(uid).collection("notiFriendshipReq").snapshots();
+    return _firestore.collection("users").document(uid).collection("notiFriendshipReq").orderBy("time", descending: true).snapshots();
   }
   Stream<QuerySnapshot> getActivity(String uid) {
-    return _firestore.collection("users").document(uid).collection("notiFriendEvent").snapshots();
+    return _firestore.collection("users").document(uid).collection("notiFriendEvent").orderBy("time", descending: true).snapshots();
   }
 
   Stream<QuerySnapshot> getFollowers(String uid) {

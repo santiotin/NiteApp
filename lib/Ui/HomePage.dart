@@ -32,7 +32,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   void createBadge() {
-    items = badger.setBadge(items, "", 2);
+    setState(() {
+      items = badger.removeBadge(items, 2);
+      items = badger.setBadge(items, "", 2);
+    });
+
   }
 
   @override
