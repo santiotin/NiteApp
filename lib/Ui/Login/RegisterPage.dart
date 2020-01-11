@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:niteapp/Backend/repository.dart';
-import 'package:niteapp/Ui/HomePage.dart';
+import 'package:niteapp/Ui/Login/SignInPage.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:diacritic/diacritic.dart';
 
 class RegisterPage extends StatefulWidget {
   RegisterPage({Key key}) : super(key: key);
@@ -502,6 +503,7 @@ class _RegisterPageState extends State<RegisterPage> {
     
     for(String s in aux) {
       result.add(s.toLowerCase());
+      result.add(removeDiacritics(s.toLowerCase()));
     }
     return result;
   }
@@ -531,8 +533,8 @@ class _RegisterPageState extends State<RegisterPage> {
       Navigator.pushAndRemoveUntil(
           context,
           CupertinoPageRoute<Null>(
-            builder: (context) => HomePage(),
-            settings: RouteSettings(name: 'HomePage'),
+            builder: (context) => SignInPage(),
+            settings: RouteSettings(name: 'SignInPage'),
           ),
               (_) => false
       );

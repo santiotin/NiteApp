@@ -24,7 +24,7 @@ class _SplashPageState extends State<SplashPage> {
 
   void checkAndGetCurrentUserDetails() async {
     FirebaseUser currentUser = await _repository.getCurrentUser();
-    if(currentUser != null ) {
+    if(currentUser != null && currentUser.isEmailVerified) {
       Navigator.pushReplacement(
           context,
           CupertinoPageRoute<Null>(

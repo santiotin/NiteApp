@@ -29,7 +29,10 @@ class FirebaseProvider {
 
     if(error) return false;
     if(authResult == null) return false;
-    if(authResult.user != null) return true;
+    if(authResult.user != null){
+      if(authResult.user.isEmailVerified)return true;
+      else return false;
+    }
     else return false;
   }
   Future<void> signOut() async {
@@ -110,7 +113,6 @@ class FirebaseProvider {
               .collection("users")
               .document(result.user.uid)
               .setData({
-                "uid": result.user.uid,
                 "name": name,
                 "email": email,
                 "city": city,
@@ -130,6 +132,7 @@ class FirebaseProvider {
                 print(err);
                 firestoreUser = false;
               });
+           await result.user.sendEmailVerification();
     });
 
     return firebaseUser && firestoreUser;
