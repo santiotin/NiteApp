@@ -289,14 +289,14 @@ class _SignInPageState extends State<SignInPage> {
             fontSize: 16.0,
             fontFamily: "WorkSansSemiBold"),
       ),
-      backgroundColor: Constants.accent,
-      duration: Duration(seconds: 2),
+      backgroundColor: Constants.main,
+      duration: Duration(seconds: 3),
     ));
   }
 
   void signIn() async {
-    bool result = await _repository.signIn(signInEmailContrl.text, signInPasswdContrl.text);
-    if(result) {
+    int result = await _repository.signIn(signInEmailContrl.text, signInPasswdContrl.text);
+    if(result == 0) {
       Navigator.pushReplacement(
           context,
           CupertinoPageRoute<Null>(
@@ -304,7 +304,14 @@ class _SignInPageState extends State<SignInPage> {
             settings: RouteSettings(name: 'HomePage'),
           )
       );
-    } else {
+    } else if(result == -2) {
+      setState(() {
+        isLoading = false;
+      });
+      signInEmailContrl.clear();
+      signInPasswdContrl.clear();
+      showInSnackBar('No has validado tu cuenta. Mira en tu correo');
+    }else{
       setState(() {
         isLoading = false;
       });

@@ -17,7 +17,7 @@ class FirebaseProvider {
   final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
 
-  Future<bool> signIn(String email, String password) async {
+  Future<int> signIn(String email, String password) async {
     bool error = false;
     AuthResult authResult = await _auth
         .signInWithEmailAndPassword(
@@ -27,13 +27,13 @@ class FirebaseProvider {
             error = true;
         });
 
-    if(error) return false;
-    if(authResult == null) return false;
+    if(error) return -1;
+    if(authResult == null) return -1;
     if(authResult.user != null){
-      if(authResult.user.isEmailVerified)return true;
-      else return false;
+      if(authResult.user.isEmailVerified)return 0;
+      else return -2;
     }
-    else return false;
+    else return -1;
   }
   Future<void> signOut() async {
     return await _auth.signOut();

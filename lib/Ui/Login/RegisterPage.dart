@@ -465,7 +465,7 @@ class _RegisterPageState extends State<RegisterPage> {
             fontFamily: "WorkSansSemiBold"),
       ),
       backgroundColor: Constants.main,
-      duration: Duration(seconds: 2),
+      duration: Duration(seconds: 3),
     ));
   }
 
@@ -530,14 +530,10 @@ class _RegisterPageState extends State<RegisterPage> {
       registerPhoneContrl.clear();
       registerPasswdContrl.clear();
       registerPasswd2Contrl.clear();
-      Navigator.pushAndRemoveUntil(
-          context,
-          CupertinoPageRoute<Null>(
-            builder: (context) => SignInPage(),
-            settings: RouteSettings(name: 'SignInPage'),
-          ),
-              (_) => false
-      );
+      setState(() {
+        isLoading = false;
+      });
+      showInSnackBar('Te hemos enviado un correo de confirmación para validar tu cuenta');
     } else {
       setState(() {
         isLoading = false;

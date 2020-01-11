@@ -11,7 +11,7 @@ class Repository {
 
   final _firebaseProvider = FirebaseProvider();
 
-  Future<bool> signIn(String email, String password) => _firebaseProvider.signIn(email, password);
+  Future<int> signIn(String email, String password) => _firebaseProvider.signIn(email, password);
   Future<void> signOut() => _firebaseProvider.signOut();
 
   Future<bool> checkCurrentUser() => _firebaseProvider.checkCurrentUser();
