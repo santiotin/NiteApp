@@ -107,17 +107,12 @@ class _EditPhotoPageState extends State<EditPhotoPage> {
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Editar Foto'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.check,color: Constants.main,),
-            onPressed: saveImage,
-          )
-        ],
       ),
       body: isUploading ?
         Center(child: CircularProgressIndicator(),) :
         Center(
         child: ListView(
+          physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
             Container(
               height: MediaQuery.of(context).size.height * 0.4,
@@ -135,12 +130,26 @@ class _EditPhotoPageState extends State<EditPhotoPage> {
               height: MediaQuery.of(context).size.height * 0.4,
               child: Center(
                 child: _image == null ?
-                Text ('Selecciona una imagen') :
-                Stack(
-                  children: <Widget>[
-                    Center(child: CircularProgressIndicator()),
-                    Center(child: CircularImage(size: MediaQuery.of(context).size.height * 0.3, file: _image,)),
-                  ],
+                RawMaterialButton(
+                  onPressed: getImage,
+                  child: new Icon(
+                    Icons.photo_library,
+                    color: Constants.accent,
+                    size: 35.0,
+                  ),
+                  shape: new CircleBorder(),
+                  elevation: 4.0,
+                  fillColor: Colors.white,
+                  padding: const EdgeInsets.all(100.0),
+                ):
+                GestureDetector(
+                  onTap: getImage,
+                  child: Stack(
+                    children: <Widget>[
+                      Center(child: CircularProgressIndicator()),
+                      Center(child: CircularImage(size: MediaQuery.of(context).size.height * 0.3, file: _image,)),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -148,9 +157,12 @@ class _EditPhotoPageState extends State<EditPhotoPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: getImage,
-        tooltip: 'Pick Image',
-        child: Icon(Icons.photo_library),
+        onPressed: saveImage,
+        tooltip: 'Save',
+        child: Icon(
+          Icons.check,
+          color: Constants.white,
+        ),
       ),
     );
   }
