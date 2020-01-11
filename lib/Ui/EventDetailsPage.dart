@@ -35,6 +35,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
   CameraPosition _initialPosition = CameraPosition(target: LatLng(26.8206, 30.8025));
   Completer<GoogleMapController> _controller = Completer();
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   Widget _AgeCard() {
     return Container(
@@ -415,6 +416,21 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
       },
     );
   }
+  void showInSnackBar(String value) {
+    _scaffoldKey.currentState?.removeCurrentSnackBar();
+    _scaffoldKey.currentState.showSnackBar(new SnackBar(
+      content: new Text(
+        value,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: 16.0,
+            fontFamily: "WorkSansSemiBold"),
+      ),
+      backgroundColor: Constants.accent,
+      duration: Duration(seconds: 2),
+    ));
+  }
 
 
 
@@ -431,6 +447,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           isFavoriteClub();
           iniCameraPosition();
           return Scaffold(
+            key: _scaffoldKey,
             appBar: AppBar(
               elevation: 0,
               title: Text(event.clubName),
@@ -724,13 +741,17 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             child: FlatButton(
                               color: Constants.white,
                               onPressed: (){
-                                Navigator.push(
-                                    context,
-                                    CupertinoPageRoute<Null>(
-                                      builder: (context) => BuyListPage(eid: event.id,),
-                                      settings: RouteSettings(name: 'BuyListPage'),
-                                    )
-                                );
+                                if(going) {
+                                  Navigator.push(
+                                      context,
+                                      CupertinoPageRoute<Null>(
+                                        builder: (context) => BuyListPage(eid: event.id,),
+                                        settings: RouteSettings(name: 'BuyListPage'),
+                                      )
+                                  );
+                                } else {
+                                  showInSnackBar('Para apuntarte has de confirmar tu asistencia');
+                                }
                               },
                               shape: CircleBorder(),
                               padding: EdgeInsets.all(10),
@@ -832,13 +853,17 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             child: FlatButton(
                               color: Constants.white,
                               onPressed: (){
-                                Navigator.push(
-                                    context,
-                                    CupertinoPageRoute<Null>(
-                                      builder: (context) => TicketWebView(),
-                                      settings: RouteSettings(name: 'TicketWebView'),
-                                    )
-                                );
+                                if(going){
+                                  Navigator.push(
+                                      context,
+                                      CupertinoPageRoute<Null>(
+                                        builder: (context) => TicketWebView(),
+                                        settings: RouteSettings(name: 'TicketWebView'),
+                                      )
+                                  );
+                                }else {
+                                  showInSnackBar('Para comprar has de confirmar tu asistencia');
+                                }
                               },
                               shape: CircleBorder(),
                               padding: EdgeInsets.all(10),
@@ -940,13 +965,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             child: FlatButton(
                               color: Constants.white,
                               onPressed: (){
-                                Navigator.push(
-                                    context,
-                                    CupertinoPageRoute<Null>(
-                                      builder: (context) => GoogleMapsPage(),
-                                      settings: RouteSettings(name: 'GoogleMapsPage'),
-                                    )
-                                );
+                                showInSnackBar('Próximamente...');
                               },
                               shape: CircleBorder(),
                               padding: EdgeInsets.all(10),

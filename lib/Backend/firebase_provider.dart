@@ -228,7 +228,7 @@ class FirebaseProvider {
   Future<bool> addGoingEvent(Event event) async {
     bool result = false;
     FirebaseUser currentUser = await getCurrentUser();
-    GoingEvent goingEvent = new GoingEvent(id: event.id, clubName: event.clubName, imageUrl: event.imageUrl, name: event.name, day: event.day, month: event.month, year: event.year);
+    GoingEvent goingEvent = new GoingEvent(id: event.id, clubName: event.clubName, imageUrl: event.imageUrl, name: event.name, day: event.day, month: event.month, year: event.year, withList: false, withTicket: false, withVip: false);
     await _firestore
         .collection('users').document(currentUser.uid)
         .collection('assistingEvents').document(event.id)
@@ -323,6 +323,13 @@ class FirebaseProvider {
           result = false;
         });
 
+    await _firestore
+        .collection('users').document(currentUser.uid)
+        .collection('assistingEvents').document(eid)
+        .updateData({
+      "withList": false,
+    });
+
     return result;
 
   }
@@ -340,6 +347,13 @@ class FirebaseProvider {
           print(err);
           result = false;
         });
+
+    await _firestore
+          .collection('users').document(currentUser.uid)
+          .collection('assistingEvents').document(event.id)
+          .updateData({
+            "withList": true,
+    });
 
     return result;
 

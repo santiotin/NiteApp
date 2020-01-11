@@ -47,6 +47,23 @@ class _MyEventsPageState extends State<MyEventsPage> {
 
   }
 
+  bool itsMe = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkIfItsMe();
+  }
+
+  void checkIfItsMe() {
+    _repository.checkIfItsMe(widget.uid).then((value) {
+      setState(() {
+        itsMe = value;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +89,7 @@ class _MyEventsPageState extends State<MyEventsPage> {
                   child: Row(
                     children: <Widget>[
                       Container(
-                        width: MediaQuery.of(context).size.width * 0.48,
+                        width: MediaQuery.of(context).size.width * 0.7,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -103,9 +120,9 @@ class _MyEventsPageState extends State<MyEventsPage> {
                           ],
                         ),
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.35,
-                        child: RawMaterialButton(
+                      if(itsMe && goingEvent.withList)Container(
+                        padding: const EdgeInsets.only(right: 20.0),
+                        child: IconButton(
                           onPressed: () {
                             Navigator.push(
                                 context,
@@ -115,15 +132,7 @@ class _MyEventsPageState extends State<MyEventsPage> {
                                 )
                             );
                           },
-                          child: Center(
-                            child: Text(
-                              'Ver entrada',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Constants.accent,
-                              ),
-                            ),
-                          ),
+                          icon: Icon(Icons.content_paste),
                         )
                       ),
                     ],

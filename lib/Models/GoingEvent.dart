@@ -7,6 +7,9 @@ class GoingEvent {
   String day;
   String month;
   String year;
+  bool withList;
+  bool withTicket;
+  bool withVip;
 
   GoingEvent({
     this.id,
@@ -15,7 +18,10 @@ class GoingEvent {
     this.name,
     this.day,
     this.month,
-    this.year
+    this.year,
+    this.withList,
+    this.withTicket,
+    this.withVip
   });
 
   Map toMap() {
@@ -26,6 +32,9 @@ class GoingEvent {
     data['eventDay'] = this.day;
     data['eventMonth'] = this.month;
     data['eventYear'] = this.year;
+    data['withList'] = this.withList;
+    data['withTicket'] = this.withTicket;
+    data['withVip'] = this.withVip;
     return data;
   }
 
@@ -37,5 +46,8 @@ class GoingEvent {
     this.day = mapData['eventDay'];
     this.month = mapData['eventMonth'];
     this.year = mapData['eventYear'];
+    this.withList = mapData['withList'];
+    this.withTicket = mapData['withTicket'];
+    this.withVip = mapData['withVip'];
   }
 }
