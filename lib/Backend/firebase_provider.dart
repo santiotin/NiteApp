@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:niteapp/Models/Club.dart';
 import 'package:niteapp/Models/FavoriteClub.dart';
 import 'package:niteapp/Models/BasicUser.dart';
@@ -425,8 +426,8 @@ class FirebaseProvider {
     return _firestore
         .collection("users").document(uid)
         .collection("assistingEvents")
-        .orderBy("eventYear", descending: true)
-        .orderBy("eventMonth", descending: true)
+        .orderBy("eventYear",descending: true)
+        .orderBy("eventMonth",descending: true)
         .orderBy("eventDay", descending: true)
         .snapshots();
   }
