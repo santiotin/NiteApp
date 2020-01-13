@@ -89,7 +89,7 @@ class _MyEventsPageState extends State<MyEventsPage> {
                   child: Row(
                     children: <Widget>[
                       Container(
-                        width: MediaQuery.of(context).size.width * 0.7,
+                        width: MediaQuery.of(context).size.width * 0.6,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -121,7 +121,8 @@ class _MyEventsPageState extends State<MyEventsPage> {
                         ),
                       ),
                       if(itsMe && goingEvent.withList)Container(
-                        padding: const EdgeInsets.only(right: 20.0),
+                        width: MediaQuery.of(context).size.width * 0.2,
+                        alignment: Alignment.centerRight,
                         child: IconButton(
                           onPressed: () {
                             Navigator.push(
