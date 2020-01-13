@@ -116,14 +116,6 @@ class _TodayPageState extends State<TodayPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 4,
-        actions: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
-            child: Icon(
-              Icons.map,
-              color: Constants.main,),
-          ),
-        ],
         title: GestureDetector(
           child: Text(_dateText),
           onTap: onDatePressed,
