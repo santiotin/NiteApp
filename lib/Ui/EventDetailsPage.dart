@@ -656,7 +656,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                   ),
 
                   //title nite list
-                  if(event.hasList)Padding(
+                  Padding(
                     padding: EdgeInsets.fromLTRB(25,40,0,0),
                     child: Row(
                       children: <Widget>[
@@ -766,30 +766,108 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                       ],
                     ),
                   ),
-
-                  //title tickets
-                  if(event.hasTicket)Padding(
-                    padding: EdgeInsets.fromLTRB(25,40,0,0),
+                  if(!event.hasList)Padding(
+                    padding: EdgeInsets.fromLTRB(25, 15, 10, 0),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Icon(
-                          FontAwesomeIcons.ticketAlt,
-                          color: Constants.main,
-                          size: 20,
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.65,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                "La lista Nite no está disponible para este evento",
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                              //price vips
+                              Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Text(
+                                        'Precio: ',
+                                        textAlign: TextAlign.justify,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                      Text(
+                                        'X',
+                                        textAlign: TextAlign.justify,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Constants.accent,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                      Text(
+                                        '€',
+                                        textAlign: TextAlign.justify,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Constants.accent,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                              ),
+                            ],
+                          ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 10.0),
-                          child: Text(
-                            "Entradas",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.normal,
+                          padding: const EdgeInsets.only(right: 0.0),
+                          child: Center(
+                            child: FlatButton(
+                              color: Constants.white,
+                              onPressed: (){
+
+                              },
+                              shape: CircleBorder(),
+                              padding: EdgeInsets.all(10),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                color: Constants.grey,
+                                size: 20,
+                              ),
                             ),
                           ),
                         ),
                       ],
                     ),
                   ),
+
+                  //title tickets
+                  Padding(
+                      padding: EdgeInsets.fromLTRB(25,40,0,0),
+                      child: Row(
+                        children: <Widget>[
+                          Icon(
+                            FontAwesomeIcons.ticketAlt,
+                            color: Constants.main,
+                            size: 20,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Text(
+                              "Entradas",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   //descr, price ticket
                   if(event.hasTicket)Padding(
                     padding: EdgeInsets.fromLTRB(25, 15, 10, 0),
@@ -878,9 +956,86 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                       ],
                     ),
                   ),
+                  if(!event.hasTicket)Padding(
+                    padding: EdgeInsets.fromLTRB(25, 15, 10, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.65,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Compra de entradas no disponible para este evento',
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                              //price vips
+                              Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Text(
+                                        'Precio: ',
+                                        textAlign: TextAlign.justify,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                      Text(
+                                        'X',
+                                        textAlign: TextAlign.justify,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Constants.accent,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                      Text(
+                                        '€',
+                                        textAlign: TextAlign.justify,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Constants.accent,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                              ),],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 0.0),
+                          child: Center(
+                            child: FlatButton(
+                              color: Constants.white,
+                              onPressed: (){
+
+                              },
+                              shape: CircleBorder(),
+                              padding: EdgeInsets.all(10),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                color: Constants.grey,
+                                size: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
 
                   //title vips
-                  if(event.hasVip)Padding(
+                  Padding(
                     padding: EdgeInsets.fromLTRB(25,40,0,0),
                     child: Row(
                       children: <Widget>[
@@ -972,6 +1127,82 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               child: Icon(
                                 Icons.arrow_forward_ios,
                                 color: Constants.accent,
+                                size: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  if(!event.hasVip)Padding(
+                    padding: EdgeInsets.fromLTRB(25, 15, 10, 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.65,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Reserva de VIPs no disponible para este evento',
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                              //price vips
+                              Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Text(
+                                        'Precio: ',
+                                        textAlign: TextAlign.justify,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                      Text(
+                                        'X',
+                                        textAlign: TextAlign.justify,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Constants.accent,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                      Text(
+                                        '€',
+                                        textAlign: TextAlign.justify,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Constants.accent,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                              ),],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 0.0),
+                          child: Center(
+                            child: FlatButton(
+                              color: Constants.white,
+                              onPressed: (){
+                              },
+                              shape: CircleBorder(),
+                              padding: EdgeInsets.all(10),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                color: Constants.grey,
                                 size: 20,
                               ),
                             ),

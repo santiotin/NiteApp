@@ -79,8 +79,10 @@ class _TodayPageState extends State<TodayPage> {
         builder: (BuildContext context, Widget child) {
           return Theme(
             data: ThemeData(
-              primaryColor: Color(0xff14212D),
-              accentColor: Colors.pink,
+              primaryColor: Constants.main,
+              primarySwatch: Colors.pink,
+              accentColor: Constants.accent,
+              buttonColor: Constants.accent,
             ),
             child: child,
           );
