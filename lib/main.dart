@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'Ui/Login/SplashPage.dart';
 import 'Utils/Constants.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -34,16 +35,31 @@ class _MyAppState extends State<MyApp> {
 
     return MaterialApp(
         debugShowCheckedModeBanner: false,
+        supportedLocales: [
+          Locale('en', 'US'),
+          Locale('es', 'ES'), // Spanish
+
+          // ... other locales the app supports
+        ],
         localizationsDelegates: [
           // ... app-specific localization delegate[s] here
+          AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        supportedLocales: [
-          const Locale('es'), // Spanish
-          // ... other locales the app supports
-        ],
+        localeResolutionCallback: (locale, supportedLocales) {
+          // Check if the current device locale is supported
+          for (var supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == locale.languageCode &&
+                supportedLocale.countryCode == locale.countryCode) {
+              return supportedLocale;
+            }
+          }
+          // If the locale of the device is not supported, use the first one
+          // from the list (English, in this case).
+          return supportedLocales.first;
+        },
         title: Constants.appName,
         theme: isDark ? Constants.darkTheme : Constants.lightTheme,
         home: SplashPage(),

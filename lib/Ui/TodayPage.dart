@@ -8,6 +8,7 @@ import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/Event.dart';
 import 'package:niteapp/Ui/EventDetailsPage.dart';
 import 'package:niteapp/Ui/Login/SignInPage.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:niteapp/Ui/Widgets/HorizontalSlideFavorites.dart';
@@ -123,6 +124,9 @@ class _TodayPageState extends State<TodayPage> {
           onTap: onDatePressed,
         ),
         centerTitle: true,
+        actions: <Widget>[
+          Text(AppLocalizations.of(context).translate('title'))
+        ],
       ),
       body: Center(
         child: ListView(
