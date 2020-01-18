@@ -49,6 +49,8 @@ class Constants{
     primaryColor: darkPrimary,
     accentColor: darkAccent,
     scaffoldBackgroundColor: darkBG,
+    bottomAppBarColor: darkBG,
+    iconTheme: IconThemeData(color: lightBG),
     cursorColor: darkAccent,
     textSelectionHandleColor: darkAccent,
     textSelectionColor: darkAccent,

@@ -6,7 +6,6 @@ import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/Event.dart';
 import 'package:niteapp/Ui/AssistantsPage.dart';
 import 'package:niteapp/Ui/BuyListPage.dart';
-import 'package:niteapp/Pruebas/GoogleMapsPage.dart';
 import 'package:niteapp/Ui/TicketsWebView.dart';
 import 'package:niteapp/Utils/Messages.dart';
 import 'package:niteapp/Utils/Constants.dart';
@@ -339,7 +338,12 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             FlatButton(
-              child: new Text("Cancelar"),
+              child: Text(
+                "Cancelar",
+                style: TextStyle(
+                  color: Constants.accent,
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
                 SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -348,7 +352,12 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
               },
             ),
             FlatButton(
-              child: new Text("Aceptar"),
+              child: Text(
+                "Aceptar",
+                style: TextStyle(
+                  color: Constants.accent,
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
                 if(going) deleteGoing();
