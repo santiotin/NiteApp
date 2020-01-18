@@ -7,6 +7,7 @@ import 'package:niteapp/Models/User.dart';
 import 'package:niteapp/Ui/Lists/EventList.dart';
 import 'package:niteapp/Ui/Lists/ClubList.dart';
 import 'package:niteapp/Ui/Lists/UserList.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:niteapp/Utils/Messages.dart';
 
@@ -40,9 +41,9 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   String searchTypeText() {
-    if(searchType == 1) return 'Personas';
-    else if(searchType == 2) return 'Clubs';
-    else return 'Eventos';
+    if(searchType == 1) return AppLocalizations.of(context).translate('people');
+    else if(searchType == 2) return AppLocalizations.of(context).translate('clubs');
+    else return AppLocalizations.of(context).translate('events');
   }
 
   void changeSearch() {
@@ -107,7 +108,7 @@ class _SearchPageState extends State<SearchPage> {
           ),
           decoration: new InputDecoration(
               border: InputBorder.none,
-              hintText: "Buscar...",
+              hintText: AppLocalizations.of(context).translate('searchDots'),
               hintStyle: new TextStyle(color: Constants.grey)
           ),
         ),

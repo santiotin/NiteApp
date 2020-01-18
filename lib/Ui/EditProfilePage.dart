@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/User.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:niteapp/Utils/Messages.dart';
@@ -26,7 +27,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   bool isLoading;
   User user;
 
-  List<String> sexTypes = ['Hombre' , 'Mujer', 'Otro'];
+  List<String> sexTypes;
   String sexType;
 
   @override
@@ -35,6 +36,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
     super.initState();
     isLoading = true;
     getUser();
+    sexTypes.add(AppLocalizations.of(context).translate('man'));
+    sexTypes.add(AppLocalizations.of(context).translate('women'));
+    sexTypes.add(AppLocalizations.of(context).translate('other'));
+
   }
 
   void getUser() async {
@@ -49,14 +54,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
     //iniFields();
     if(isLoading) return Scaffold(
       appBar: AppBar(
-        title: Text('Editar Perfil'),
+        title: Text(AppLocalizations.of(context).translate('editProfile')),
       ),
       body: LoadingView(),
     );
     else return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('Editar Perfil'),
+        title: Text(AppLocalizations.of(context).translate('editProfile')),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 25),
@@ -70,7 +75,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 keyboardType: TextInputType.text,
                 cursorColor: Constants.accent,
                 style: TextStyle(
-                    fontFamily: "WorkSansSemiBold",
+                    fontFamily: "Roboto",
                     fontSize: 16.0,
                     color: Constants.main
                 ),
@@ -96,7 +101,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                   labelText: user.name,
                   labelStyle: TextStyle(
-                    fontFamily: "WorkSansSemiBold",
+                    fontFamily: "Roboto",
                     fontSize: 14.0,
                     color: Constants.main,
                   ),
@@ -166,7 +171,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       keyboardType: TextInputType.number,
                       cursorColor: Constants.accent,
                       style: TextStyle(
-                          fontFamily: "WorkSansSemiBold",
+                          fontFamily: "Roboto",
                           fontSize: 16.0,
                           color: Constants.main
                       ),
@@ -195,7 +200,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                         labelText: user.age,
                         labelStyle: TextStyle(
-                          fontFamily: "WorkSansSemiBold",
+                          fontFamily: "Roboto",
                           fontSize: 14.0,
                           color: Constants.main,
                         ),
@@ -212,7 +217,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 keyboardType: TextInputType.text,
                 cursorColor: Constants.accent,
                 style: TextStyle(
-                    fontFamily: "WorkSansSemiBold",
+                    fontFamily: "Roboto",
                     fontSize: 16.0,
                     color: Constants.main
                 ),
@@ -238,7 +243,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                   labelText: user.city,
                   labelStyle: TextStyle(
-                    fontFamily: "WorkSansSemiBold",
+                    fontFamily: "Roboto",
                     fontSize: 14.0,
                     color: Constants.main,
                   ),
@@ -252,7 +257,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 keyboardType: TextInputType.phone,
                 cursorColor: Constants.accent,
                 style: TextStyle(
-                    fontFamily: "WorkSansSemiBold",
+                    fontFamily: "Roboto",
                     fontSize: 16.0,
                     color: Constants.main
                 ),
@@ -278,7 +283,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                   labelText: user.phones[0],
                   labelStyle: TextStyle(
-                    fontFamily: "WorkSansSemiBold",
+                    fontFamily: "Roboto",
                     fontSize: 14.0,
                     color: Constants.main,
                   ),
@@ -288,7 +293,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Padding(
               padding: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
               child: Text(
-                '* El teléfono no sera visible para otros usuarios',
+                AppLocalizations.of(context).translate('warningPhone'),
                 style: TextStyle(
                   color: Constants.accent,
                   fontFamily: 'Roboto',
@@ -317,7 +322,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,
-            fontFamily: "WorkSansSemiBold"),
+            fontFamily: "Roboto"),
       ),
       backgroundColor: Constants.main,
       duration: Duration(seconds: 2),
@@ -350,30 +355,30 @@ class _EditProfilePageState extends State<EditProfilePage> {
     if(sexType.isNotEmpty) await _repository.updateCurrentUserSex(sexType);
     if(registerPhoneContrl.text.isNotEmpty) await _repository.updateCurrentUserPhone(transformPhone(registerPhoneContrl.text));
 
-    showInSnackBar('Se ha acualizado correctamente');
+    showInSnackBar(AppLocalizations.of(context).translate('updateCorrect'));
 
   }
 
   String getSex() {
-    if(user == null) return 'Sexo';
+    if(user == null) return AppLocalizations.of(context).translate('sex');
     else {
       if(user.sex == "Hombre") {
         setState(() {
           sexType = 'Hombre';
         });
-        return "Hombre";
+        return AppLocalizations.of(context).translate('man');
       }
       else if(user.sex == "Mujer") {
         setState(() {
           sexType = "Mujer";
         });
-        return "Mujer";
+        return AppLocalizations.of(context).translate('women');
       }
       else {
         setState(() {
           sexType = "Otro";
         });
-        return "Otro";
+        return AppLocalizations.of(context).translate('other');
       }
     }
 

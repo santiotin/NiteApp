@@ -124,9 +124,6 @@ class _TodayPageState extends State<TodayPage> {
           onTap: onDatePressed,
         ),
         centerTitle: true,
-        actions: <Widget>[
-          Text(AppLocalizations.of(context).translate('title'))
-        ],
       ),
       body: Center(
         child: ListView(

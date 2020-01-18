@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 
 class LoadingView extends StatelessWidget {
@@ -22,7 +23,7 @@ class ErrorView extends StatelessWidget {
     return Container(
       color: Constants.white,
       child: Center(
-        child: Text('Error'),
+        child: Text(AppLocalizations.of(context).translate('error')),
       ),
     );
   }
@@ -139,7 +140,7 @@ class FirebaseEmptyUsersView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Center(child: Text('No hay usuarios'));
+    return Center(child: Text(AppLocalizations.of(context).translate('noUsers')));
   }
 }
 
@@ -184,7 +185,7 @@ class EmptyFavoriteEvents extends StatelessWidget {
                   width: 150,
                     margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: Text(
-                        'Añade clubs a favoritos para que sus eventos aparezcan aquí',
+                      AppLocalizations.of(context).translate('addFavoriteClubs'),
                       style: TextStyle(
                         color: Constants.grey
                       ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/Event.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:niteapp/Utils/Messages.dart';
@@ -49,7 +50,7 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
             iniCameraPosition();
             return Scaffold(
               appBar: AppBar(
-                title: Text('Entrada'),
+                title: Text(AppLocalizations.of(context).translate('ticket')),
               ),
               body: Center(
                 child: Column(

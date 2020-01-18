@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Ui/HomePage.dart';
 import 'package:niteapp/Ui/Login/RegisterPage.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -80,7 +81,7 @@ class _SignInPageState extends State<SignInPage> {
                     Padding(
                       padding: EdgeInsets.only(left: 0),
                       child: Text(
-                        'Nite App',
+                        AppLocalizations.of(context).translate('niteApp'),
                         style: TextStyle(
                             fontFamily: "Roboto",
                             fontSize: 35.0,
@@ -96,7 +97,7 @@ class _SignInPageState extends State<SignInPage> {
                         controller: signInEmailContrl,
                         cursorColor: Constants.accent,
                         style: TextStyle(
-                            fontFamily: "WorkSansSemiBold",
+                            fontFamily: "Roboto",
                             fontSize: 16.0,
                             color: Constants.main
                         ),
@@ -120,9 +121,9 @@ class _SignInPageState extends State<SignInPage> {
                             Icons.email,
                             color: Constants.main,
                           ),
-                          labelText: 'Email',
+                          labelText: AppLocalizations.of(context).translate('email'),
                           labelStyle: TextStyle(
-                            fontFamily: "WorkSansSemiBold",
+                            fontFamily: "Roboto",
                             fontSize: 14.0,
                             color: Constants.main,
                           ),
@@ -136,7 +137,7 @@ class _SignInPageState extends State<SignInPage> {
                         obscureText: true,
                         cursorColor: Constants.accent,
                         style: TextStyle(
-                            fontFamily: "WorkSansSemiBold",
+                            fontFamily: "Roboto",
                             fontSize: 16.0
                         ),
                         decoration: InputDecoration(
@@ -159,9 +160,9 @@ class _SignInPageState extends State<SignInPage> {
                             Icons.lock_outline,
                             color: Constants.main,
                           ),
-                          labelText: 'Contraseña',
+                          labelText: AppLocalizations.of(context).translate('password'),
                           labelStyle: TextStyle(
-                            fontFamily: "WorkSansSemiBold",
+                            fontFamily: "Roboto",
                             fontSize: 15.0,
                             color: Constants.main,
                           ),
@@ -187,11 +188,11 @@ class _SignInPageState extends State<SignInPage> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 20.0, horizontal: 15.0),
                               child: Text(
-                                "Registrarse",
+                                AppLocalizations.of(context).translate('register'),
                                 style: TextStyle(
                                     color: Constants.accent,
                                     fontSize: 14.0,
-                                    fontFamily: "WorkSansBold"
+                                    fontFamily: "Roboto"
                                 ),
                               ),
                             ),
@@ -219,11 +220,11 @@ class _SignInPageState extends State<SignInPage> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 20.0),
                               child: Text(
-                                "Iniciar sesión",
+                                AppLocalizations.of(context).translate('signIn'),
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14.0,
-                                    fontFamily: "WorkSansBold"
+                                    fontFamily: "Roboto"
                                 ),
                               ),
                             ),
@@ -258,7 +259,7 @@ class _SignInPageState extends State<SignInPage> {
                       text: TextSpan(
                           children: [
                             TextSpan(
-                                text: '¿Olvidaste tu contraseña?',
+                                text: AppLocalizations.of(context).translate('forgotPassword'),
                                 style: TextStyle(
                                   fontFamily: 'Roboto',
                                   color: Constants.main,
@@ -287,7 +288,7 @@ class _SignInPageState extends State<SignInPage> {
         style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,
-            fontFamily: "WorkSansSemiBold"),
+            fontFamily: "Roboto"),
       ),
       backgroundColor: Constants.main,
       duration: Duration(seconds: 3),

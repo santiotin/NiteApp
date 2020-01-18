@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/BasicUser.dart';
 import 'package:niteapp/Ui/Lists/BasicUserList.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:niteapp/Utils/Messages.dart';
 
@@ -37,7 +38,7 @@ class _FriendsPageState  extends State<FriendsPage> with SingleTickerProviderSta
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Amigos',
+            AppLocalizations.of(context).translate('friends'),
             style: TextStyle(
               color: Constants.main,
             ),
@@ -49,7 +50,7 @@ class _FriendsPageState  extends State<FriendsPage> with SingleTickerProviderSta
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
                     child: Text(
-                      'Seguidores',
+                      AppLocalizations.of(context).translate('followers'),
                       style: TextStyle(
                           fontSize: 16,
                           color: Constants.main
@@ -61,7 +62,7 @@ class _FriendsPageState  extends State<FriendsPage> with SingleTickerProviderSta
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
                     child: Text(
-                      'Seguidos',
+                      AppLocalizations.of(context).translate('following'),
                       style: TextStyle(
                           fontSize: 16,
                           color: Constants.main

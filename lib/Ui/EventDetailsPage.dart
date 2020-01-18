@@ -7,6 +7,7 @@ import 'package:niteapp/Models/Event.dart';
 import 'package:niteapp/Ui/AssistantsPage.dart';
 import 'package:niteapp/Ui/BuyListPage.dart';
 import 'package:niteapp/Ui/TicketsWebView.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Messages.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -65,7 +66,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          'Chicos +',
+                          AppLocalizations.of(context).translate('boysPlus'),
                           style: TextStyle(
                             fontSize: 14.0,
                             fontWeight: FontWeight.bold,
@@ -88,7 +89,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          'Chicas +',
+                          AppLocalizations.of(context).translate('girlsPlus'),
                           style: TextStyle(
                             fontSize: 14.0,
                             fontWeight: FontWeight.bold,
@@ -112,7 +113,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
             Align(
               alignment: FractionalOffset.bottomLeft,
               child: Text(
-                'Edad',
+                AppLocalizations.of(context).translate('age'),
                 style: TextStyle(
                   fontSize: 12.0,
                   color: Constants.grey,
@@ -176,7 +177,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
             Align(
               alignment: FractionalOffset.bottomLeft,
               child: Text(
-                'Horario',
+                AppLocalizations.of(context).translate('schedule'),
                 style: TextStyle(
                   fontSize: 12.0,
                   color: Constants.grey,
@@ -229,7 +230,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
             Align(
               alignment: FractionalOffset.bottomLeft,
               child: Text(
-                'Vestimenta',
+                AppLocalizations.of(context).translate('dressCode'),
                 style: TextStyle(
                   fontSize: 12.0,
                   color: Constants.grey,
@@ -339,7 +340,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
             // usually buttons at the bottom of the dialog
             FlatButton(
               child: Text(
-                "Cancelar",
+                AppLocalizations.of(context).translate('cancel'),
                 style: TextStyle(
                   color: Constants.accent,
                 ),
@@ -353,7 +354,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
             ),
             FlatButton(
               child: Text(
-                "Aceptar",
+                AppLocalizations.of(context).translate('accept'),
                 style: TextStyle(
                   color: Constants.accent,
                 ),
@@ -382,7 +383,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: Text('Club favorito'),
+          title: Text(AppLocalizations.of(context).translate('favoriteClub')),
           content: RichText(
             text: new TextSpan(
               style: new TextStyle(
@@ -401,7 +402,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             FlatButton(
-              child: new Text("Cancelar"),
+              child: new Text(AppLocalizations.of(context).translate('cancel')),
               onPressed: () {
                 Navigator.of(context).pop();
                 SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -410,7 +411,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
               },
             ),
             FlatButton(
-              child: new Text("Aceptar"),
+              child: new Text(AppLocalizations.of(context).translate('accept')),
               onPressed: () {
                 Navigator.of(context).pop();
                 if(favoriteClub) deleteGoing();
@@ -434,7 +435,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
         style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,
-            fontFamily: "WorkSansSemiBold"),
+            fontFamily: "Roboto"),
       ),
       backgroundColor: Constants.accent,
       duration: Duration(seconds: 2),
@@ -677,7 +678,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0),
                           child: Text(
-                            "Lista Nite",
+                            AppLocalizations.of(context).translate('niteList'),
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.normal,
@@ -713,7 +714,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                   child: Row(
                                     children: <Widget>[
                                       Text(
-                                        'Precio: ',
+                                        AppLocalizations.of(context).translate('priceDoubleDots'),
                                         textAlign: TextAlign.justify,
                                         style: TextStyle(
                                           fontSize: 15,
@@ -800,7 +801,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                   child: Row(
                                     children: <Widget>[
                                       Text(
-                                        'Precio: ',
+                                        AppLocalizations.of(context).translate('priceDoubleDots'),
                                         textAlign: TextAlign.justify,
                                         style: TextStyle(
                                           fontSize: 15,
@@ -867,7 +868,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           Padding(
                             padding: const EdgeInsets.only(left: 10.0),
                             child: Text(
-                              "Entradas",
+                              AppLocalizations.of(context).translate('tickets'),
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.normal,
@@ -903,7 +904,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                   child: Row(
                                     children: <Widget>[
                                       Text(
-                                        'Precio: ',
+                                        AppLocalizations.of(context).translate('priceDoubleDots'),
                                         textAlign: TextAlign.justify,
                                         style: TextStyle(
                                           fontSize: 15,
@@ -990,7 +991,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                   child: Row(
                                     children: <Widget>[
                                       Text(
-                                        'Precio: ',
+                                        AppLocalizations.of(context).translate('priceDoubleDots'),
                                         textAlign: TextAlign.justify,
                                         style: TextStyle(
                                           fontSize: 15,
@@ -1056,7 +1057,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0),
                           child: Text(
-                            "VIP",
+                            AppLocalizations.of(context).translate('vip'),
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.normal,
@@ -1092,7 +1093,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                   child: Row(
                                     children: <Widget>[
                                       Text(
-                                        'Precio: ',
+                                        AppLocalizations.of(context).translate('priceDoubleDots'),
                                         textAlign: TextAlign.justify,
                                         style: TextStyle(
                                           fontSize: 15,
@@ -1169,7 +1170,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                   child: Row(
                                     children: <Widget>[
                                       Text(
-                                        'Precio: ',
+                                        AppLocalizations.of(context).translate('priceDoubleDots'),
                                         textAlign: TextAlign.justify,
                                         style: TextStyle(
                                           fontSize: 15,

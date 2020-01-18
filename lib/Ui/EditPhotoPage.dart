@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/User.dart';
 import 'package:niteapp/Ui/Widgets/CircularImage.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 
 class EditPhotoPage extends StatefulWidget {
@@ -60,9 +61,9 @@ class _EditPhotoPageState extends State<EditPhotoPage> {
       _image = null;
       isLoading = true;
       getUser();
-      showInSnackBar('Se ha cambiado la imagen correctamente');
+      showInSnackBar(AppLocalizations.of(context).translate('imageChanged'));
     }
-    else showInSnackBar('No se ha podido cambiar la imagen');
+    else showInSnackBar(AppLocalizations.of(context).translate('errorOcurred'));
   }
 
   void showInSnackBar(String value) {
@@ -74,7 +75,7 @@ class _EditPhotoPageState extends State<EditPhotoPage> {
         style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,
-            fontFamily: "WorkSansSemiBold"),
+            fontFamily: "Roboto"),
       ),
       backgroundColor: Constants.accent,
       duration: Duration(seconds: 2),
@@ -92,7 +93,7 @@ class _EditPhotoPageState extends State<EditPhotoPage> {
 
   void saveImage(){
     if(_image == null) {
-      showInSnackBar('Selecciona una imagen');
+      showInSnackBar(AppLocalizations.of(context).translate('selectImage'));
     } else {
       setState(() {
         isUploading = true;
@@ -106,7 +107,7 @@ class _EditPhotoPageState extends State<EditPhotoPage> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('Editar Foto'),
+        title: Text(AppLocalizations.of(context).translate('editPhoto')),
       ),
       body: isUploading ?
         Center(child: CircularProgressIndicator(),) :

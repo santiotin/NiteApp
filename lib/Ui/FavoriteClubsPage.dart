@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/FavoriteClub.dart';
 import 'package:niteapp/Ui/Lists/FavoriteClubList.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Messages.dart';
 
 class FavoriteClubsPage extends StatefulWidget {
@@ -22,14 +23,14 @@ class _FavoriteClubsPageState extends State<FavoriteClubsPage> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mis clubs favoritos'),
+        title: Text(AppLocalizations.of(context).translate('myFavoriteClubs')),
       ),
       body: StreamBuilder<QuerySnapshot>(
           stream: _repository.getFavoriteClubs(widget.uid),
           builder: (context, snapshot) {
             if(snapshot == null ||snapshot.connectionState == ConnectionState.waiting || snapshot.data == null) return LoadingView();
             else if(snapshot.hasError) return ErrorView();
-            else if(snapshot.data.documents.isEmpty) return EmptyFavoriteClubs(msg: 'No tienes clubs favoritos',);
+            else if(snapshot.data.documents.isEmpty) return EmptyFavoriteClubs(msg: AppLocalizations.of(context).translate('noFavoriteClubs'),);
             else return FavoriteClubList(favoriteClubs: documentsToFavoriteClubs(snapshot.data.documents), uid: widget.uid,);
           }
       ),

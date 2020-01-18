@@ -4,7 +4,7 @@ import 'package:niteapp/Ui/ContactsPage.dart';
 import 'package:niteapp/Ui/EditPhotoPage.dart';
 import 'package:niteapp/Ui/EditProfilePage.dart';
 import 'package:niteapp/Ui/Login/SignInPage.dart';
-import 'package:niteapp/Pruebas/SearchFriendsPage.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -14,7 +14,7 @@ class SettingsPage extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ajustes'),
+        title: Text(AppLocalizations.of(context).translate('settings')),
       ),
       body: ListView(
         physics: NeverScrollableScrollPhysics(),
@@ -42,7 +42,7 @@ class SettingsPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Editar perfil',
+                    AppLocalizations.of(context).translate('editProfile'),
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       color: Constants.main,
@@ -75,7 +75,7 @@ class SettingsPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Editar foto',
+                    AppLocalizations.of(context).translate('editPhoto'),
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       color: Constants.main,
@@ -108,7 +108,7 @@ class SettingsPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Buscar Amigos',
+                    AppLocalizations.of(context).translate('searchFriends'),
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       color: Constants.main,
@@ -133,7 +133,7 @@ class SettingsPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Términos y Condiciones',
+                    AppLocalizations.of(context).translate('termsAndConds'),
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       color: Constants.main,
@@ -158,7 +158,7 @@ class SettingsPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Sobre nosotros',
+                    AppLocalizations.of(context).translate('aboutUs'),
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       color: Constants.main,
@@ -183,7 +183,7 @@ class SettingsPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Contáctanos',
+                    AppLocalizations.of(context).translate('contactUs'),
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       color: Constants.main,
@@ -222,7 +222,7 @@ class SettingsPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Cerrar sesión',
+                    AppLocalizations.of(context).translate('signOut'),
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       color: Constants.main,

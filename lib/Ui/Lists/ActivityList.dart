@@ -4,6 +4,7 @@ import 'package:niteapp/Ui/EventDetailsPage.dart';
 import 'package:niteapp/Ui/UserProfilePage.dart';
 import 'package:niteapp/Ui/Widgets/CircularImage.dart';
 import 'package:niteapp/Ui/Widgets/RoundedImage.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -64,7 +65,7 @@ class _ActivityListState extends State<ActivityList> {
                           ),
                           children: <TextSpan>[
                             TextSpan(text: activity.userName),
-                            TextSpan(text: ' ha indicado que asistirá a '),
+                            TextSpan(text: AppLocalizations.of(context).translate('startedGoing')),
                             TextSpan(
                               text: activity.eventName,
                               style: TextStyle(

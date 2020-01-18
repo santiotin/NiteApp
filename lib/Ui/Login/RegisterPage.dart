@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:niteapp/Backend/repository.dart';
-import 'package:niteapp/Ui/Login/SignInPage.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:diacritic/diacritic.dart';
@@ -37,7 +37,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('Registrarse'),
+        title: Text(AppLocalizations.of(context).translate('register')),
         elevation: 0,
       ),
       body: isLoading ?
@@ -72,7 +72,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     keyboardType: TextInputType.text,
                     cursorColor: Constants.accent,
                     style: TextStyle(
-                        fontFamily: "WorkSansSemiBold",
+                        fontFamily: "Roboto",
                         fontSize: 16.0,
                         color: Constants.main
                     ),
@@ -96,9 +96,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         Icons.person_outline,
                         color: Constants.main,
                       ),
-                      labelText: 'Nombre completo',
+                      labelText: AppLocalizations.of(context).translate('entireName'),
                       labelStyle: TextStyle(
-                        fontFamily: "WorkSansSemiBold",
+                        fontFamily: "Roboto",
                         fontSize: 14.0,
                         color: Constants.main,
                       ),
@@ -112,7 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     keyboardType: TextInputType.emailAddress,
                     cursorColor: Constants.accent,
                     style: TextStyle(
-                        fontFamily: "WorkSansSemiBold",
+                        fontFamily: "Roboto",
                         fontSize: 16.0,
                         color: Constants.main
                     ),
@@ -136,9 +136,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         Icons.email,
                         color: Constants.main,
                       ),
-                      labelText: 'Email',
+                      labelText: AppLocalizations.of(context).translate('email'),
                       labelStyle: TextStyle(
-                        fontFamily: "WorkSansSemiBold",
+                        fontFamily: "Roboto",
                         fontSize: 14.0,
                         color: Constants.main,
                       ),
@@ -153,7 +153,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     obscureText: true,
                     cursorColor: Constants.accent,
                     style: TextStyle(
-                        fontFamily: "WorkSansSemiBold",
+                        fontFamily: "Roboto",
                         fontSize: 16.0,
                         color: Constants.main
                     ),
@@ -177,9 +177,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         Icons.lock_outline,
                         color: Constants.main,
                       ),
-                      labelText: 'Contraseña',
+                      labelText: AppLocalizations.of(context).translate('password'),
                       labelStyle: TextStyle(
-                        fontFamily: "WorkSansSemiBold",
+                        fontFamily: "Roboto",
                         fontSize: 14.0,
                         color: Constants.main,
                       ),
@@ -194,7 +194,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     obscureText: true,
                     cursorColor: Constants.accent,
                     style: TextStyle(
-                        fontFamily: "WorkSansSemiBold",
+                        fontFamily: "Roboto",
                         fontSize: 16.0,
                         color: Constants.main
                     ),
@@ -218,9 +218,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         Icons.lock_outline,
                         color: Constants.main,
                       ),
-                      labelText: 'Confirmar Contraseña',
+                      labelText: AppLocalizations.of(context).translate('confirmPassword'),
                       labelStyle: TextStyle(
-                        fontFamily: "WorkSansSemiBold",
+                        fontFamily: "Roboto",
                         fontSize: 14.0,
                         color: Constants.main,
                       ),
@@ -248,7 +248,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   padding: const EdgeInsets.only(left: 15.0),
                                   child: DropdownButton<String>(
                                     hint:  Text(
-                                      "Sexo",
+                                      AppLocalizations.of(context).translate('sex'),
                                       style: TextStyle(
                                           color: Constants.main,
                                           fontSize: 14.0,
@@ -290,7 +290,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           keyboardType: TextInputType.number,
                           cursorColor: Constants.accent,
                           style: TextStyle(
-                              fontFamily: "WorkSansSemiBold",
+                              fontFamily: "Roboto",
                               fontSize: 16.0,
                               color: Constants.main
                           ),
@@ -317,9 +317,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                 color: Constants.main,
                               ),
                             ),
-                            labelText: 'Edad',
+                            labelText: AppLocalizations.of(context).translate('age'),
                             labelStyle: TextStyle(
-                              fontFamily: "WorkSansSemiBold",
+                              fontFamily: "Roboto",
                               fontSize: 14.0,
                               color: Constants.main,
                             ),
@@ -336,7 +336,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     keyboardType: TextInputType.text,
                     cursorColor: Constants.accent,
                     style: TextStyle(
-                        fontFamily: "WorkSansSemiBold",
+                        fontFamily: "Roboto",
                         fontSize: 16.0,
                         color: Constants.main
                     ),
@@ -360,9 +360,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         Icons.location_city,
                         color: Constants.main,
                       ),
-                      labelText: 'Ciudad',
+                      labelText: AppLocalizations.of(context).translate('city'),
                       labelStyle: TextStyle(
-                        fontFamily: "WorkSansSemiBold",
+                        fontFamily: "Roboto",
                         fontSize: 14.0,
                         color: Constants.main,
                       ),
@@ -376,7 +376,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     keyboardType: TextInputType.phone,
                     cursorColor: Constants.accent,
                     style: TextStyle(
-                        fontFamily: "WorkSansSemiBold",
+                        fontFamily: "Roboto",
                         fontSize: 16.0,
                         color: Constants.main
                     ),
@@ -400,9 +400,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         Icons.phone,
                         color: Constants.main,
                       ),
-                      labelText: 'Teléfono',
+                      labelText: AppLocalizations.of(context).translate('phone'),
                       labelStyle: TextStyle(
-                        fontFamily: "WorkSansSemiBold",
+                        fontFamily: "Roboto",
                         fontSize: 14.0,
                         color: Constants.main,
                       ),
@@ -412,7 +412,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Padding(
                   padding: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
                   child: Text(
-                    '* El teléfono no sera visible para otros usuarios',
+                    AppLocalizations.of(context).translate('warningPhone'),
                     style: TextStyle(
                       color: Constants.accent,
                       fontFamily: 'Roboto',
@@ -431,11 +431,11 @@ class _RegisterPageState extends State<RegisterPage> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 25.0, horizontal: 30.0),
                       child: Text(
-                        "Registrarse",
+                        AppLocalizations.of(context).translate('register'),
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 15.0,
-                            fontFamily: "WorkSansBold"
+                            fontFamily: "Roboto"
                         ),
                       ),
                     ),
@@ -462,7 +462,7 @@ class _RegisterPageState extends State<RegisterPage> {
         style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,
-            fontFamily: "WorkSansSemiBold"),
+            fontFamily: "Roboto"),
       ),
       backgroundColor: Constants.main,
       duration: Duration(seconds: 3),

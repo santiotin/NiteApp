@@ -5,6 +5,7 @@ import 'package:niteapp/Models/BasicUser.dart';
 import 'package:niteapp/Ui/Lists/BasicUserFriendList.dart';
 import 'package:niteapp/Ui/Lists/BasicUserList.dart';
 import 'package:niteapp/Ui/Login/SignInPage.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:niteapp/Utils/Messages.dart';
@@ -72,7 +73,7 @@ class _AssistantsPageState extends State<AssistantsPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Asistentes',
+            AppLocalizations.of(context).translate('assistants'),
             style: TextStyle(
               color: Constants.main,
             ),
@@ -83,7 +84,7 @@ class _AssistantsPageState extends State<AssistantsPage> {
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
                     child: Text(
-                      'Todos',
+                      AppLocalizations.of(context).translate('all'),
                       style: TextStyle(
                           fontSize: 16,
                           color: Constants.main
@@ -95,7 +96,7 @@ class _AssistantsPageState extends State<AssistantsPage> {
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
                     child: Text(
-                      'Amigos',
+                      AppLocalizations.of(context).translate('friends'),
                       style: TextStyle(
                           fontSize: 16,
                           color: Constants.main
@@ -123,8 +124,8 @@ class _AssistantsPageState extends State<AssistantsPage> {
             );
             else if(snapshot.data.documents.isEmpty) return TabBarView(
               children: <Widget>[
-                EmptyFriends(msg: 'Aún no hay asistentes para este evento',),
-                EmptyFriends(msg: 'Aún no hay asistentes para este evento',),
+                EmptyFriends(msg: AppLocalizations.of(context).translate('noAssistants'),),
+                EmptyFriends(msg: AppLocalizations.of(context).translate('noAssistants'),),
               ],
             );
             else return TabBarView(

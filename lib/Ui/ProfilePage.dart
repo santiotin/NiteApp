@@ -8,6 +8,7 @@ import 'package:niteapp/Ui/Login/SignInPage.dart';
 import 'package:niteapp/Ui/SettingsPage.dart';
 import 'package:niteapp/Ui/MyEventsPage.dart';
 import 'package:niteapp/Ui/Widgets/CircularImage.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -134,7 +135,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             Padding(
                               padding: EdgeInsets.only(top: 5.0),
                               child: Text(
-                                'Eventos',
+                                AppLocalizations.of(context).translate('events'),
                                 style: TextStyle(
                                     fontFamily: 'Roboto',
                                     fontWeight: FontWeight.normal,
@@ -169,7 +170,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             Padding(
                               padding: EdgeInsets.only(top: 5.0),
                               child: Text(
-                                'Seguidores',
+                                AppLocalizations.of(context).translate('followers'),
                                 style: TextStyle(
                                     fontFamily: 'Roboto',
                                     fontWeight: FontWeight.normal,
@@ -204,7 +205,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             Padding(
                               padding: EdgeInsets.only(top: 5.0),
                               child: Text(
-                                'Seguidos',
+                                AppLocalizations.of(context).translate('following'),
                                 style: TextStyle(
                                     fontFamily: 'Roboto',
                                     fontWeight: FontWeight.normal,
@@ -257,7 +258,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'Mis eventos',
+                              AppLocalizations.of(context).translate('myEvents'),
                               style: TextStyle(
                                   color: Constants.main,
                                   fontWeight: FontWeight.bold,
@@ -265,7 +266,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ),
                             Text(
-                              'Eventos a los que vas a ir',
+                              AppLocalizations.of(context).translate('eventsToGo'),
                               style: TextStyle(
                                   color: Constants.grey,
                                   fontWeight: FontWeight.normal,
@@ -323,7 +324,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'Mis clubs favoritos',
+                              AppLocalizations.of(context).translate('myFavoriteClubs'),
                               style: TextStyle(
                                   color: Constants.main,
                                   fontWeight: FontWeight.bold,
@@ -331,7 +332,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ),
                             Text(
-                              'Clubs que te gustan más',
+                              AppLocalizations.of(context).translate('clubsThatLike'),
                               style: TextStyle(
                                   color: Constants.grey,
                                   fontWeight: FontWeight.normal,
@@ -389,7 +390,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'Mis amigos',
+                              AppLocalizations.of(context).translate('myFriends'),
                               style: TextStyle(
                                   color: Constants.main,
                                   fontWeight: FontWeight.bold,
@@ -397,7 +398,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ),
                             Text(
-                              'Personas que te siguen y sigues',
+                              AppLocalizations.of(context).translate('peopleThatFollows'),
                               style: TextStyle(
                                   color: Constants.grey,
                                   fontWeight: FontWeight.normal,
@@ -455,7 +456,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'Ajustes',
+                              AppLocalizations.of(context).translate('settings'),
                               style: TextStyle(
                                   color: Constants.main,
                                   fontWeight: FontWeight.bold,
@@ -463,7 +464,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ),
                             Text(
-                              'Editar perfil, contacto, cuenta, ...',
+                              AppLocalizations.of(context).translate('settingsOptions'),
                               style: TextStyle(
                                   color: Constants.grey,
                                   fontWeight: FontWeight.normal,

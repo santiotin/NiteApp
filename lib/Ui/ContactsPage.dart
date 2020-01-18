@@ -7,6 +7,7 @@ import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/User.dart';
 import 'package:niteapp/Ui/UserProfilePage.dart';
 import 'package:niteapp/Ui/Widgets/CircularImage.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 
 
@@ -53,12 +54,12 @@ class _ContactsPageState extends State<ContactsPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Buscar amigos'),
+        title: new Text(AppLocalizations.of(context).translate('searchFriends')),
       ),
       body: !_isLoading
           ? Container(
               child: _usersInApp.isEmpty ?
-                  Center(child: Text('Ningun contacto en la aplicación')) :
+                  Center(child: Text(AppLocalizations.of(context).translate('noContactsInApp'))) :
                   ListView.builder(
                     itemCount: _usersInApp.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -107,19 +108,6 @@ class _ContactsPageState extends State<ContactsPage> {
           : Center(
               child: CircularProgressIndicator(),
           ),
-    );
-  }
-
-
-  ListTile _buildListTile(User user) {
-    return ListTile(
-      leading: Icon(Icons.contacts, size: 50,),
-      title: Text(user.name),
-      subtitle: Text(user.id),
-      trailing: Checkbox(
-          activeColor: Colors.green,
-          value: false,
-      )
     );
   }
 

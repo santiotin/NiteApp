@@ -5,6 +5,7 @@ import 'package:niteapp/Models/User.dart';
 import 'package:niteapp/Ui/FriendsPage.dart';
 import 'package:niteapp/Ui/MyEventsPage.dart';
 import 'package:niteapp/Ui/Widgets/CircularImage.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:niteapp/Utils/Messages.dart';
@@ -90,7 +91,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
   Widget Profile() {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Perfil'),
+        title: Text(AppLocalizations.of(context).translate('profile')),
       ),
       body: ListView(
         physics: NeverScrollableScrollPhysics(),
@@ -169,7 +170,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           Padding(
                             padding: EdgeInsets.only(top: 5.0),
                             child: Text(
-                              'Eventos',
+                              AppLocalizations.of(context).translate('events'),
                               style: TextStyle(
                                   fontFamily: 'Roboto',
                                   fontWeight: FontWeight.normal,
@@ -216,7 +217,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           Padding(
                             padding: EdgeInsets.only(top: 5.0),
                             child: Text(
-                              'Seguidores',
+                              AppLocalizations.of(context).translate('followers'),
                               style: TextStyle(
                                   fontFamily: 'Roboto',
                                   fontWeight: FontWeight.normal,
@@ -263,7 +264,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           Padding(
                             padding: EdgeInsets.only(top: 5.0),
                             child: Text(
-                              'Seguidos',
+                              AppLocalizations.of(context).translate('following'),
                               style: TextStyle(
                                   fontFamily: 'Roboto',
                                   fontWeight: FontWeight.normal,
@@ -299,7 +300,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     style: TextStyle(
                         color: following ? Constants.white : Constants.accent,
                         fontSize: 15.0,
-                        fontFamily: "WorkSansBold"
+                        fontFamily: "Roboto"
                     ),
                   ),
                 ),

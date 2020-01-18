@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:niteapp/Models/FavoriteClub.dart';
 import 'package:niteapp/Ui/Widgets/CircularImage.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:flutter/services.dart';
 
@@ -54,7 +55,7 @@ class _FavoriteClubListState extends State<FavoriteClubList> {
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             FlatButton(
-              child: new Text("Cancelar"),
+              child: new Text(AppLocalizations.of(context).translate('cancel')),
               onPressed: () {
                 Navigator.of(context).pop();
                 SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -63,7 +64,7 @@ class _FavoriteClubListState extends State<FavoriteClubList> {
               },
             ),
             FlatButton(
-              child: new Text("Aceptar"),
+              child: new Text(AppLocalizations.of(context).translate('accept')),
               onPressed: () {
                 Navigator.of(context).pop();
                 deleteFavClub(cid);

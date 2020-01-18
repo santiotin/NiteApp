@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/GoingEvent.dart';
 import 'package:niteapp/Ui/SeeTicket.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Messages.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:niteapp/Ui/Widgets/timeline_node.dart';
@@ -68,7 +69,7 @@ class _MyEventsPageState extends State<MyEventsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mis eventos'),
+        title: Text(AppLocalizations.of(context).translate('myEvents')),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: _repository.getGoingEvents(widget.uid),

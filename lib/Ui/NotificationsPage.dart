@@ -10,6 +10,7 @@ import 'package:niteapp/Models/User.dart';
 import 'package:niteapp/Ui/Lists/ActivityList.dart';
 import 'package:niteapp/Ui/Lists/RequestList.dart';
 import 'package:niteapp/Ui/Login/SignInPage.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Messages.dart';
 import 'package:niteapp/Utils/Constants.dart';
 
@@ -77,7 +78,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 tabs: [
                   Tab(
                       child: Text(
-                        'Actividad',
+                        AppLocalizations.of(context).translate('activity'),
                         style: TextStyle(
                             fontSize: 16,
                             color: Constants.main
@@ -86,7 +87,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   ),
                   Tab(
                       child: Text(
-                        'Solicitudes',
+                        AppLocalizations.of(context).translate('requests'),
                         style: TextStyle(
                             fontSize: 16,
                             color: Constants.main
@@ -115,8 +116,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   }
 
                   if(activities.length > 0) {
-                    print("lastTime: " + lastActivityTime.toString());
-                    print("time: " + activities[0].time.toString());
                     if(lastActivityTime == null) lastActivityTime = activities[0].time;
                     else if(lastActivityTime != activities[0].time){
                       lastActivityTime = lastActivityTime = activities[0].time;

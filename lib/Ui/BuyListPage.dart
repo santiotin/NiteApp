@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/Event.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:niteapp/Utils/Messages.dart';
@@ -41,8 +42,8 @@ class _BuyListPageState extends State<BuyListPage> {
   }
 
   String getTextOfRelation() {
-    if(inList) return 'Desapuntarse';
-    else return 'Apuntarse';
+    if(inList) return AppLocalizations.of(context).translate('unJoin');
+    else return AppLocalizations.of(context).translate('join');
   }
 
   void onGoingBtnPressed(){
@@ -68,7 +69,7 @@ class _BuyListPageState extends State<BuyListPage> {
             event = Event.fromMap(snapshot.data.data, snapshot.data.documentID);
             return Scaffold(
               appBar: AppBar(
-                title: Text('Lista Nite'),
+                title: Text(AppLocalizations.of(context).translate('niteList')),
               ),
               body: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -82,7 +83,7 @@ class _BuyListPageState extends State<BuyListPage> {
                         Padding(
                           padding: EdgeInsets.only(left: 30, top: 30),
                           child: Text(
-                            'Datos de la reserva',
+                            AppLocalizations.of(context).translate('bookInfo'),
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -94,7 +95,7 @@ class _BuyListPageState extends State<BuyListPage> {
                         Padding(
                           padding: EdgeInsets.only(left: 30, top: 30),
                           child: Text(
-                            'Evento',
+                            AppLocalizations.of(context).translate('event'),
                             style: TextStyle(
                               fontSize: 18,
                               color: Constants.main,
@@ -104,7 +105,7 @@ class _BuyListPageState extends State<BuyListPage> {
                         Padding(
                           padding: EdgeInsets.only(left: 30, top: 5),
                           child: Text(
-                            event.name + " by " + event.clubName,
+                            event.name + AppLocalizations.of(context).translate('by') + event.clubName,
                             style: TextStyle(
                               fontSize: 14,
                               color: Constants.grey,
@@ -115,7 +116,7 @@ class _BuyListPageState extends State<BuyListPage> {
                         Padding(
                           padding: EdgeInsets.only(left: 30, top: 20),
                           child: Text(
-                            'Horario',
+                            AppLocalizations.of(context).translate('schedule'),
                             style: TextStyle(
                               fontSize: 18,
                               color: Constants.main,
@@ -125,7 +126,7 @@ class _BuyListPageState extends State<BuyListPage> {
                         Padding(
                           padding: EdgeInsets.only(left: 30, top: 5),
                           child: Text(
-                            'El ' + event.day + '/' + event.month+ '/'+ event.year + " de " + event.startHour + ' a ' + event.endHour,
+                            AppLocalizations.of(context).translate('the') + event.day + '/' + event.month+ '/'+ event.year + AppLocalizations.of(context).translate('from') + event.startHour + AppLocalizations.of(context).translate('to') + event.endHour,
                             style: TextStyle(
                               fontSize: 14,
                               color: Constants.grey,
@@ -136,7 +137,7 @@ class _BuyListPageState extends State<BuyListPage> {
                         Padding(
                           padding: EdgeInsets.only(left: 30, top: 20),
                           child: Text(
-                            'Descripción',
+                            AppLocalizations.of(context).translate('description'),
                             style: TextStyle(
                               fontSize: 18,
                               color: Constants.main,
@@ -157,7 +158,7 @@ class _BuyListPageState extends State<BuyListPage> {
                         Padding(
                           padding: EdgeInsets.only(left: 30, top: 20),
                           child: Text(
-                            'Precio',
+                            AppLocalizations.of(context).translate('price'),
                             style: TextStyle(
                               fontSize: 18,
                               color: Constants.main,
@@ -167,7 +168,7 @@ class _BuyListPageState extends State<BuyListPage> {
                         Padding(
                           padding: EdgeInsets.only(left: 30, top: 5),
                           child: Text(
-                            'Gratis',
+                            AppLocalizations.of(context).translate('free'),
                             style: TextStyle(
                               fontSize: 14,
                               color: Constants.grey,
@@ -192,7 +193,7 @@ class _BuyListPageState extends State<BuyListPage> {
                             style: TextStyle(
                                 color: Constants.white,
                                 fontSize: 15.0,
-                                fontFamily: "WorkSansBold"
+                                fontFamily: "Roboto"
                             ),
                           ),
                         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:niteapp/Models/Request.dart';
 import 'package:niteapp/Ui/UserProfilePage.dart';
 import 'package:niteapp/Ui/Widgets/CircularImage.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -62,7 +63,7 @@ class _RequestListState extends State<RequestList> {
                             ),
                             children: <TextSpan>[
                               TextSpan(text: request.userName, style: TextStyle(fontWeight: FontWeight.bold)),
-                              TextSpan(text: ' ha empezado a seguirte'),
+                              TextSpan(text: AppLocalizations.of(context).translate('startedFollowing')),
                             ],
                           ),
                         ),
