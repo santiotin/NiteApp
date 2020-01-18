@@ -340,10 +340,13 @@ class FirebaseProvider {
   Future<bool> addToList(Event event) async {
     bool result = false;
     FirebaseUser currentUser = await getCurrentUser();
+    User user = await getCurrentUserDetails();
     await _firestore
         .collection('events').document(event.id)
         .collection('list').document(currentUser.uid)
-        .setData({})
+        .setData({
+          'userName': user.name,
+        })
         .whenComplete(() {
           result = true;
         })
