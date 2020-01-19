@@ -27,22 +27,17 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController registerPhoneContrl = new TextEditingController();
 
   bool isLoading = false;
+  bool firstBuild = true;
 
   List<String> sexTypes;
   String sexType;
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    sexTypes.add(AppLocalizations.of(context).translate('man'));
-    sexTypes.add(AppLocalizations.of(context).translate('women'));
-    sexTypes.add(AppLocalizations.of(context).translate('other'));
-  }
-
-  @override
   Widget build(BuildContext context) {
-    //iniFields();
+    if(firstBuild) {
+      iniSexTypes();
+      firstBuild = false;
+    }
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -105,7 +100,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         Icons.person_outline,
                         color: Constants.main,
                       ),
-                      labelText: AppLocalizations.of(context).translate('entireName'),
+                      labelText: AppLocalizations.of(context).translate('completeName'),
                       labelStyle: TextStyle(
                         fontFamily: "Roboto",
                         fontSize: 14.0,
@@ -457,8 +452,14 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  void iniFields() {
-    sexType = sexTypes[0];
+  void iniSexTypes() {
+    setState(() {
+      sexTypes = [
+        AppLocalizations.of(context).translate('man'),
+        AppLocalizations.of(context).translate('women'),
+        AppLocalizations.of(context).translate('other')
+      ];
+    });
   }
 
   //Show snack bar message
@@ -526,10 +527,18 @@ class _RegisterPageState extends State<RegisterPage> {
     return result;
   }
 
+  String getSex() {
+    String result = sexType;
+    if(sexType == 'Man') result = 'Hombre';
+    else if(sexType == 'Women') result = 'Mujer';
+    else if(sexType == 'Other') result = 'Otro';
+    return result;
+  }
+
   void signUp() async{
     bool result =  await _repository.addUser(registerEmailContrl.text,
         registerPasswdContrl.text, registerNameContrl.text, registerCityContrl.text,
-        registerAgeContrl.text, sexType, transformName(registerNameContrl.text), transformPhone(registerPhoneContrl.text));
+        registerAgeContrl.text, getSex(), transformName(registerNameContrl.text), transformPhone(registerPhoneContrl.text));
 
     if(result) {
       registerNameContrl.clear();
