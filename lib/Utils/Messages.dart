@@ -69,7 +69,10 @@ class EmptyTodayAndSearch extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.only(top: 40.0),
-          child: Text(msg),
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.7,
+            child: Center(child: Text(msg)),
+          ),
         ),
       ],
     );
@@ -98,7 +101,10 @@ class EmptyNotifications extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.only(top: 30.0),
-          child: Text(msg),
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.7,
+            child: Center(child: Text(msg)),
+          ),
         ),
       ],
     );
@@ -128,7 +134,10 @@ class EmptyFriends extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(top: 30.0),
-            child: Text(msg),
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.7,
+              child: Center(child: Text(msg)),
+            ),
           ),
         ],
       ),
@@ -223,7 +232,10 @@ class EmptyFavoriteClubs extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(top: 30.0),
-            child: Text(msg),
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.7,
+              child: Center(child: Text(msg)),
+            ),
           ),
         ],
       ),

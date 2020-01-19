@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:niteapp/Models/FavoriteClub.dart';
+import 'package:niteapp/Ui/ClubDetailsPage.dart';
 import 'package:niteapp/Ui/Widgets/CircularImage.dart';
 import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
@@ -55,7 +57,12 @@ class _FavoriteClubListState extends State<FavoriteClubList> {
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             FlatButton(
-              child: new Text(AppLocalizations.of(context).translate('cancel')),
+              child: Text(
+                AppLocalizations.of(context).translate('cancel'),
+                style: TextStyle(
+                  color: Constants.accent,
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
                 SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -64,7 +71,12 @@ class _FavoriteClubListState extends State<FavoriteClubList> {
               },
             ),
             FlatButton(
-              child: new Text(AppLocalizations.of(context).translate('accept')),
+              child: Text(
+                AppLocalizations.of(context).translate('accept'),
+                style: TextStyle(
+                    color: Constants.accent,
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
                 deleteFavClub(cid);
@@ -96,7 +108,15 @@ class _FavoriteClubListState extends State<FavoriteClubList> {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               behavior: HitTestBehavior.translucent,
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    CupertinoPageRoute<Null>(
+                      builder: (context) => ClubDetailsPage(cid: widget.favoriteClubs[index].id,),
+                      settings: RouteSettings(name: 'ClubDetailsPage'),
+                    )
+                );
+              },
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 10 , 0),
                 child: Row(
@@ -119,7 +139,7 @@ class _FavoriteClubListState extends State<FavoriteClubList> {
                       child: Container(),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 20.0),
+                      padding: const EdgeInsets.only(right: 0.0),
                       child: IconButton(
                         icon: Icon(Icons.favorite),
                         color: Constants.main,

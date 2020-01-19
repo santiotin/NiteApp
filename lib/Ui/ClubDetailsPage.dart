@@ -212,6 +212,10 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                   return true;
                 },
                 child: ListView(
+                  shrinkWrap: true,
+                  physics: BouncingScrollPhysics(
+                    parent: FixedExtentScrollPhysics(),
+                  ),
                   children: <Widget>[
                     //photo
                     Padding(
