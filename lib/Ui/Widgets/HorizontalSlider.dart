@@ -21,7 +21,7 @@ class HorizontalSlider extends StatelessWidget {
     return Container(
       height: 300,
       child: ListView.builder(
-        shrinkWrap: false,
+        shrinkWrap: true,
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.symmetric(horizontal: 30.0),
         scrollDirection: Axis.horizontal,
