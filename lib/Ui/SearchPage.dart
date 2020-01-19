@@ -174,7 +174,7 @@ class _SearchPageState extends State<SearchPage> {
             else if(snapshot.data == null || snapshot.data.documents.isEmpty) return Center(child: EmptyTodayAndSearch(msg: AppLocalizations.of(context).translate('noResults'),));
             else {
               if (searchType == 1) return UserList(users: documentsToUsers(snapshot.data.documents));
-              else if (searchType == 2) return SearchClubList(clubs: documentsToClubs(snapshot.data.documents));
+              else if (searchType == 2) return ClubList(clubs: documentsToClubs(snapshot.data.documents));
               else return EventList(events: documentsToEvents(snapshot.data.documents) );
             }
           }

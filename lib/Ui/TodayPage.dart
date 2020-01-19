@@ -209,19 +209,11 @@ class _TodayPageState extends State<TodayPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(
-                                'Eventos del día',
+                                AppLocalizations.of(context).translate('eventsOfTheDay'),
                                 style: TextStyle(
                                   color: Constants.main,
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {},
-                                child: Icon(
-                                  Icons.filter_list,
-                                  color: Constants.main,
-                                  size: 20.0,
                                 ),
                               ),
                             ],
@@ -230,6 +222,7 @@ class _TodayPageState extends State<TodayPage> {
                         HorizontalSlider(
                           events: documentsToEvents(snapshot.data.documents),
                           uid: mUser.uid,
+                          showDay: false,
                         ),
                         SizedBox(height: 5),
                         Padding(

@@ -1,4 +1,7 @@
 {
+  "eventsOfTheDay": "Events of the day",
+  "nextEvents": "Next events",
+  "club": "Club",
   "locale": "en",
   "notValidatedEmail": "You have not validated your account. Look in your email",
   "incorrectUserOrPassword": "Incorrect user or password",

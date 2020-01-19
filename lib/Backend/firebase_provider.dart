@@ -523,4 +523,16 @@ class FirebaseProvider {
         .collection("favoriteClubs").document(cid)
         .snapshots();
   }
+
+  Stream<DocumentSnapshot> getClubStream(String cid) {
+    return _firestore
+        .collection("clubs").document(cid)
+        .snapshots();
+  }
+
+  Stream<QuerySnapshot> getClubEvents(String cid) {
+    return _firestore.collection("events")
+        .where("clubId", isEqualTo: cid)
+        .snapshots();
+  }
 }

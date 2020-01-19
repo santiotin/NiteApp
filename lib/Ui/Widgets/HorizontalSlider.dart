@@ -8,10 +8,12 @@ import 'package:niteapp/Utils/Constants.dart';
 class HorizontalSlider extends StatelessWidget {
   final List<Event> events;
   final String uid;
+  bool showDay;
 
   HorizontalSlider({
     this.events,
     this.uid,
+    this.showDay,
   });
 
   @override
@@ -26,6 +28,9 @@ class HorizontalSlider extends StatelessWidget {
         itemCount: events.length,
         itemBuilder: (BuildContext context, int index) {
           Event event = events[index];
+          String subTitle;
+          if(showDay) subTitle = event.day + '/' + event.month + '/' + event.year;
+          else subTitle = event.clubName;
           return GestureDetector(
             onTap: () {
               Navigator.push(
@@ -125,7 +130,7 @@ class HorizontalSlider extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 20.0, right: 10.0),
                           child: Text(
-                            event.clubName,
+                            subTitle,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: TextStyle(

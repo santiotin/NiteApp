@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:niteapp/Models/Club.dart';
+import 'package:niteapp/Ui/ClubDetailsPage.dart';
 import 'package:niteapp/Ui/Widgets/CircularImage.dart';
 import 'package:niteapp/Utils/Constants.dart';
+import 'package:flutter/cupertino.dart';
 
-class SearchClubList extends StatefulWidget {
+class ClubList extends StatefulWidget {
 
   final List<Club> clubs;
 
-  const SearchClubList({Key key, @required this.clubs}) : super(key: key);
+  const ClubList({Key key, @required this.clubs}) : super(key: key);
 
   @override
-  _SearchClubListState createState() => _SearchClubListState();
+  _ClubListState createState() => _ClubListState();
 
 }
-class _SearchClubListState extends State<SearchClubList> {
+class _ClubListState extends State<ClubList> {
 
 
   @override
@@ -32,7 +34,15 @@ class _SearchClubListState extends State<SearchClubList> {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               behavior: HitTestBehavior.translucent,
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    CupertinoPageRoute<Null>(
+                      builder: (context) => ClubDetailsPage(cid: widget.clubs[index].id,),
+                      settings: RouteSettings(name: 'ClubDetailsPage'),
+                    )
+                );
+              },
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 10 , 0),
                 child: Row(
@@ -52,7 +62,6 @@ class _SearchClubListState extends State<SearchClubList> {
                         ),
                       ),
                     )
-
                   ],
                 ),
               ),

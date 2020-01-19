@@ -6,6 +6,7 @@ import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/Event.dart';
 import 'package:niteapp/Ui/AssistantsPage.dart';
 import 'package:niteapp/Ui/BuyListPage.dart';
+import 'package:niteapp/Ui/ClubDetailsPage.dart';
 import 'package:niteapp/Ui/TicketsWebView.dart';
 import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Messages.dart';
@@ -373,59 +374,6 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
       },
     );
   }
-  void _showDialogFavTheClub() {
-    // flutter defined function
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-    ));
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: Text(AppLocalizations.of(context).translate('favoriteClub')),
-          content: RichText(
-            text: new TextSpan(
-              style: new TextStyle(
-                color: Constants.main,
-                fontSize: 16,
-              ),
-              children: <TextSpan>[
-                if(favoriteClub)TextSpan(text: AppLocalizations.of(context).translate('wantDelete'))
-                else TextSpan(text: AppLocalizations.of(context).translate('wantAdd')),
-                TextSpan(text: event.clubName, style: new TextStyle(fontWeight: FontWeight.bold)),
-                if(favoriteClub) TextSpan(text: AppLocalizations.of(context).translate('wantDeleteFavClub'))
-                else TextSpan(text: AppLocalizations.of(context).translate('wantAddFavClub'))
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            // usually buttons at the bottom of the dialog
-            FlatButton(
-              child: new Text(AppLocalizations.of(context).translate('cancel')),
-              onPressed: () {
-                Navigator.of(context).pop();
-                SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-                  statusBarColor: Colors.white,
-                ));
-              },
-            ),
-            FlatButton(
-              child: new Text(AppLocalizations.of(context).translate('accept')),
-              onPressed: () {
-                Navigator.of(context).pop();
-                if(favoriteClub) deleteGoing();
-                else addFavoriteClub();
-                SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-                  statusBarColor: Colors.white,
-                ));
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
   void showInSnackBar(String value) {
     _scaffoldKey.currentState?.removeCurrentSnackBar();
     _scaffoldKey.currentState.showSnackBar(new SnackBar(
@@ -441,8 +389,6 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
       duration: Duration(seconds: 2),
     ));
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -477,12 +423,19 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     );
                   },
                 ),
-                if(favoriteClub != null)IconButton(
-                  icon: favoriteClub ?
-                  Icon(Icons.favorite, color: Constants.main,) :
-                  Icon(Icons.favorite_border, color: Constants.main,),
+                IconButton(
+                  icon: Icon(
+                    Icons.business,
+                    color: Constants.main,
+                  ),
                   onPressed: () {
-                    _showDialogFavTheClub();
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute<Null>(
+                          builder: (context) => ClubDetailsPage(cid: event.clubId,),
+                          settings: RouteSettings(name: 'ClubDetailsPage'),
+                        )
+                    );
                   },
                 ),
                 SizedBox(
@@ -535,7 +488,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 25),
                                 child: Text(
-                                  event.clubName + ': ' + event.name,
+                                  event.name,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
