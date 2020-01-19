@@ -76,7 +76,7 @@ class _MyEventsPageState extends State<MyEventsPage> {
         builder: (context, snapshot) {
           if(snapshot == null ||snapshot.connectionState == ConnectionState.waiting || snapshot.data == null) return LoadingView();
           else if(snapshot.hasError) return ErrorView();
-          else if(snapshot.data.documents.isEmpty) return Center(child: EmptyTodayAndSearch(msg: "No asistes a ningun evento",));
+          else if(snapshot.data.documents.isEmpty) return Center(child: EmptyTodayAndSearch(msg: AppLocalizations.of(context).translate('notAssisting'),));
           else return ListView.builder(
             physics: BouncingScrollPhysics(
               parent: FixedExtentScrollPhysics()),

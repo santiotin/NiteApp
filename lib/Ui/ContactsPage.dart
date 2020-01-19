@@ -36,11 +36,11 @@ class _ContactsPageState extends State<ContactsPage> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text('Oops!'),
-            content: const Text('Looks like permission to read contacts is not granted.'),
+            title: Text('Oops!'),
+            content: Text(AppLocalizations.of(context).translate('contactsPermission')),
             actions: <Widget>[
               FlatButton(
-                child: const Text('OK'),
+                child: Text(AppLocalizations.of(context).translate('ok')),
                 onPressed: () => Navigator.pop(context),
               ),
             ],

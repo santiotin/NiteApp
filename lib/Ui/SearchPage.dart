@@ -171,7 +171,7 @@ class _SearchPageState extends State<SearchPage> {
           builder: (context, snapshot) {
             if(snapshot == null || snapshot.connectionState == ConnectionState.waiting) return LoadingView();
             else if(snapshot.hasError) return ErrorView();
-            else if(snapshot.data == null || snapshot.data.documents.isEmpty) return Center(child: EmptyTodayAndSearch(msg: 'No hay resultados',));
+            else if(snapshot.data == null || snapshot.data.documents.isEmpty) return Center(child: EmptyTodayAndSearch(msg: AppLocalizations.of(context).translate('noResults'),));
             else {
               if (searchType == 1) return UserList(users: documentsToUsers(snapshot.data.documents));
               else if (searchType == 2) return SearchClubList(clubs: documentsToClubs(snapshot.data.documents));

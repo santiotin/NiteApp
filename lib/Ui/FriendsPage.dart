@@ -81,7 +81,7 @@ class _FriendsPageState  extends State<FriendsPage> with SingleTickerProviderSta
               builder: (context, snapshot) {
                 if(snapshot == null ||snapshot.connectionState == ConnectionState.waiting || snapshot.data == null) return LoadingView();
                 else if(snapshot.hasError) return ErrorView();
-                else if(snapshot.data.documents.isEmpty) return EmptyFriends(msg: 'Aún no te sigue nadie, ¡díselo a tus amigos!',);
+                else if(snapshot.data.documents.isEmpty) return EmptyFriends(msg: AppLocalizations.of(context).translate('notFollowed'),);
                 else return BasicUserList(basicUsers: documentsToBasicUsers(snapshot.data.documents));
               }
             ),
@@ -90,7 +90,7 @@ class _FriendsPageState  extends State<FriendsPage> with SingleTickerProviderSta
               builder: (context, snapshot) {
                 if (snapshot == null || snapshot.connectionState == ConnectionState.waiting || snapshot.data == null) return LoadingView();
                 else if (snapshot.hasError) return ErrorView();
-                else if (snapshot.data.documents.isEmpty) return EmptyFriends(msg: 'Aún no sigues a nadie, ¡busca a tus amigos!',);
+                else if (snapshot.data.documents.isEmpty) return EmptyFriends(msg: AppLocalizations.of(context).translate('notFollowing'),);
                 else return BasicUserList(basicUsers: documentsToBasicUsers(snapshot.data.documents));
               }
             ),

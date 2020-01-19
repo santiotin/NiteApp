@@ -331,8 +331,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                 fontSize: 16,
               ),
               children: <TextSpan>[
-                if(going)TextSpan(text: '¿Quieres dejar de asistir al evento?')
-                else TextSpan(text: '¿Quieres asistir al evento?'),
+                if(going)TextSpan(text: AppLocalizations.of(context).translate('unAssistEvent'))
+                else TextSpan(text: AppLocalizations.of(context).translate('assistEvent')),
               ],
             ),
           ),
@@ -391,11 +391,11 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                 fontSize: 16,
               ),
               children: <TextSpan>[
-                if(favoriteClub)TextSpan(text: '¿Quieres borrar ')
-                else TextSpan(text: '¿Quieres añadir '),
+                if(favoriteClub)TextSpan(text: AppLocalizations.of(context).translate('wantDelete'))
+                else TextSpan(text: AppLocalizations.of(context).translate('wantAdd')),
                 TextSpan(text: event.clubName, style: new TextStyle(fontWeight: FontWeight.bold)),
-                if(favoriteClub) TextSpan(text: ' de tu lista de clubs favoritos? ')
-                else TextSpan(text: ' a tu lista de clubs favoritos? ')
+                if(favoriteClub) TextSpan(text: AppLocalizations.of(context).translate('wantDeleteFavClub'))
+                else TextSpan(text: AppLocalizations.of(context).translate('wantAddFavClub'))
               ],
             ),
           ),
@@ -760,7 +760,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                       )
                                   );
                                 } else {
-                                  showInSnackBar('Para apuntarte has de confirmar tu asistencia');
+                                  showInSnackBar(AppLocalizations.of(context).translate('joinToConfirm'));
                                 }
                               },
                               shape: CircleBorder(),
@@ -787,7 +787,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                "La lista Nite no está disponible para este evento",
+                                AppLocalizations.of(context).translate('niteListNotAvailable'),
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
                                   fontSize: 15,
@@ -950,7 +950,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                       )
                                   );
                                 }else {
-                                  showInSnackBar('Para comprar has de confirmar tu asistencia');
+                                  showInSnackBar(AppLocalizations.of(context).translate('joinToBuy'));
                                 }
                               },
                               shape: CircleBorder(),
@@ -977,7 +977,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'Compra de entradas no disponible para este evento',
+                                AppLocalizations.of(context).translate('buyNotAvailable'),
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
                                   fontSize: 15,
@@ -1130,7 +1130,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             child: FlatButton(
                               color: Constants.white,
                               onPressed: (){
-                                showInSnackBar('Próximamente...');
+                                showInSnackBar(AppLocalizations.of(context).translate('soonDots'));
                               },
                               shape: CircleBorder(),
                               padding: EdgeInsets.all(10),
@@ -1156,7 +1156,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'Reserva de VIPs no disponible para este evento',
+                                AppLocalizations.of(context).translate('vipNotAvailable'),
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
                                   fontSize: 15,
@@ -1226,7 +1226,6 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
             ),
           );
         }
-
       }
     );
   }

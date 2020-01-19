@@ -28,8 +28,17 @@ class _RegisterPageState extends State<RegisterPage> {
 
   bool isLoading = false;
 
-  List<String> sexTypes = ['Hombre' , 'Mujer', 'Otro'];
+  List<String> sexTypes;
   String sexType;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    sexTypes.add(AppLocalizations.of(context).translate('man'));
+    sexTypes.add(AppLocalizations.of(context).translate('women'));
+    sexTypes.add(AppLocalizations.of(context).translate('other'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -478,7 +487,7 @@ class _RegisterPageState extends State<RegisterPage> {
       setState(() {
         isLoading = false;
       });
-      showInSnackBar('El formato del correo no es válido');
+      showInSnackBar(AppLocalizations.of(context).translate('emailFormat'));
       return false;
     } else {
       return true;
@@ -490,7 +499,7 @@ class _RegisterPageState extends State<RegisterPage> {
       setState(() {
         isLoading = false;
       });
-      showInSnackBar('La contraseña ha de ser mas larga que 8');
+      showInSnackBar(AppLocalizations.of(context).translate('passwordLength'));
       return false;
     } else {
       return true;
@@ -533,12 +542,12 @@ class _RegisterPageState extends State<RegisterPage> {
       setState(() {
         isLoading = false;
       });
-      showInSnackBar('Te hemos enviado un correo de confirmación para validar tu cuenta');
+      showInSnackBar(AppLocalizations.of(context).translate('confirmationEmail'));
     } else {
       setState(() {
         isLoading = false;
       });
-      showInSnackBar('Este correo ya ha sido registrado');
+      showInSnackBar(AppLocalizations.of(context).translate('registeredEmail'));
     }
   }
 
@@ -556,7 +565,7 @@ class _RegisterPageState extends State<RegisterPage> {
           setState(() {
             isLoading = false;
           });
-          showInSnackBar('La contraseñas no coinciden');
+          showInSnackBar(AppLocalizations.of(context).translate('matchPasswords'));
         }
       }
     }

@@ -178,7 +178,7 @@ class _TodayPageState extends State<TodayPage> {
                                   child: Center(
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                                      child: Text('Recomendación'),
+                                      child: Text(AppLocalizations.of(context).translate('recommendation')),
                                     ),
                                   )
                               ),
@@ -196,7 +196,7 @@ class _TodayPageState extends State<TodayPage> {
                   if(snapshot == null || snapshot.data == null || snapshot.data.documents == null ) return EmptyView();
                   else if(snapshot.hasError) return ErrorView();
                   else if(snapshot.connectionState == ConnectionState.waiting) return LoadingView();
-                  else if(snapshot.data.documents.isEmpty) return EmptyTodayAndSearch(msg: 'No hay eventos para este día',);
+                  else if(snapshot.data.documents.isEmpty) return EmptyTodayAndSearch(msg: AppLocalizations.of(context).translate('noEventsForThisDay'),);
                   else return Column(
                       children: <Widget>[
                         Padding(
@@ -234,7 +234,7 @@ class _TodayPageState extends State<TodayPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(
-                                'Tus favoritos de hoy',
+                                AppLocalizations.of(context).translate('todayFavorites'),
                                 style: TextStyle(
                                   color: Constants.main,
                                   fontSize: 20.0,

@@ -311,14 +311,14 @@ class _SignInPageState extends State<SignInPage> {
       });
       signInEmailContrl.clear();
       signInPasswdContrl.clear();
-      showInSnackBar('No has validado tu cuenta. Mira en tu correo');
+      showInSnackBar(AppLocalizations.of(context).translate('notValidatedEmail'));
     }else{
       setState(() {
         isLoading = false;
       });
       signInEmailContrl.clear();
       signInPasswdContrl.clear();
-      showInSnackBar('Usuario o contraseña incorrectos');
+      showInSnackBar(AppLocalizations.of(context).translate('IncorrectUserOrPassword'));
     }
   }
 

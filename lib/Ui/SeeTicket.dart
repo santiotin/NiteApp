@@ -195,7 +195,7 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
                                   padding: EdgeInsets.only(bottom: 10),
                                   child: Center(
                                     child: QrImage(
-                                      data: "1234567890",
+                                      data: 'Nite list' + widget.uid + widget.eid,
                                       version: QrVersions.auto,
                                       size: 150.0,
                                       embeddedImage: AssetImage('assets/images/barcelonaWhite.png'),
@@ -208,7 +208,7 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
                                   padding: EdgeInsets.symmetric(vertical: 15.0),
                                   child: Center(
                                     child: Text(
-                                      'Con Nite entras por lista sin hacer cola',
+                                      '',
                                       style:
                                       TextStyle(color: Constants.white, fontSize: 14.0),
                                     ),

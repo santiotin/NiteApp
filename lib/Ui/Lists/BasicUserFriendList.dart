@@ -4,6 +4,7 @@ import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/BasicUser.dart';
 import 'package:niteapp/Ui/UserProfilePage.dart';
 import 'package:niteapp/Ui/Widgets/CircularImage.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Messages.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,7 +30,7 @@ class _BasicUserFriendListState extends State<BasicUserFriendList> {
         color: Colors.white,
         child: Stack(
           children: <Widget>[
-            EmptyFriends(msg: 'No tienes amigos que asistan a este evento',),
+            EmptyFriends(msg: AppLocalizations.of(context).translate('noFriendsAssisting'),),
             Container(
               color: Constants.white,
               child: ListView.builder(

@@ -40,8 +40,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
   }
 
   String getTextOfRelation() {
-    if(following) return 'Siguiendo';
-    else return 'Seguir';
+    if(following) return AppLocalizations.of(context).translate('following');
+    else return AppLocalizations.of(context).translate('follow');
   }
 
   void onFollowBtnPressed(){

@@ -107,7 +107,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
               builder: (context, snapshot) {
                 if(snapshot == null || snapshot.connectionState == ConnectionState.waiting || snapshot.data == null ) return LoadingView();
                 else if(snapshot.hasError) return ErrorView();
-                else if(snapshot.data.documents.isEmpty) return EmptyNotifications(msg: 'No hay actividad reciente',);
+                else if(snapshot.data.documents.isEmpty) return EmptyNotifications(msg: AppLocalizations.of(context).translate('noActivity'),);
                 else {
 
                   List<Activity> activities = new List<Activity>();
@@ -134,7 +134,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 builder: (context, snapshot) {
                   if(snapshot == null || snapshot.connectionState == ConnectionState.waiting || snapshot.data == null ) return LoadingView();
                   else if(snapshot.hasError) return ErrorView();
-                  else if(snapshot.data.documents.isEmpty) return EmptyNotifications(msg: 'No hay solicitudes',);
+                  else if(snapshot.data.documents.isEmpty) return EmptyNotifications(msg: AppLocalizations.of(context).translate('noRequests'),);
                   else {
 
                     List<Request> requests = new List<Request>();

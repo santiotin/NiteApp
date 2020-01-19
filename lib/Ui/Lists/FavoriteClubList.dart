@@ -46,9 +46,9 @@ class _FavoriteClubListState extends State<FavoriteClubList> {
                 fontSize: 16,
               ),
               children: <TextSpan>[
-                TextSpan(text: '¿Quieres eliminar '),
+                TextSpan(text: AppLocalizations.of(context).translate('wantDelete')),
                 TextSpan(text: clubName, style: TextStyle(fontWeight: FontWeight.bold)),
-                TextSpan(text: ' de tu lista de clubs favoritos?'),
+                TextSpan(text: AppLocalizations.of(context).translate('wantDeleteFavClub')),
               ],
             ),
           ),
