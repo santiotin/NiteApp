@@ -15,6 +15,8 @@ class Club {
   List<String> searchNames;
   String web;
 
+  String stars;
+
 
   Club.fromMap(Map<String, dynamic> mapData, String documentId) {
     this.id = documentId;
@@ -28,6 +30,7 @@ class Club {
     this.longitude = mapData['longitude'].toString();
     this.name = mapData['name'];
     this.phone = mapData['phone'];
+    this.stars = mapData['stars'].toString();
 
     if(mapData['searchNames'] != null ) this.searchNames = mapData['searchNames'].cast<String>();
     else this.searchNames = new List<String>();

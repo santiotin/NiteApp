@@ -266,13 +266,13 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
                                       Icon(
-                                        Icons.people,
+                                        Icons.star,
                                         color: Constants.main,
                                         size: 15,
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(left: 5.0),
-                                        child: Text(club.latitude),
+                                        child: Text(club.stars),
                                       )
                                     ],
                                   ),
