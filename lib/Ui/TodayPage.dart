@@ -39,7 +39,7 @@ class _TodayPageState extends State<TodayPage> {
     super.initState();
     checkAndGetCurrentUser();
     initializeDateFormatting();
-    _dateText = retDateString(DateTime.now());
+
     day = DateTime.now().day;
     month = DateTime.now().month;
     year = DateTime.now().year;
@@ -63,8 +63,10 @@ class _TodayPageState extends State<TodayPage> {
     }
   }
 
-  static String retDateString(DateTime now) {
-    return DateFormat.yMMMEd('es').format(now).toString();
+  String retDateString(DateTime now, BuildContext context) {
+    String locale = AppLocalizations.of(context).translate('locale');
+    if(locale == 'es') return DateFormat.yMMMEd('es').format(now).toString();
+    else return DateFormat.yMMMEd().format(now).toString();
   }
 
   void onDatePressed() {
@@ -76,7 +78,6 @@ class _TodayPageState extends State<TodayPage> {
         initialDate: DateTime(year,month,day),
         firstDate: DateTime(year-1),
         lastDate: DateTime(2025),
-        locale: const Locale('es' , 'ES'),
         builder: (BuildContext context, Widget child) {
           return Theme(
             data: ThemeData(
@@ -91,7 +92,7 @@ class _TodayPageState extends State<TodayPage> {
 
     selectedDate.then((value) {
       setState(() {
-        _dateText = retDateString(value);
+        _dateText = retDateString(value, context);
         day = value.day;
         month = value.month;
         year = value.year;
@@ -115,6 +116,9 @@ class _TodayPageState extends State<TodayPage> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      _dateText = retDateString(DateTime.now(), context);
+    });
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

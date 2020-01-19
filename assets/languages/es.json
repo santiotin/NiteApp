@@ -1,4 +1,5 @@
 {
+	"locale": "es",
 	"notValidatedEmail": "No has validado tu cuenta. Mira en tu correo",
 	"incorrectUserOrPassword": "Usuario o contraseña incorrectos",
 	"registeredEmail": "El correo ya ha sido registrado",
