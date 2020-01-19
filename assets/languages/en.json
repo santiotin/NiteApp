@@ -1,4 +1,8 @@
 {
+  "eventsOfTheDay": "Today's events",
+  "nextEvents": "Next events",
+  "club": "Club",
+  "locale": "en",
   "notValidatedEmail": "You have not validated your account. Check your inbox",
   "incorrectUserOrPassword": "Incorrect user or password",
   "registeredEmail": "This email has already been registered",
