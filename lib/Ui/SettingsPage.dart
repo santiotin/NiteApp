@@ -7,6 +7,7 @@ import 'package:niteapp/Ui/Login/SignInPage.dart';
 import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -145,32 +146,7 @@ class SettingsPage extends StatelessWidget {
             ),
           ),
           RawMaterialButton(
-            onPressed: () {},
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.07,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(left: 30.0, right: 20.0),
-                    child: Icon(
-                      Icons.account_circle,
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context).translate('aboutUs'),
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      color: Constants.main,
-                      fontSize: 18,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          RawMaterialButton(
-            onPressed: () {},
+            onPressed: _sendMailToNite,
             child: Container(
               height: MediaQuery.of(context).size.height * 0.07,
               child: Row(
@@ -236,5 +212,12 @@ class SettingsPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  _sendMailToNite() async {
+    const url = 'mailto:niteprojectsa@gmail.com?subject=NiteApp';
+    if (await canLaunch(url)) {
+      await launch(url);
+    }
   }
 }
