@@ -1,4 +1,10 @@
 {
+  "emptyName": "Name can not be empty",
+  "emptyEmail": "Email can not be empty",
+  "emptyPassword": "Password can not be empty",
+  "emptySex": "Gender can not be empty",
+  "emptyAge": "Age can not be empty",
+  "emptyCity": "City can not be empty",
   "eventsOfTheDay": "Today's events",
   "nextEvents": "Next events",
   "club": "Club",

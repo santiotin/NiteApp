@@ -45,410 +45,410 @@ class _RegisterPageState extends State<RegisterPage> {
         elevation: 0,
       ),
       body: isLoading ?
-          Stack(
-            children: <Widget>[
-              Center(
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  height: MediaQuery.of(context).size.width * 0.4,
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-              Center(
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.width * 0.3,
-                  child: Image(
-                      image: AssetImage('assets/images/barcelona.png')
-                  ),
-                ),
-              ),
-            ],
-          )
-          :Container(
-            padding: EdgeInsets.symmetric(horizontal: 25),
-            child: ListView(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(top: 20.0),
-                  child: TextField(
-                    controller: registerNameContrl,
-                    keyboardType: TextInputType.text,
-                    cursorColor: Constants.accent,
-                    style: TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 16.0,
-                        color: Constants.main
-                    ),
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Constants.main,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Constants.main,
-                        ),
-                      ),
-                      contentPadding: EdgeInsets.all(25.0),
-                      prefixIcon: Icon(
-                        Icons.person_outline,
-                        color: Constants.main,
-                      ),
-                      labelText: AppLocalizations.of(context).translate('completeName'),
-                      labelStyle: TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 14.0,
-                        color: Constants.main,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 20.0),
-                  child: TextField(
-                    controller: registerEmailContrl,
-                    keyboardType: TextInputType.emailAddress,
-                    cursorColor: Constants.accent,
-                    style: TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 16.0,
-                        color: Constants.main
-                    ),
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Constants.main,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Constants.main,
-                        ),
-                      ),
-                      contentPadding: EdgeInsets.all(25.0),
-                      prefixIcon: Icon(
-                        Icons.email,
-                        color: Constants.main,
-                      ),
-                      labelText: AppLocalizations.of(context).translate('email'),
-                      labelStyle: TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 14.0,
-                        color: Constants.main,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 20.0),
-                  child: TextField(
-                    controller: registerPasswdContrl,
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
-                    cursorColor: Constants.accent,
-                    style: TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 16.0,
-                        color: Constants.main
-                    ),
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Constants.main,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Constants.main,
-                        ),
-                      ),
-                      contentPadding: EdgeInsets.all(25.0),
-                      prefixIcon: Icon(
-                        Icons.lock_outline,
-                        color: Constants.main,
-                      ),
-                      labelText: AppLocalizations.of(context).translate('password'),
-                      labelStyle: TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 14.0,
-                        color: Constants.main,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 20.0),
-                  child: TextField(
-                    controller: registerPasswd2Contrl,
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
-                    cursorColor: Constants.accent,
-                    style: TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 16.0,
-                        color: Constants.main
-                    ),
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Constants.main,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Constants.main,
-                        ),
-                      ),
-                      contentPadding: EdgeInsets.all(25.0),
-                      prefixIcon: Icon(
-                        Icons.lock_outline,
-                        color: Constants.main,
-                      ),
-                      labelText: AppLocalizations.of(context).translate('confirmPassword'),
-                      labelStyle: TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 14.0,
-                        color: Constants.main,
-                      ),
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
-                        child: Container(
-                          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Constants.main),
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Icon(Icons.face),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 15.0),
-                                  child: DropdownButton<String>(
-                                    hint:  Text(
-                                      AppLocalizations.of(context).translate('sex'),
-                                      style: TextStyle(
-                                          color: Constants.main,
-                                          fontSize: 14.0,
-                                      ),
-                                    ),
-                                    value: sexType,
-                                    isExpanded: true,
-                                    icon: Container(),
-                                    onChanged: (String sex) {
-                                      setState(() {
-                                        sexType = sex;
-                                      });
-                                    },
-                                    iconEnabledColor: Constants.main,
-                                    iconDisabledColor: Constants.main,
-                                    underline: Container(),
-                                    items: sexTypes.map((String value) {
-                                      return new DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Text(value, style: TextStyle(color: Constants.main),),
-                                      );
-                                    }).toList(),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.025,
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 20.0),
-                        child: TextField(
-                          controller: registerAgeContrl,
-                          keyboardType: TextInputType.number,
-                          cursorColor: Constants.accent,
-                          style: TextStyle(
-                              fontFamily: "Roboto",
-                              fontSize: 16.0,
-                              color: Constants.main
-                          ),
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              borderSide: BorderSide(
-                                width: 1,
-                                color: Constants.main,
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              borderSide: BorderSide(
-                                width: 1,
-                                color: Constants.main,
-                              ),
-                            ),
-                            contentPadding: EdgeInsets.all(25.0),
-                            prefixIcon: Padding(
-                              padding: EdgeInsets.only(bottom: 5.0),
-                              child: Icon(
-                                Icons.cake,
-                                color: Constants.main,
-                              ),
-                            ),
-                            labelText: AppLocalizations.of(context).translate('age'),
-                            labelStyle: TextStyle(
-                              fontFamily: "Roboto",
-                              fontSize: 14.0,
-                              color: Constants.main,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 20.0),
-                  child: TextField(
-                    controller: registerCityContrl,
-                    keyboardType: TextInputType.text,
-                    cursorColor: Constants.accent,
-                    style: TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 16.0,
-                        color: Constants.main
-                    ),
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Constants.main,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Constants.main,
-                        ),
-                      ),
-                      contentPadding: EdgeInsets.all(25.0),
-                      prefixIcon: Icon(
-                        Icons.location_city,
-                        color: Constants.main,
-                      ),
-                      labelText: AppLocalizations.of(context).translate('city'),
-                      labelStyle: TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 14.0,
-                        color: Constants.main,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 20.0),
-                  child: TextField(
-                    controller: registerPhoneContrl,
-                    keyboardType: TextInputType.phone,
-                    cursorColor: Constants.accent,
-                    style: TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 16.0,
-                        color: Constants.main
-                    ),
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Constants.main,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Constants.main,
-                        ),
-                      ),
-                      contentPadding: EdgeInsets.all(25.0),
-                      prefixIcon: Icon(
-                        Icons.phone,
-                        color: Constants.main,
-                      ),
-                      labelText: AppLocalizations.of(context).translate('phone'),
-                      labelStyle: TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 14.0,
-                        color: Constants.main,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
-                  child: Text(
-                    AppLocalizations.of(context).translate('warningPhone'),
-                    style: TextStyle(
-                      color: Constants.accent,
-                      fontFamily: 'Roboto',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 30.0, bottom: 20),
-                  child: RawMaterialButton(
-                    elevation: 4.0,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                    fillColor: Constants.accent,
-                    highlightColor: Constants.accent,
-                    splashColor: Constants.accentLight,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 25.0, horizontal: 30.0),
-                      child: Text(
-                        AppLocalizations.of(context).translate('register'),
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15.0,
-                            fontFamily: "Roboto"
-                        ),
-                      ),
-                    ),
-                    onPressed: () => onSignUpButtonPressed(),
-                  ),
-                )
-              ],
+      Stack(
+        children: <Widget>[
+          Center(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.4,
+              height: MediaQuery.of(context).size.width * 0.4,
+              child: CircularProgressIndicator(),
             ),
           ),
+          Center(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.3,
+              height: MediaQuery.of(context).size.width * 0.3,
+              child: Image(
+                  image: AssetImage('assets/images/barcelona.png')
+              ),
+            ),
+          ),
+        ],
+      )
+          :Container(
+        padding: EdgeInsets.symmetric(horizontal: 25),
+        child: ListView(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(top: 20.0),
+              child: TextField(
+                controller: registerNameContrl,
+                keyboardType: TextInputType.text,
+                cursorColor: Constants.accent,
+                style: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 16.0,
+                    color: Constants.main
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Constants.main,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Constants.main,
+                    ),
+                  ),
+                  contentPadding: EdgeInsets.all(25.0),
+                  prefixIcon: Icon(
+                    Icons.person_outline,
+                    color: Constants.main,
+                  ),
+                  labelText: AppLocalizations.of(context).translate('completeName'),
+                  labelStyle: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 14.0,
+                    color: Constants.main,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20.0),
+              child: TextField(
+                controller: registerEmailContrl,
+                keyboardType: TextInputType.emailAddress,
+                cursorColor: Constants.accent,
+                style: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 16.0,
+                    color: Constants.main
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Constants.main,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Constants.main,
+                    ),
+                  ),
+                  contentPadding: EdgeInsets.all(25.0),
+                  prefixIcon: Icon(
+                    Icons.email,
+                    color: Constants.main,
+                  ),
+                  labelText: AppLocalizations.of(context).translate('email'),
+                  labelStyle: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 14.0,
+                    color: Constants.main,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20.0),
+              child: TextField(
+                controller: registerPasswdContrl,
+                keyboardType: TextInputType.visiblePassword,
+                obscureText: true,
+                cursorColor: Constants.accent,
+                style: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 16.0,
+                    color: Constants.main
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Constants.main,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Constants.main,
+                    ),
+                  ),
+                  contentPadding: EdgeInsets.all(25.0),
+                  prefixIcon: Icon(
+                    Icons.lock_outline,
+                    color: Constants.main,
+                  ),
+                  labelText: AppLocalizations.of(context).translate('password'),
+                  labelStyle: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 14.0,
+                    color: Constants.main,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20.0),
+              child: TextField(
+                controller: registerPasswd2Contrl,
+                keyboardType: TextInputType.visiblePassword,
+                obscureText: true,
+                cursorColor: Constants.accent,
+                style: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 16.0,
+                    color: Constants.main
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Constants.main,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Constants.main,
+                    ),
+                  ),
+                  contentPadding: EdgeInsets.all(25.0),
+                  prefixIcon: Icon(
+                    Icons.lock_outline,
+                    color: Constants.main,
+                  ),
+                  labelText: AppLocalizations.of(context).translate('confirmPassword'),
+                  labelStyle: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 14.0,
+                    color: Constants.main,
+                  ),
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: Container(
+                        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Constants.main),
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Icon(Icons.face),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 15.0),
+                                child: DropdownButton<String>(
+                                  hint:  Text(
+                                    AppLocalizations.of(context).translate('sex'),
+                                    style: TextStyle(
+                                      color: Constants.main,
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  value: sexType,
+                                  isExpanded: true,
+                                  icon: Container(),
+                                  onChanged: (String sex) {
+                                    setState(() {
+                                      sexType = sex;
+                                    });
+                                  },
+                                  iconEnabledColor: Constants.main,
+                                  iconDisabledColor: Constants.main,
+                                  underline: Container(),
+                                  items: sexTypes.map((String value) {
+                                    return new DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value, style: TextStyle(color: Constants.main),),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                    ),
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.025,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 20.0),
+                    child: TextField(
+                      controller: registerAgeContrl,
+                      keyboardType: TextInputType.number,
+                      cursorColor: Constants.accent,
+                      style: TextStyle(
+                          fontFamily: "Roboto",
+                          fontSize: 16.0,
+                          color: Constants.main
+                      ),
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Constants.main,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Constants.main,
+                          ),
+                        ),
+                        contentPadding: EdgeInsets.all(25.0),
+                        prefixIcon: Padding(
+                          padding: EdgeInsets.only(bottom: 5.0),
+                          child: Icon(
+                            Icons.cake,
+                            color: Constants.main,
+                          ),
+                        ),
+                        labelText: AppLocalizations.of(context).translate('age'),
+                        labelStyle: TextStyle(
+                          fontFamily: "Roboto",
+                          fontSize: 14.0,
+                          color: Constants.main,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20.0),
+              child: TextField(
+                controller: registerCityContrl,
+                keyboardType: TextInputType.text,
+                cursorColor: Constants.accent,
+                style: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 16.0,
+                    color: Constants.main
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Constants.main,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Constants.main,
+                    ),
+                  ),
+                  contentPadding: EdgeInsets.all(25.0),
+                  prefixIcon: Icon(
+                    Icons.location_city,
+                    color: Constants.main,
+                  ),
+                  labelText: AppLocalizations.of(context).translate('city'),
+                  labelStyle: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 14.0,
+                    color: Constants.main,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20.0),
+              child: TextField(
+                controller: registerPhoneContrl,
+                keyboardType: TextInputType.phone,
+                cursorColor: Constants.accent,
+                style: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 16.0,
+                    color: Constants.main
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Constants.main,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Constants.main,
+                    ),
+                  ),
+                  contentPadding: EdgeInsets.all(25.0),
+                  prefixIcon: Icon(
+                    Icons.phone,
+                    color: Constants.main,
+                  ),
+                  labelText: AppLocalizations.of(context).translate('phone'),
+                  labelStyle: TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 14.0,
+                    color: Constants.main,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
+              child: Text(
+                AppLocalizations.of(context).translate('warningPhone'),
+                style: TextStyle(
+                  color: Constants.accent,
+                  fontFamily: 'Roboto',
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 30.0, bottom: 20),
+              child: RawMaterialButton(
+                elevation: 4.0,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                fillColor: Constants.accent,
+                highlightColor: Constants.accent,
+                splashColor: Constants.accentLight,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 25.0, horizontal: 30.0),
+                  child: Text(
+                    AppLocalizations.of(context).translate('register'),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.0,
+                        fontFamily: "Roboto"
+                    ),
+                  ),
+                ),
+                onPressed: () => onSignUpButtonPressed(),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 
@@ -510,14 +510,14 @@ class _RegisterPageState extends State<RegisterPage> {
   List<String> transformName(String name) {
     List<String> result = new List<String>();
     List<String> aux = name.split(" ");
-    
+
     for(String s in aux) {
       result.add(s.toLowerCase());
       result.add(removeDiacritics(s.toLowerCase()));
     }
     return result;
   }
-  
+
   List<String> transformPhone(String phone) {
     List<String> result = new List<String>();
     result.add(phone);
@@ -548,6 +548,7 @@ class _RegisterPageState extends State<RegisterPage> {
       registerPhoneContrl.clear();
       registerPasswdContrl.clear();
       registerPasswd2Contrl.clear();
+      sexType = "";
       setState(() {
         isLoading = false;
       });
@@ -561,23 +562,51 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void onSignUpButtonPressed() {
-    setState(() {
-      isLoading = true;
-    });
-    if(emailValidator(registerEmailContrl.text)){
-      if(pwdValidator(registerPasswdContrl.text)){
-        if (registerPasswdContrl.text ==
-            registerPasswd2Contrl.text) {
-          signUp();
-        }
-        else {
-          setState(() {
-            isLoading = false;
-          });
-          showInSnackBar(AppLocalizations.of(context).translate('matchPasswords'));
+    if(!isSomethingEmpty()){
+      setState(() {
+        isLoading = true;
+      });
+      if(emailValidator(registerEmailContrl.text)){
+        if(pwdValidator(registerPasswdContrl.text)){
+          if (registerPasswdContrl.text == registerPasswd2Contrl.text) {
+            signUp();
+          }
+          else {
+            setState(() {
+              isLoading = false;
+            });
+            showInSnackBar(AppLocalizations.of(context).translate('matchPasswords'));
+          }
         }
       }
     }
+  }
 
+  bool isSomethingEmpty(){
+    if(registerNameContrl.text.isEmpty) {
+      showInSnackBar(AppLocalizations.of(context).translate('emptyName'));
+      return true;
+    }
+    else if(registerEmailContrl.text.isEmpty) {
+      showInSnackBar(AppLocalizations.of(context).translate('emptyEmail'));
+      return true;
+    }
+    else if(registerPasswdContrl.text.isEmpty) {
+      showInSnackBar(AppLocalizations.of(context).translate('emptyPassword'));
+      return true;
+    }
+    else if(sexType == null || sexType.isEmpty) {
+      showInSnackBar(AppLocalizations.of(context).translate('emptySex'));
+      return true;
+    }
+    else if(registerAgeContrl.text.isEmpty) {
+      showInSnackBar(AppLocalizations.of(context).translate('emptyAge'));
+      return true;
+    }
+    else if(registerCityContrl.text.isEmpty) {
+      showInSnackBar(AppLocalizations.of(context).translate('emptyCity'));
+      return true;
+    }
+    else return false;
   }
 }

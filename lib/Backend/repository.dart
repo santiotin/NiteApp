@@ -13,6 +13,7 @@ class Repository {
 
   Future<int> signIn(String email, String password) => _firebaseProvider.signIn(email, password);
   Future<void> signOut() => _firebaseProvider.signOut();
+  Future<void> resetPassword(String email) => _firebaseProvider.resetPassword(email);
 
   Future<bool> checkCurrentUser() => _firebaseProvider.checkCurrentUser();
   Future<bool> checkIfItsMe(String uid) => _firebaseProvider.checkIfItsMe(uid);

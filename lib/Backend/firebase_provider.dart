@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:niteapp/Models/Club.dart';
 import 'package:niteapp/Models/FavoriteClub.dart';
 import 'package:niteapp/Models/BasicUser.dart';
@@ -38,6 +36,9 @@ class FirebaseProvider {
   }
   Future<void> signOut() async {
     return await _auth.signOut();
+  }
+  Future<void> resetPassword(String email) async {
+    return await _auth.sendPasswordResetEmail(email: email);
   }
 
   Future<bool> checkCurrentUser() async {
