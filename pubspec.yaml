@@ -1,5 +1,5 @@
 name: niteapp
-description: A new Flutter application.
+description: The new social network.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -51,6 +51,8 @@ dev_dependencies:
 flutter_icons:
   ios: true
   android: true
+  image_path_android: "assets/images/barcelona.png"
+  image_path_ios: "assets/images/barcelonaBlack.png"
   image_path: "assets/images/barcelona.png"
 
 
