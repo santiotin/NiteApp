@@ -1,4 +1,5 @@
 {
+	"resetPassword": "Restablecer contraseña",
 	"emptyName": "El nombre no puede estar vacío",
 	"emptyEmail": "El correo no puede estar vacío",
 	"emptyPassword": "La contraseña no puede estar vacía",
@@ -12,7 +13,7 @@
 	"notValidatedEmail": "No has validado tu cuenta. Mira en tu correo",
 	"incorrectUserOrPassword": "Usuario o contraseña incorrectos",
 	"registeredEmail": "El correo ya ha sido registrado",
-	"confirmationEmail": "Te hemos enviado un correo de confirmacion",
+	"confirmationEmail": "Te hemos enviado un correo de confirmación",
 	"passwordLength": "La contraseña ha de ser más larga que 8",
 	"matchPasswords": "Las contraseñas no coinciden",
 	"emailFormat": "El formato de correo no es correcto",

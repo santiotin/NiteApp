@@ -1,4 +1,5 @@
 {
+  "resetPassword": "Reset password",
   "emptyName": "Name can not be empty",
   "emptyEmail": "Email can not be empty",
   "emptyPassword": "Password can not be empty",

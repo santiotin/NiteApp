@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Ui/HomePage.dart';
+import 'package:niteapp/Ui/Login/ForgotPasswordPage.dart';
 import 'package:niteapp/Ui/Login/RegisterPage.dart';
 import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
@@ -250,8 +251,8 @@ class _SignInPageState extends State<SignInPage> {
                       Navigator.push(
                           context,
                           CupertinoPageRoute<Null>(
-                            builder: (context) => RegisterPage(),
-                            settings: RouteSettings(name: 'RegisterPage'),
+                            builder: (context) => ForgotPasswordPage(),
+                            settings: RouteSettings(name: 'ForgotPasswordPage'),
                           )
                       );
                     },
