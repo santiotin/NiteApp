@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class TicketWebView extends StatefulWidget {
@@ -19,7 +20,7 @@ class _TicketWebViewState extends State<TicketWebView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Wikipedia Explorer'),
+        title: Text(AppLocalizations.of(context).translate('tickets')),
         // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
       ),
       body: WebView(
