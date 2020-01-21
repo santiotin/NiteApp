@@ -28,6 +28,7 @@ class _TodayPageState extends State<TodayPage> {
   var _repository = Repository();
   var _dateText;
   int day, month, year;
+  bool firstBuild = true;
 
   FirebaseUser mUser;
 
@@ -116,9 +117,13 @@ class _TodayPageState extends State<TodayPage> {
 
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      _dateText = retDateString(DateTime.now(), context);
-    });
+    if(firstBuild) {
+      firstBuild = false;
+      setState(() {
+        _dateText = retDateString(DateTime.now(), context);
+      });
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
