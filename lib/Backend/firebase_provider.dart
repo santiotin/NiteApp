@@ -534,6 +534,7 @@ class FirebaseProvider {
   Stream<QuerySnapshot> getClubEvents(String cid) {
     return _firestore.collection("events")
         .where("clubId", isEqualTo: cid)
+        .orderBy("time", descending: false)
         .snapshots();
   }
 }

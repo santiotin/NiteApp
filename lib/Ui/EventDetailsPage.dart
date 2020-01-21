@@ -646,7 +646,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     ),
                   ),
                   //descr, price list
-                  if(event.hasList)Padding(
+                  Padding(
                     padding: EdgeInsets.fromLTRB(25, 15, 10, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -708,101 +708,27 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             child: FlatButton(
                               color: Constants.white,
                               onPressed: (){
-                                if(going) {
-                                  Navigator.push(
-                                      context,
-                                      CupertinoPageRoute<Null>(
-                                        builder: (context) => BuyListPage(eid: event.id,),
-                                        settings: RouteSettings(name: 'BuyListPage'),
-                                      )
-                                  );
+                                if(event.hasList){
+                                  if(going) {
+                                    Navigator.push(
+                                        context,
+                                        CupertinoPageRoute<Null>(
+                                          builder: (context) => BuyListPage(eid: event.id,),
+                                          settings: RouteSettings(name: 'BuyListPage'),
+                                        )
+                                    );
+                                  } else {
+                                    showInSnackBar(AppLocalizations.of(context).translate('joinToConfirm'));
+                                  }
                                 } else {
-                                  showInSnackBar(AppLocalizations.of(context).translate('joinToConfirm'));
+                                  showInSnackBar(AppLocalizations.of(context).translate('niteListNotAvailable'));
                                 }
                               },
                               shape: CircleBorder(),
                               padding: EdgeInsets.all(10),
                               child: Icon(
                                 Icons.arrow_forward_ios,
-                                color: Constants.accent,
-                                size: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  if(!event.hasList)Padding(
-                    padding: EdgeInsets.fromLTRB(25, 15, 10, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.65,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                AppLocalizations.of(context).translate('niteListNotAvailable'),
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                              //price vips
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Text(
-                                        AppLocalizations.of(context).translate('priceDoubleDots'),
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                      Text(
-                                        'X',
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Constants.accent,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                      Text(
-                                        '€',
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Constants.accent,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 0.0),
-                          child: Center(
-                            child: FlatButton(
-                              color: Constants.white,
-                              onPressed: (){
-
-                              },
-                              shape: CircleBorder(),
-                              padding: EdgeInsets.all(10),
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Constants.grey,
+                                color: event.hasList ? Constants.accent : Constants.grey,
                                 size: 20,
                               ),
                             ),
@@ -836,7 +762,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                       ),
                     ),
                   //descr, price ticket
-                  if(event.hasTicket)Padding(
+                  Padding(
                     padding: EdgeInsets.fromLTRB(25, 15, 10, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -898,100 +824,27 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             child: FlatButton(
                               color: Constants.white,
                               onPressed: (){
-                                if(going){
-                                  Navigator.push(
-                                      context,
-                                      CupertinoPageRoute<Null>(
-                                        builder: (context) => TicketWebView(),
-                                        settings: RouteSettings(name: 'TicketWebView'),
-                                      )
-                                  );
-                                }else {
-                                  showInSnackBar(AppLocalizations.of(context).translate('joinToBuy'));
+                                if(event.hasTicket){
+                                  if(going){
+                                    Navigator.push(
+                                        context,
+                                        CupertinoPageRoute<Null>(
+                                          builder: (context) => TicketWebView(),
+                                          settings: RouteSettings(name: 'TicketWebView'),
+                                        )
+                                    );
+                                  }else {
+                                    showInSnackBar(AppLocalizations.of(context).translate('joinToBuy'));
+                                  }
+                                } else {
+                                  showInSnackBar(AppLocalizations.of(context).translate('buyNotAvailable'),);
                                 }
                               },
                               shape: CircleBorder(),
                               padding: EdgeInsets.all(10),
                               child: Icon(
                                 Icons.arrow_forward_ios,
-                                color: Constants.accent,
-                                size: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  if(!event.hasTicket)Padding(
-                    padding: EdgeInsets.fromLTRB(25, 15, 10, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.65,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                AppLocalizations.of(context).translate('buyNotAvailable'),
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                              //price vips
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Text(
-                                        AppLocalizations.of(context).translate('priceDoubleDots'),
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                      Text(
-                                        'X',
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Constants.accent,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                      Text(
-                                        '€',
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Constants.accent,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                              ),],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 0.0),
-                          child: Center(
-                            child: FlatButton(
-                              color: Constants.white,
-                              onPressed: (){
-
-                              },
-                              shape: CircleBorder(),
-                              padding: EdgeInsets.all(10),
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Constants.grey,
+                                color: event.hasTicket ? Constants.accent : Constants.grey,
                                 size: 20,
                               ),
                             ),
@@ -1025,7 +878,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     ),
                   ),
                   //descr, price vips
-                  if(event.hasVip)Padding(
+                  Padding(
                     padding: EdgeInsets.fromLTRB(25, 15, 10, 40),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1093,83 +946,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               padding: EdgeInsets.all(10),
                               child: Icon(
                                 Icons.arrow_forward_ios,
-                                color: Constants.accent,
-                                size: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  if(!event.hasVip)Padding(
-                    padding: EdgeInsets.fromLTRB(25, 15, 10, 40),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.65,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                AppLocalizations.of(context).translate('vipNotAvailable'),
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                              //price vips
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Text(
-                                        AppLocalizations.of(context).translate('priceDoubleDots'),
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                      Text(
-                                        'X',
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Constants.accent,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                      Text(
-                                        '€',
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Constants.accent,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                              ),],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 0.0),
-                          child: Center(
-                            child: FlatButton(
-                              color: Constants.white,
-                              onPressed: (){
-                              },
-                              shape: CircleBorder(),
-                              padding: EdgeInsets.all(10),
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Constants.grey,
+                                color: event.hasVip ? Constants.accent : Constants.grey,
                                 size: 20,
                               ),
                             ),
