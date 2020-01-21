@@ -51,7 +51,7 @@ class _ClubListState extends State<ClubList> {
                   children: <Widget>[
                     CircularImage(size: MediaQuery.of(context).size.width * 0.16,image: widget.clubs[index].imageUrl,),
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.7,
+                      width: MediaQuery.of(context).size.width * 0.65,
                       padding: EdgeInsets.only(left: 25),
                       child: Text(
                         widget.clubs[index].name,

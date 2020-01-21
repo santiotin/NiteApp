@@ -69,7 +69,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         Text(
                           AppLocalizations.of(context).translate('boysPlus'),
                           style: TextStyle(
-                            fontSize: 14.0,
+                            fontSize: 12.0,
                             fontWeight: FontWeight.bold,
                             color: Constants.main,
                           ),
@@ -77,7 +77,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         Text(
                           event.ageM,
                           style: TextStyle(
-                            fontSize: 14.0,
+                            fontSize: 12.0,
                             fontWeight: FontWeight.bold,
                             color: Constants.main,
                           ),
@@ -92,7 +92,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         Text(
                           AppLocalizations.of(context).translate('girlsPlus'),
                           style: TextStyle(
-                            fontSize: 14.0,
+                            fontSize: 12.0,
                             fontWeight: FontWeight.bold,
                             color: Constants.main,
                           ),
@@ -100,7 +100,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         Text(
                           event.ageF,
                           style: TextStyle(
-                            fontSize: 14.0,
+                            fontSize: 12.0,
                             fontWeight: FontWeight.bold,
                             color: Constants.main,
                           ),
@@ -155,7 +155,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     child: Text(
                       event.day + '/' + event.month + '/' + event.year,
                       style: TextStyle(
-                        fontSize: 14.0,
+                        fontSize: 12.0,
                         fontWeight: FontWeight.bold,
                         color: Constants.main,
                       ),
@@ -166,7 +166,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     child: Text(
                       event.startHour + ' - ' + event.endHour,
                       style: TextStyle(
-                        fontSize: 14.0,
+                        fontSize: 12.0,
                         fontWeight: FontWeight.bold,
                         color: Constants.main,
                       ),
@@ -219,7 +219,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     child: Text(
                       event.dressCode,
                       style: TextStyle(
-                        fontSize: 14.0,
+                        fontSize: 12.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
@@ -647,12 +647,12 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                   ),
                   //descr, price list
                   Padding(
-                    padding: EdgeInsets.fromLTRB(25, 15, 10, 0),
+                    padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.65,
+                          width: MediaQuery.of(context).size.width * 0.62,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -763,12 +763,12 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     ),
                   //descr, price ticket
                   Padding(
-                    padding: EdgeInsets.fromLTRB(25, 15, 10, 0),
+                    padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.65,
+                          width: MediaQuery.of(context).size.width * 0.62,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -879,12 +879,12 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                   ),
                   //descr, price vips
                   Padding(
-                    padding: EdgeInsets.fromLTRB(25, 15, 10, 40),
+                    padding: EdgeInsets.fromLTRB(25, 15, 0, 40),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.65,
+                          width: MediaQuery.of(context).size.width * 0.62,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[

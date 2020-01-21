@@ -45,7 +45,7 @@ class _RequestListState extends State<RequestList> {
                       )
                   ),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(15, 20, 10 , 0),
+                padding: const EdgeInsets.fromLTRB(15, 20, 0 , 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
