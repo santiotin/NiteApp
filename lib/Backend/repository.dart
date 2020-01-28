@@ -25,7 +25,7 @@ class Repository {
   Future<void> updateCurrentUserSex(String sex) => _firebaseProvider.updateCurrentUserSex(sex);
   Future<void> updateCurrentUserPhone(List<String> phones) => _firebaseProvider.updateCurrentUserPhone(phones);
 
-  Future<bool> addUser(String email, String password, String name, String city, String age, String sex, List<String> searchNames, List<String> phones) => _firebaseProvider.addUser(email, password, name, city, age, sex, searchNames, phones);
+  Future<int> addUser(String email, String password, String name, String city, String age, String sex, List<String> searchNames, List<String> phones) => _firebaseProvider.addUser(email, password, name, city, age, sex, searchNames, phones);
 
   Future<bool> isFollower(String uid) => _firebaseProvider.isFollower(uid);
   Future<bool> isFollowing(String uid) => _firebaseProvider.isFollowing(uid);
@@ -78,7 +78,7 @@ class Repository {
   Stream<DocumentSnapshot> getFavoriteClub(String uid, String cid) => _firebaseProvider.getFavoriteClub(uid, cid);
 
   Stream<DocumentSnapshot> getClubStream(String cid) => _firebaseProvider.getClubStream(cid);
-  Stream<QuerySnapshot> getClubEvents(String cid) => _firebaseProvider.getClubEvents(cid);
+  Stream<QuerySnapshot> getClubEvents(String cid, Timestamp timestamp) => _firebaseProvider.getClubEvents(cid, timestamp);
 
 
 }

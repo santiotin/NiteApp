@@ -45,7 +45,7 @@
   "boysPlus": "Boys +",
   "updateCorrect": "Updated successfully",
   "selectImage": "Select an image",
-  "imageChaned": "The image has been changed",
+  "imageChanged": "The image has been changed",
   "the": "The ",
   "by": " by ",
   "from": " from ",
@@ -122,5 +122,12 @@
   "noActivity": "There are not any activity",
   "noRequests": "There are not any requests",
   "noFriendsAssisting": "There are no friends assisting to this event",
-  "errorOcurred": "An error has ocurred"
+  "errorOcurred": "An error has ocurred",
+  "email*" : "Email*",
+  "password*" : "Password*",
+  "confirmPassword*": "Confirm your password*",
+  "sex*": "Gender*",
+  "completeName*": "Entire name*",
+  "age*": "Age*",
+  "city*": "City*"
 }

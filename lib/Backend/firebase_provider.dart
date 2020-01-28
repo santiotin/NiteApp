@@ -96,48 +96,49 @@ class FirebaseProvider {
     });
   }
 
-  Future<bool> addUser(String email, String password, String name, String city, String age, String sex, List<String> searchNames, List<String> phones) async {
-    bool firebaseUser;
-    bool firestoreUser;
-    await _auth
+  Future<int> addUser(String email, String password, String name, String city, String age, String sex, List<String> searchNames, List<String> phones) async {
+    bool authError = false;
+    bool firestoreError = false;
+    AuthResult authResult = await _auth
         .createUserWithEmailAndPassword(
           email: email,
-          password: password )
-        .whenComplete(() {
-          firebaseUser = true;
-        })
+          password: password)
         .catchError((err) {
           print(err);
-          firebaseUser = false;
+          authError = true;
         })
         .then((result) async {
-           await _firestore
-              .collection("users")
-              .document(result.user.uid)
-              .setData({
-                "name": name,
-                "email": email,
-                "city": city,
-                "age": age,
-                "sex": sex,
-                "numEvents": 0,
-                "numFollowers": 0,
-                "numFollowing": 0,
-                "searchNames": searchNames,
-                "phones": phones,
-                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/nitedevelopment-5e197.appspot.com/o/userPics%2FniteLogoBcn.png?alt=media&token=a92e534a-52c2-497e-b974-eb45e8bdd14b",
-              })
-              .whenComplete(() {
-                firestoreUser = true;
-              })
-              .catchError((err) {
-                print(err);
-                firestoreUser = false;
-              });
-           await result.user.sendEmailVerification();
+          if(result != null && result.user != null) {
+            await _firestore
+                .collection("users")
+                .document(result.user.uid)
+                .setData({
+              "name": name,
+              "email": email,
+              "city": city,
+              "age": age,
+              "sex": sex,
+              "numEvents": 0,
+              "numFollowers": 0,
+              "numFollowing": 0,
+              "searchNames": searchNames,
+              "phones": phones,
+              "imageUrl": "https://firebasestorage.googleapis.com/v0/b/nitedevelopment-5e197.appspot.com/o/userPics%2FniteLogoBcn.png?alt=media&token=a92e534a-52c2-497e-b974-eb45e8bdd14b",
+            })
+                .catchError((err) {
+                  print(err);
+                  firestoreError = true;
+            });
+            await result.user.sendEmailVerification();
+          }
+          return result;
     });
-
-    return firebaseUser && firestoreUser;
+    if(authResult != null && authResult.user != null) {
+      if(authError) return -1;
+      else if(firestoreError) return -2;
+      else return 0;
+    }
+    else return -1;
 
   }
 
@@ -531,9 +532,10 @@ class FirebaseProvider {
         .snapshots();
   }
 
-  Stream<QuerySnapshot> getClubEvents(String cid) {
+  Stream<QuerySnapshot> getClubEvents(String cid, Timestamp timestamp) {
     return _firestore.collection("events")
         .where("clubId", isEqualTo: cid)
+        .where("time", isGreaterThanOrEqualTo: timestamp)
         .orderBy("time", descending: false)
         .snapshots();
   }

@@ -45,7 +45,7 @@
 	"boysPlus": "Chicos +",
 	"updateCorrect": "Se ha actualizado correctamente",
 	"selectImage": "Selecciona una imagen",
-	"imageChaned": "Se ha cambiado la imagen correctamente",
+	"imageChanged": "Se ha cambiado la imagen correctamente",
 	"the": "El ",
 	"by": " by ",
 	"from": " de ",
@@ -107,7 +107,7 @@
 	"other": "Otro",
 	"city": "Ciudad",
 	"phone": "Teléfono",
-	"warningPhone": "* El teléfono no será visible para otros usuarios",
+	"warningPhone": "El teléfono no será visible para otros usuarios",
 	"error": "Error",
 	"noResults": "Sin resultados",
 	"noEventsForThisDay": "No hay eventos para este dia",
@@ -122,5 +122,12 @@
 	"noActivity": "No hay actividad",
 	"noRequests": "No tienes solicitudes",
 	"noFriendsAssisting": "No tienes amigos que asistan a este evento",
-	"errorOcurred": "Ha ocurrido un error"
+	"errorOcurred": "Ha ocurrido un error",
+	"email*" : "Correo*",
+	"password*" : "Contraseña*",
+	"confirmPassword*": "Confirmar contraseña*",
+	"sex*": "Género*",
+	"completeName*": "Nombre completo*",
+	"age*": "Edad*",
+	"city*": "Ciudad*"
 }

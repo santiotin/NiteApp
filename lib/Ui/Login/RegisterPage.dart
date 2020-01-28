@@ -100,7 +100,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     Icons.person_outline,
                     color: Constants.main,
                   ),
-                  labelText: AppLocalizations.of(context).translate('completeName'),
+                  labelText: AppLocalizations.of(context).translate('completeName*'),
                   labelStyle: TextStyle(
                     fontFamily: "Roboto",
                     fontSize: 14.0,
@@ -140,7 +140,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     Icons.email,
                     color: Constants.main,
                   ),
-                  labelText: AppLocalizations.of(context).translate('email'),
+                  labelText: AppLocalizations.of(context).translate('email*'),
                   labelStyle: TextStyle(
                     fontFamily: "Roboto",
                     fontSize: 14.0,
@@ -181,7 +181,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     Icons.lock_outline,
                     color: Constants.main,
                   ),
-                  labelText: AppLocalizations.of(context).translate('password'),
+                  labelText: AppLocalizations.of(context).translate('password*'),
                   labelStyle: TextStyle(
                     fontFamily: "Roboto",
                     fontSize: 14.0,
@@ -222,7 +222,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     Icons.lock_outline,
                     color: Constants.main,
                   ),
-                  labelText: AppLocalizations.of(context).translate('confirmPassword'),
+                  labelText: AppLocalizations.of(context).translate('confirmPassword*'),
                   labelStyle: TextStyle(
                     fontFamily: "Roboto",
                     fontSize: 14.0,
@@ -252,7 +252,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 padding: const EdgeInsets.only(left: 15.0),
                                 child: DropdownButton<String>(
                                   hint:  Text(
-                                    AppLocalizations.of(context).translate('sex'),
+                                    AppLocalizations.of(context).translate('sex*'),
                                     style: TextStyle(
                                       color: Constants.main,
                                       fontSize: 14.0,
@@ -321,7 +321,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             color: Constants.main,
                           ),
                         ),
-                        labelText: AppLocalizations.of(context).translate('age'),
+                        labelText: AppLocalizations.of(context).translate('age*'),
                         labelStyle: TextStyle(
                           fontFamily: "Roboto",
                           fontSize: 14.0,
@@ -364,7 +364,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     Icons.location_city,
                     color: Constants.main,
                   ),
-                  labelText: AppLocalizations.of(context).translate('city'),
+                  labelText: AppLocalizations.of(context).translate('city*'),
                   labelStyle: TextStyle(
                     fontFamily: "Roboto",
                     fontSize: 14.0,
@@ -536,11 +536,11 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void signUp() async{
-    bool result =  await _repository.addUser(registerEmailContrl.text,
+    int result =  await _repository.addUser(registerEmailContrl.text,
         registerPasswdContrl.text, registerNameContrl.text, registerCityContrl.text,
         registerAgeContrl.text, getSex(), transformName(registerNameContrl.text), transformPhone(registerPhoneContrl.text));
 
-    if(result) {
+    if(result == 0) {
       registerNameContrl.clear();
       registerEmailContrl.clear();
       registerCityContrl.clear();
@@ -548,16 +548,20 @@ class _RegisterPageState extends State<RegisterPage> {
       registerPhoneContrl.clear();
       registerPasswdContrl.clear();
       registerPasswd2Contrl.clear();
-      sexType = "";
       setState(() {
         isLoading = false;
       });
       showInSnackBar(AppLocalizations.of(context).translate('confirmationEmail'));
-    } else {
+    } else if (result == -1){
       setState(() {
         isLoading = false;
       });
       showInSnackBar(AppLocalizations.of(context).translate('registeredEmail'));
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+      showInSnackBar(AppLocalizations.of(context).translate('errorOcurred'));
     }
   }
 

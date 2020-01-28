@@ -30,8 +30,10 @@ class _SignInPageState extends State<SignInPage> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: null,
+      resizeToAvoidBottomPadding: true,
+      resizeToAvoidBottomInset: true,
       body: isLoading ?
-          Stack(
+        Stack(
             children: <Widget>[
               Center(
                 child: SizedBox(
@@ -50,8 +52,8 @@ class _SignInPageState extends State<SignInPage> {
                 ),
               ),
             ],
-          )
-          : Stack(
+          ) :
+        Stack(
         children: <Widget>[
           Container(
             width: MediaQuery.of(context).size.width,
@@ -310,16 +312,14 @@ class _SignInPageState extends State<SignInPage> {
       setState(() {
         isLoading = false;
       });
-      signInEmailContrl.clear();
       signInPasswdContrl.clear();
       showInSnackBar(AppLocalizations.of(context).translate('notValidatedEmail'));
     }else{
       setState(() {
         isLoading = false;
       });
-      signInEmailContrl.clear();
       signInPasswdContrl.clear();
-      showInSnackBar(AppLocalizations.of(context).translate('IncorrectUserOrPassword'));
+      showInSnackBar(AppLocalizations.of(context).translate('incorrectUserOrPassword'));
     }
   }
 
