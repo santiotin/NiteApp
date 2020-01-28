@@ -532,10 +532,9 @@ class FirebaseProvider {
         .snapshots();
   }
 
-  Stream<QuerySnapshot> getClubEvents(String cid, Timestamp timestamp) {
+  Stream<QuerySnapshot> getClubEvents(String cid) {
     return _firestore.collection("events")
         .where("clubId", isEqualTo: cid)
-        .where("time", isGreaterThanOrEqualTo: timestamp)
         .orderBy("time", descending: false)
         .snapshots();
   }

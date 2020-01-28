@@ -188,10 +188,6 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
     if(club != null)isFavoriteClub();
   }
 
-  Timestamp getCurrentTimestamp() {
-    return Timestamp.fromDate(DateTime.now());
-  }
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot>(
@@ -365,7 +361,7 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                     Padding(
                       padding: EdgeInsets.only(top: 30),
                       child: StreamBuilder<QuerySnapshot>(
-                          stream: _repository.getClubEvents(widget.cid, getCurrentTimestamp()),
+                          stream: _repository.getClubEvents(widget.cid),
                           builder: (context, snapshot) {
                             if(snapshot == null || snapshot.data == null || snapshot.data.documents == null ) return LoadingView();
                             else if(snapshot.hasError) return ErrorView();
@@ -399,7 +395,6 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                       ),
                     ),
                     SizedBox(height: 20.0),
-
                   ],
                 ),
               ),

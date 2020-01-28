@@ -50,13 +50,15 @@ class _BasicUserListState extends State<BasicUserList> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     CircularImage(size: MediaQuery.of(context).size.width * 0.16,image: widget.basicUsers[index].imageUrl,),
-                    Padding(
+                    Container(
                       padding: const EdgeInsets.only(left: 25.0),
+                      width: MediaQuery.of(context).size.width * 0.65,
                       child: Text(
                         widget.basicUsers[index].name,
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                            color: Constants.main
+                          color: Constants.main,
+                          fontSize: 16
                         ),
                       ),
                     )

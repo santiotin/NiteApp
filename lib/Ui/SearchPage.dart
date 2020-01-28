@@ -163,8 +163,6 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
-      resizeToAvoidBottomInset: false,
       appBar: buildBar(context),
       body: StreamBuilder<QuerySnapshot>(
           stream: getQuery(),

@@ -50,14 +50,30 @@ class _EventListState extends State<EventList> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     CircularImage(size: MediaQuery.of(context).size.width * 0.16,image: widget.events[index].imageUrl,),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30.0),
-                      child: Text(
-                        widget.events[index].clubName +': ' + widget.events[index].name,
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            color: Constants.main
-                        ),
+                    Container(
+                      padding: const EdgeInsets.only(left: 25.0),
+                      width: MediaQuery.of(context).size.width * 0.65,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            widget.events[index].clubName +': ' + widget.events[index].name,
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              color: Constants.main,
+                              fontSize: 16
+                            ),
+                          ),
+                          Text(
+                            widget.events[index].day + '/' + widget.events[index].month+ '/' + widget.events[index].year,
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              color: Constants.grey,
+                              fontSize: 12
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],

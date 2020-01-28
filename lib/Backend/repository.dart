@@ -78,7 +78,7 @@ class Repository {
   Stream<DocumentSnapshot> getFavoriteClub(String uid, String cid) => _firebaseProvider.getFavoriteClub(uid, cid);
 
   Stream<DocumentSnapshot> getClubStream(String cid) => _firebaseProvider.getClubStream(cid);
-  Stream<QuerySnapshot> getClubEvents(String cid, Timestamp timestamp) => _firebaseProvider.getClubEvents(cid, timestamp);
+  Stream<QuerySnapshot> getClubEvents(String cid) => _firebaseProvider.getClubEvents(cid);
 
 
 }
