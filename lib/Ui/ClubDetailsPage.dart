@@ -363,7 +363,11 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                       child: StreamBuilder<QuerySnapshot>(
                           stream: _repository.getClubEvents(widget.cid),
                           builder: (context, snapshot) {
-                            if(snapshot == null || snapshot.data == null || snapshot.data.documents == null ) return LoadingView();
+                            if(snapshot == null || snapshot.data == null || snapshot.data.documents == null )
+                              return Padding(
+                                padding: const EdgeInsets.only(top: 30.0),
+                                child: LoadingView(),
+                            );
                             else if(snapshot.hasError) return ErrorView();
                             else if(snapshot.data.documents.isEmpty) return EmptyTodayAndSearch(msg: AppLocalizations.of(context).translate('noEventsForThisDay'),);
                             else return Column(
