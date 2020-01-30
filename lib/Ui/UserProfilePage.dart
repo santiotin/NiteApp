@@ -9,6 +9,7 @@ import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:niteapp/Utils/Messages.dart';
+import 'package:flutter/services.dart';
 
 class UserProfilePage extends StatefulWidget {
 
@@ -45,8 +46,63 @@ class _UserProfilePageState extends State<UserProfilePage> {
   }
 
   void onFollowBtnPressed(){
-    if(following)  unFollowUser();
-    else followUser();
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ));
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: null,
+          content: RichText(
+            text: new TextSpan(
+              style: new TextStyle(
+                color: Constants.main,
+                fontSize: 16,
+              ),
+              children: <TextSpan>[
+                if(following)TextSpan(text: AppLocalizations.of(context).translate('unfollowQuest'))
+                else TextSpan(text: AppLocalizations.of(context).translate('followQuest')),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            FlatButton(
+              child: Text(
+                AppLocalizations.of(context).translate('cancel'),
+                style: TextStyle(
+                  color: Constants.accent,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+                SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+                  statusBarColor: Colors.white,
+                ));
+              },
+            ),
+            FlatButton(
+              child: Text(
+                AppLocalizations.of(context).translate('accept'),
+                style: TextStyle(
+                  color: Constants.accent,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+                if(following)  unFollowUser();
+                else followUser();
+                SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+                  statusBarColor: Colors.white,
+                ));
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void isFollowing() {

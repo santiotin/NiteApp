@@ -1,4 +1,6 @@
 {
+  "followQuest": "Do you want to follow this user?",
+  "unfollowQuest": "Do you want to unfollow this user?",
   "listWinner": "You have won the raffle! Go to the bar to collect your cup/bottle",
   "showThisTicket": "Show the QR code at the entrance in order to access by Nite List",
   "resetPassword": "Reset password",
