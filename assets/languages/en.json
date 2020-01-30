@@ -1,5 +1,5 @@
 {
-  "listWin": "You have won the raffle! Go to the bar to collect your cup/bottle",
+  "listWinner": "You have won the raffle! Go to the bar to collect your cup/bottle",
   "showThisTicket": "Show the QR code at the entrance in order to access by Nite List",
   "resetPassword": "Reset password",
   "emptyName": "Name can not be empty",

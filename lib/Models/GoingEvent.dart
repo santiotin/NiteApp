@@ -10,6 +10,7 @@ class GoingEvent {
   bool withList;
   bool withTicket;
   bool withVip;
+  bool listWinner;
 
   GoingEvent({
     this.id,
@@ -21,7 +22,8 @@ class GoingEvent {
     this.year,
     this.withList,
     this.withTicket,
-    this.withVip
+    this.withVip,
+    this.listWinner
   });
 
   Map toMap() {
@@ -35,6 +37,7 @@ class GoingEvent {
     data['withList'] = this.withList;
     data['withTicket'] = this.withTicket;
     data['withVip'] = this.withVip;
+    data['listWinner'] = this.listWinner;
     return data;
   }
 
@@ -49,5 +52,6 @@ class GoingEvent {
     this.withList = mapData['withList'];
     this.withTicket = mapData['withTicket'];
     this.withVip = mapData['withVip'];
+    this.listWinner = mapData['listWinner'];
   }
 }

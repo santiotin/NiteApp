@@ -16,8 +16,9 @@ class SeeTicketPage extends StatefulWidget {
 
   final String uid;
   final String eid;
+  final bool listWinner;
 
-  const SeeTicketPage({Key key, @required this.uid, @required this.eid}) : super(key: key);
+  const SeeTicketPage({Key key, @required this.uid, @required this.eid, @required this.listWinner}) : super(key: key);
 
   @override
   _SeeTicketPageState createState() => _SeeTicketPageState();
@@ -27,7 +28,6 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
 
   var _repository = new Repository();
   Event event;
-  bool winner = false;
 
   CameraPosition _initialPosition = CameraPosition(target: LatLng(26.8206, 30.8025));
   Completer<GoogleMapController> _controller = Completer();
@@ -223,13 +223,13 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
                                 ),
                                 Container(
                                   width: double.infinity,
-                                  color: winner ? Colors.amber : Constants.main,
+                                  color: widget.listWinner ? Colors.amber : Constants.main,
                                   padding: EdgeInsets.symmetric(
-                                      vertical: winner ? 15.0 : 10.0,
+                                      vertical: widget.listWinner ? 15.0 : 10.0,
                                       horizontal: 15.0),
                                   child: Center(
                                     child: Text(
-                                      winner ? AppLocalizations.of(context).translate('listWin') : '',
+                                      widget.listWinner ? AppLocalizations.of(context).translate('listWinner') : '',
                                       style: TextStyle(
                                          color: Constants.main,
                                          fontSize: 14

@@ -129,7 +129,7 @@ class _MyEventsPageState extends State<MyEventsPage> {
                             Navigator.push(
                                 context,
                                 CupertinoPageRoute<Null>(
-                                  builder: (context) => SeeTicketPage(uid: widget.uid, eid: goingEvent.id,),
+                                  builder: (context) => SeeTicketPage(uid: widget.uid, eid: goingEvent.id, listWinner: goingEvent.listWinner,),
                                   settings: RouteSettings(name: 'SeeTicketPage'),
                                 )
                             );

@@ -1,5 +1,5 @@
 {
-	"listWin": "¡Has ganado el sorteo! Ves a la barra a recoger tu copa/botella",
+	"listWinner": "¡Has ganado el sorteo! Ves a la barra a recoger tu copa/botella",
 	"showThisTicket": "Enseña el código QR en la entrada para acceder por Lista Nite",
 	"resetPassword": "Restablecer contraseña",
 	"emptyName": "El nombre no puede estar vacío",
