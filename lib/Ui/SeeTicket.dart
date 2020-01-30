@@ -27,6 +27,7 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
 
   var _repository = new Repository();
   Event event;
+  bool winner = false;
 
   CameraPosition _initialPosition = CameraPosition(target: LatLng(26.8206, 30.8025));
   Completer<GoogleMapController> _controller = Completer();
@@ -183,10 +184,28 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
                                   width: double.infinity,
                                   padding: EdgeInsets.only(top: 20.0, left: 10, right: 10, bottom: 20),
                                   child: Center(
-                                    child: Text(
-                                      event.listDescr,
-                                      style:
-                                      TextStyle(color: Constants.main, fontSize: 14.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(
+                                          event.listDescr,
+                                          style: TextStyle(
+                                              color: Constants.main,
+                                              fontSize: 14.0,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5.0),
+                                          child: Text(
+                                            AppLocalizations.of(context).translate('showThisTicket'),
+                                            style: TextStyle(
+                                              color: Constants.main,
+                                              fontSize: 14.0,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -204,13 +223,18 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
                                 ),
                                 Container(
                                   width: double.infinity,
-                                  color: Constants.main,
-                                  padding: EdgeInsets.symmetric(vertical: 15.0),
+                                  color: winner ? Colors.amber : Constants.main,
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: winner ? 15.0 : 10.0,
+                                      horizontal: 15.0),
                                   child: Center(
                                     child: Text(
-                                      '',
-                                      style:
-                                      TextStyle(color: Constants.white, fontSize: 14.0),
+                                      winner ? AppLocalizations.of(context).translate('listWin') : '',
+                                      style: TextStyle(
+                                         color: Constants.main,
+                                         fontSize: 14
+                                      ),
+                                      textAlign: TextAlign.center,
                                     ),
                                   ),
                                 )
@@ -218,7 +242,7 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
                             ),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
               ),
