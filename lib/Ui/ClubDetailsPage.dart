@@ -363,13 +363,35 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                       child: StreamBuilder<QuerySnapshot>(
                           stream: _repository.getClubEvents(widget.cid),
                           builder: (context, snapshot) {
-                            if(snapshot == null || snapshot.data == null || snapshot.data.documents == null )
+                            if(snapshot == null || snapshot.data == null || snapshot.data.documents == null || snapshot.data.documents.isEmpty)
+                              return Column(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(30, 0, 30, 40),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Text(
+                                          AppLocalizations.of(context).translate('nextEvents'),
+                                          style: TextStyle(
+                                            color: Constants.main,
+                                            fontSize: 20.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  EmptyTodayAndSearch(msg: AppLocalizations.of(context).translate('clubNoNextEvents')),
+                                  SizedBox(height: 30,)
+                                ],
+                              );
+                            else if(snapshot.hasError) return ErrorView();
+                            else if(snapshot.connectionState == ConnectionState.waiting)
                               return Padding(
                                 padding: const EdgeInsets.only(top: 30.0),
                                 child: LoadingView(),
-                            );
-                            else if(snapshot.hasError) return ErrorView();
-                            else if(snapshot.data.documents.isEmpty) return EmptyTodayAndSearch(msg: AppLocalizations.of(context).translate('noEventsForThisDay'),);
+                              );
                             else return Column(
                                 children: <Widget>[
                                   Padding(
@@ -394,7 +416,7 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                                     showDay: true,
                                   ),
                                 ],
-                              );
+                            );
                           }
                       ),
                     ),
