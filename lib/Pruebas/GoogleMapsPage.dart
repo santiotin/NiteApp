@@ -61,7 +61,7 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
 
   void createMarkers() async{
     for (int i = 0; i < events.length; i++){
-      final Uint8List markerIcon = await getBytesFromCanvas(200, 200, 'assets/images/marker.png');
+      final Uint8List markerIcon = await getBytesFromCanvas(100, 100, 'assets/images/map-marker.png');
       Marker marker = new Marker(
         markerId: MarkerId(i.toString()),
         position: LatLng(double.parse(events[i].latitude), double.parse(events[i].longitude)),
