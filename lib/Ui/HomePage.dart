@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:niteapp/Ui/PubsPage.dart';
 import 'package:niteapp/Ui/SearchPage.dart';
 import 'package:niteapp/Ui/NotificationsPage.dart';
 import 'package:niteapp/Ui/ProfilePage.dart';
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   BottomNavigationBadge badger;
   List<BottomNavigationBarItem> items;
   TodayPage _todayPage;
+  PubsPage _pubsPage;
   SearchPage _searchPage;
   NotificationsPage _notificationsPage;
   ProfilePage _profilePage;
@@ -62,6 +64,10 @@ class _HomePageState extends State<HomePage> {
         title: Text('Today'),
       ),
       BottomNavigationBarItem(
+        icon: Icon(Icons.local_bar),
+        title: Text('Pubs'),
+      ),
+      BottomNavigationBarItem(
         icon: Icon(Icons.search),
         title: Text('Search'),
       ),
@@ -78,6 +84,7 @@ class _HomePageState extends State<HomePage> {
     ];
 
     _todayPage = new TodayPage();
+    _pubsPage = new PubsPage();
     _searchPage = new SearchPage();
     _notificationsPage = new NotificationsPage(createBadge: createBadge,);
     _profilePage = new ProfilePage();
@@ -100,20 +107,27 @@ class _HomePageState extends State<HomePage> {
             offstage: _selectedIndex != 1,
             child: new TickerMode(
               enabled: _selectedIndex == 1,
-              child: _searchPage,
+              child: _pubsPage,
             ),
           ),
           new Offstage(
             offstage: _selectedIndex != 2,
             child: new TickerMode(
               enabled: _selectedIndex == 2,
-              child: _notificationsPage,
+              child: _searchPage,
             ),
           ),
           new Offstage(
             offstage: _selectedIndex != 3,
             child: new TickerMode(
               enabled: _selectedIndex == 3,
+              child: _notificationsPage,
+            ),
+          ),
+          new Offstage(
+            offstage: _selectedIndex != 4,
+            child: new TickerMode(
+              enabled: _selectedIndex == 4,
               child: _profilePage,
             ),
           ),
