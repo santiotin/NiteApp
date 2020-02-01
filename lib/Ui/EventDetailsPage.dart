@@ -273,29 +273,14 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
   void addGoing() {
     _repository.addGoingEvent(event).then((value) {
       isGoing();
+      showInSnackBar(AppLocalizations.of(context).translate('eventAdded'));
     });
+
   }
   void deleteGoing() {
     _repository.deleteGoingEvent(event.id).then((value) {
       isGoing();
-    });
-  }
-
-  void isFavoriteClub() {
-    _repository.isFavoriteClub(event.clubId).then((value) {
-      setState(() {
-        favoriteClub = value;
-      });
-    });
-  }
-  void addFavoriteClub() {
-    _repository.addFavoriteClub(event.clubId).then((value) {
-      isFavoriteClub();
-    });
-  }
-  void deleteFavoriteClub() {
-    _repository.deleteFavoriteClub(event.clubId).then((value) {
-      isFavoriteClub();
+      showInSnackBar(AppLocalizations.of(context).translate('eventDeleted'));
     });
   }
 
@@ -311,7 +296,6 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
     // TODO: implement initState
     super.initState();
     isGoing();
-    if(event != null)isFavoriteClub();
   }
 
   void _showDialogAssistToEvent() {
@@ -400,7 +384,6 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
         else if(snapshot.hasError) return ErrorView();
         else {
           event = Event.fromMap(snapshot.data.data, snapshot.data.documentID);
-          isFavoriteClub();
           iniCameraPosition();
           return Scaffold(
             key: _scaffoldKey,
@@ -739,7 +722,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                   ),
 
                   //title tickets
-                  Padding(
+                  if(false)Padding(
                       padding: EdgeInsets.fromLTRB(25,40,0,0),
                       child: Row(
                         children: <Widget>[
@@ -762,7 +745,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                       ),
                     ),
                   //descr, price ticket
-                  Padding(
+                  if(false)Padding(
                     padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -855,7 +838,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                   ),
 
                   //title vips
-                  Padding(
+                  if(false)Padding(
                     padding: EdgeInsets.fromLTRB(25,40,0,0),
                     child: Row(
                       children: <Widget>[
@@ -878,7 +861,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     ),
                   ),
                   //descr, price vips
-                  Padding(
+                  if(false)Padding(
                     padding: EdgeInsets.fromLTRB(25, 15, 0, 40),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
