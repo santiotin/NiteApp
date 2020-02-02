@@ -69,7 +69,7 @@ class HorizontalSlider extends StatelessWidget {
                           child: Image.network(
                             event.imageUrl,
                             height: 190,
-                            fit: BoxFit.fitHeight,
+                            fit: BoxFit.cover,
                           ),
                         ),
                         Positioned(
@@ -120,7 +120,7 @@ class HorizontalSlider extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 15,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
