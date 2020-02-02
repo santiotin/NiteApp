@@ -251,7 +251,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
     for(int i = 0; i < musicTypes.length; i++) {
       String aux = musicTypes[i];
       if(i == 0) {
-        aux = capitalize(aux) + ', ';
+        aux = capitalize(aux);
+        if(musicTypes.length != 1) aux = aux + ', ';
       }
       else if(i != musicTypes.length -1) {
         aux = aux.toLowerCase() + ', ';
@@ -720,7 +721,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                       ],
                     ),
                   ),
-
+                  Container(
+                    padding: EdgeInsets.only(bottom: 40.0),
+                  ),
                   //title tickets
                   if(false)Padding(
                       padding: EdgeInsets.fromLTRB(25,40,0,0),
