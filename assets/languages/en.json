@@ -1,5 +1,9 @@
 {
+
   "map": "Map",
+  "eventDeleted": "The event has been removed of your profile",
+  "eventAdded": "The event has been added to your profile",
+  "clubNoNextEvents": "There are not more events",
   "followQuest": "Do you want to follow this user?",
   "unfollowQuest": "Do you want to unfollow this user?",
   "listWinner": "You have won the raffle! Go to the bar to collect your cup/bottle",
