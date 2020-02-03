@@ -490,7 +490,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                 child: Text(
                                   music(event.musicType),
                                   style: TextStyle(
-                                      fontSize: 14,
+                                      fontSize: 13,
                                       fontWeight: FontWeight.normal,
                                       color: Constants.accent
                                   ),
