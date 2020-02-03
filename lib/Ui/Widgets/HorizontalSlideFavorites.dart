@@ -86,7 +86,6 @@ class _HorizontalSliderFavoritesState extends State<HorizontalSliderFavorites> {
                                         ),
                                       ),
                                       Positioned(
-                                        width: 40,
                                         height: 40,
                                         right: -0.5,
                                         top: -0.5,
@@ -105,14 +104,30 @@ class _HorizontalSliderFavoritesState extends State<HorizontalSliderFavorites> {
                                                 borderRadius: BorderRadius.only(topRight: Radius.circular(10), bottomLeft: Radius.circular(30))
                                             ),
                                             padding: EdgeInsets.all(0),
-                                            child: Padding(
-                                              padding: EdgeInsets.fromLTRB(5,0,0,2),
-                                              child: Icon(
-                                                Icons.people_outline,
-                                                color: Constants.accent,
-                                                size: 15,
-                                              ),
-                                            )
+                                            child: Row(
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Icon(
+                                                  Icons.people_outline,
+                                                  size: 15,
+                                                  color: Constants.accent,
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 2.5),
+                                                  child: Text(
+                                                    event.numAssists,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    maxLines: 1,
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight: FontWeight.normal,
+                                                        color: Constants.accent
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                         ),
                                       ),
                                     ],
@@ -151,33 +166,6 @@ class _HorizontalSliderFavoritesState extends State<HorizontalSliderFavorites> {
                                               fontWeight: FontWeight.normal,
                                               color: Constants.grey
                                           ),
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 20.0, right: 10.0),
-                                        child: Row(
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: <Widget>[
-                                            Icon(
-                                              Icons.people,
-                                              size: 12,),
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 2.5),
-                                              child: Text(
-                                                event.numAssists,
-                                                overflow: TextOverflow.ellipsis,
-                                                maxLines: 1,
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.normal,
-                                                    color: Constants.grey
-                                                ),
-                                              ),
-                                            ),
-                                          ],
                                         ),
                                       ),
                                     ),

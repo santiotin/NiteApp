@@ -358,7 +358,7 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                       ),
                     ),
                     //next events
-                    Padding(
+                    if(false)Padding(
                       padding: EdgeInsets.only(top: 30),
                       child: StreamBuilder<QuerySnapshot>(
                           stream: _repository.getClubEvents(widget.cid),

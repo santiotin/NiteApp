@@ -1,4 +1,6 @@
 {
+
+	"map": "Mapa",
   "eventDeleted": "El evento ha sido eliminado de tu perfil",
   "eventAdded": "El evento ha sido añadido a tu perfil",
   "clubNoNextEvents": "No hay próximos eventos",
@@ -137,4 +139,5 @@
   "completeName*": "Nombre completo*",
   "age*": "Edad*",
   "city*": "Ciudad*"
+
 }
