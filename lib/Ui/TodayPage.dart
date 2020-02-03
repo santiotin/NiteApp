@@ -145,7 +145,7 @@ class _TodayPageState extends State<TodayPage> {
               Navigator.push(
                 context,
                 CupertinoPageRoute<Null>(
-                  builder: (context) => GoogleMapsPage(day: day, month: month, year: year,),
+                  builder: (context) => GoogleMapsPage(day: day, month: month, year: year, uid: mUser.uid,),
                   settings: RouteSettings(name: 'GoogleMapsPage'),
                 ),
               );
