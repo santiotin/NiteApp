@@ -1,4 +1,6 @@
 {
+
+  "map": "Map",
   "eventDeleted": "The event has been removed of your profile",
   "eventAdded": "The event has been added to your profile",
   "clubNoNextEvents": "There are not more events",

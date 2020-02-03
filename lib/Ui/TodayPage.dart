@@ -6,6 +6,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/services.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/Event.dart';
+import 'package:niteapp/Pruebas/GoogleMapsPage.dart';
 import 'package:niteapp/Ui/EventDetailsPage.dart';
 import 'package:niteapp/Ui/Login/SignInPage.dart';
 import 'package:niteapp/Utils/AppLocalizations.dart';
@@ -133,6 +134,23 @@ class _TodayPageState extends State<TodayPage> {
           onTap: onDatePressed,
         ),
         centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            padding: EdgeInsets.only(right: 10),
+            icon: Icon(
+              Icons.map,
+              color: Constants.main,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute<Null>(
+                  builder: (context) => GoogleMapsPage(day: day, month: month, year: year, uid: mUser.uid,),
+                  settings: RouteSettings(name: 'GoogleMapsPage'),
+                ),
+              );
+            })
+        ],
       ),
       body: Center(
         child: ListView(
