@@ -455,7 +455,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               event.imageUrl,
                               height: 240,
                               width: MediaQuery.of(context).size.width,
-                              fit: BoxFit.fill,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ],
@@ -480,7 +480,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                    fontSize: 24,
+                                    fontSize: 22,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
