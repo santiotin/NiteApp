@@ -30,6 +30,7 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
   Club club;
   bool favoriteClub;
   FirebaseUser mUser;
+  Set<Marker> markers = new Set<Marker>();
 
   CameraPosition _initialPosition = CameraPosition(target: LatLng(26.8206, 30.8025));
   Completer<GoogleMapController> _controller = Completer();
@@ -180,6 +181,18 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
     return events;
   }
 
+  void createMarker() async{
+    Marker marker = new Marker(
+      markerId: MarkerId('1'),
+      position: LatLng(double.parse(club.latitude), double.parse(club.longitude)),
+      onTap: () {},
+    );
+
+    setState(() {
+      markers.add(marker);
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -200,6 +213,8 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
             club = Club.fromMap(snapshot.data.data, snapshot.data.documentID);
             isFavoriteClub();
             iniCameraPosition();
+            WidgetsBinding.instance
+                .addPostFrameCallback((_) => createMarker());
             return Scaffold(
               key: _scaffoldKey,
               appBar: AppBar(
@@ -327,6 +342,7 @@ class _ClubDetailsPageState extends State<ClubDetailsPage> {
                               rotateGesturesEnabled: false,
                               minMaxZoomPreference: MinMaxZoomPreference(15,15),
                               myLocationButtonEnabled: false,
+                              markers: markers,
                             ),
                             Positioned(
                               left: 5.0,

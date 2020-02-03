@@ -32,6 +32,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
   bool going;
   Event event;
   bool favoriteClub;
+  Set<Marker> markers = new Set<Marker>();
 
   CameraPosition _initialPosition = CameraPosition(target: LatLng(26.8206, 30.8025));
   Completer<GoogleMapController> _controller = Completer();
@@ -375,6 +376,18 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
     ));
   }
 
+  void createMarker() async{
+    Marker marker = new Marker(
+      markerId: MarkerId('1'),
+      position: LatLng(double.parse(event.latitude), double.parse(event.longitude)),
+      onTap: () {},
+    );
+
+    setState(() {
+      markers.add(marker);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot>(
@@ -386,6 +399,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
         else {
           event = Event.fromMap(snapshot.data.data, snapshot.data.documentID);
           iniCameraPosition();
+          WidgetsBinding.instance
+              .addPostFrameCallback((_) => createMarker());
           return Scaffold(
             key: _scaffoldKey,
             appBar: AppBar(
@@ -587,6 +602,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             rotateGesturesEnabled: false,
                             minMaxZoomPreference: MinMaxZoomPreference(15,15),
                             myLocationButtonEnabled: false,
+                            markers: markers,
                           ),
                           Positioned(
                             left: 5.0,
