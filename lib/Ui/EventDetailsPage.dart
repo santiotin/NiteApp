@@ -496,21 +496,33 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 25.0, top: 10.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.people,
-                                      color: Constants.main,
-                                      size: 15,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 5.0),
-                                      child: Text(event.numAssists),
-                                    )
-                                  ],
+                              GestureDetector(
+                                behavior: HitTestBehavior.translucent,
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      CupertinoPageRoute<Null>(
+                                        builder: (context) => AssistantsPage(eid: widget.eid, uid: widget.uid,),
+                                        settings: RouteSettings(name: 'AssistantsPage'),
+                                      )
+                                  );
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 25.0, top: 10.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.people,
+                                        color: Constants.main,
+                                        size: 15,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 5.0),
+                                        child: Text(event.numAssists),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
