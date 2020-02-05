@@ -213,6 +213,8 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
                 rotateGesturesEnabled: false,
                 minMaxZoomPreference: MinMaxZoomPreference(12,16.5),
                 markers: markers,
+                myLocationButtonEnabled: false,
+                myLocationEnabled: false,
               )
             );
           }
