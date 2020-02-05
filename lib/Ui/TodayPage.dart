@@ -6,7 +6,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/services.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/Event.dart';
-import 'package:niteapp/Pruebas/GoogleMapsPage.dart';
+import 'package:niteapp/Ui/GoogleMapsPage.dart';
 import 'package:niteapp/Ui/EventDetailsPage.dart';
 import 'package:niteapp/Ui/Login/SignInPage.dart';
 import 'package:niteapp/Utils/AppLocalizations.dart';
