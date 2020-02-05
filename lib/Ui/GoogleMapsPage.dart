@@ -12,6 +12,7 @@ import 'package:niteapp/Models/Event.dart';
 import 'package:niteapp/Ui/EventDetailsPage.dart';
 import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
+import 'package:easy_permission_validator/easy_permission_validator.dart';
 
 class GoogleMapsPage extends StatefulWidget {
 
@@ -37,6 +38,7 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
   int day, month, year;
   bool firstBuild = true;
   bool clearMarkers = true;
+  bool location;
 
 
   void _onMapCreated(GoogleMapController controller) {
@@ -155,10 +157,23 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
 
   }
 
+  Future<bool>_permissionLocationRequest() async {
+    final permissionValidator = EasyPermissionValidator(
+      context: context,
+      appName: 'NiteApp',
+    );
+    var result = await permissionValidator.locationWhenInUse();
+    if (result) return true;
+    else return false;
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _permissionLocationRequest().then((result) {
+      location = result;
+    });
     rootBundle.loadString('assets/map_style.txt').then((string) {
       _mapStyle = string;
     });
@@ -196,6 +211,7 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
           color: Constants.white,
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: StreamBuilder<QuerySnapshot>(
           stream: _repository.getEvents(day.toString(), month.toString(), year.toString()),
           builder: (context, snapshot) {
@@ -213,6 +229,8 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
                 rotateGesturesEnabled: false,
                 minMaxZoomPreference: MinMaxZoomPreference(12,16.5),
                 markers: markers,
+                myLocationButtonEnabled: location,
+                myLocationEnabled: location,
               )
             );
           }

@@ -23,21 +23,21 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>This app uses a flutter package that can provide access to media library, but the app don't use this feature.</string>
+	<string>This app uses a flutter package that can provide access to media library, but the app don&apos;t use this feature.</string>
 	<key>NSCalendarsUsageDescription</key>
-	<string>This app uses a flutter package that can provide access to calendars, but the app don't use this feature.</string>
+	<string>This app uses a flutter package that can provide access to calendars, but the app don&apos;t use this feature.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>This feature let us know if any of your contacts is registered in our app in order to advise you a possible friend. We do not save your contacts in our database.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app uses a flutter package that can provide access to location, but the app don't use this feature.</string>
+	<string>This app uses a flutter package that can provide access to location, but the app don&apos;t use this feature.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app uses a flutter package that can provide access to location, but the app don't use this feature.</string>
+	<string>This feature allows you to see your location in the map view.</string>
 	<key>NSMotionUsageDescription</key>
-	<string>This app uses a flutter package that can provide access to motion, but the app don't use this feature.</string>
+	<string>This app uses a flutter package that can provide access to motion, but the app don&apos;t use this feature.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This feature allows you to upload a photo of your device to make it your profile picture.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>This app uses a flutter package that can provide access to speech, but the app don't use this feature.</string>
+	<string>This app uses a flutter package that can provide access to speech, but the app don&apos;t use this feature.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
