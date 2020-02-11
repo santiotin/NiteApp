@@ -32,7 +32,7 @@ dependencies:
   qr_flutter: ^3.1.0
   fw_ticket: ^0.1.1
   webview_flutter: ^0.3.18+1
-  google_maps_flutter: ^0.5.21+15
+  google_maps_flutter: ^0.5.22+1
   image_picker: ^0.6.2+3
   firebase_storage: ^3.1.1
   contacts_service: ^0.3.10

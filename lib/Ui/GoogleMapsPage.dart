@@ -25,6 +25,7 @@ class GoogleMapsPage extends StatefulWidget {
   _GoogleMapsPageState createState() => _GoogleMapsPageState();
 
 }
+
 class _GoogleMapsPageState extends State<GoogleMapsPage> {
 
   CameraPosition _initialPosition = CameraPosition(target: LatLng(41.3955981, 2.1527464), zoom: 12);
@@ -37,9 +38,8 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
   String _mapStyle;
   int day, month, year;
   bool firstBuild = true;
-  bool clearMarkers = true;
+  bool firstLoad = true;
   bool location;
-
 
   void _onMapCreated(GoogleMapController controller) {
     controller.setMapStyle(_mapStyle);
@@ -69,38 +69,39 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
     return image;
   }
 
+  void createMarkers() async {
+    if(events.isNotEmpty && events[0].day == day.toString()) {
+      for (int i = 0; i < events.length; i++){
+        final Uint8List markerIcon = await getBytesFromCanvas(100, 100, 'assets/images/map-marker.png');
+        Marker marker = new Marker(
+          markerId: MarkerId(i.toString()),
+          position: LatLng(double.parse(events[i].latitude), double.parse(events[i].longitude)),
+          anchor: Offset(0.5, 0.5),
+          infoWindow: InfoWindow(
+              title: events[i].name,
+              snippet: events[i].clubName,
+              onTap: () {
+                Navigator.push(
+                    context,
+                    CupertinoPageRoute<Null>(
+                      builder: (context) => EventDetailsPage(eid: events[i].id, uid: widget.uid,),
+                      settings: RouteSettings(name: 'EventDetailsPage'),
+                    )
+                );
+              }
+          ),
+          icon: BitmapDescriptor.fromBytes(markerIcon),
+        );
 
-  void createMarkers() async{
-    if(clearMarkers) {
+        setState(() {
+          markers.add(marker);
+        });
+      }
+    } else {
+      firstLoad = true;
       markers.clear();
-      clearMarkers = false;
     }
-    for (int i = 0; i < events.length; i++){
-      final Uint8List markerIcon = await getBytesFromCanvas(100, 100, 'assets/images/map-marker.png');
-      Marker marker = new Marker(
-        markerId: MarkerId(i.toString()),
-        position: LatLng(double.parse(events[i].latitude), double.parse(events[i].longitude)),
-        anchor: Offset(0.5, 0.5),
-        infoWindow: InfoWindow(
-          title: events[i].name,
-          snippet: events[i].clubName,
-          onTap: () {
-            Navigator.push(
-                context,
-                CupertinoPageRoute<Null>(
-                  builder: (context) => EventDetailsPage(eid: events[i].id, uid: widget.uid,),
-                  settings: RouteSettings(name: 'EventDetailsPage'),
-                )
-            );
-          }
-        ),
-        icon: BitmapDescriptor.fromBytes(markerIcon),
-      );
 
-      setState(() {
-        markers.add(marker);
-      });
-    }
   }
 
   List<Event> documentsToEvents(List<DocumentSnapshot> documents) {
@@ -140,15 +141,13 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
 
     selectedDate.then((value) {
 
-
       setState(() {
         _dateText = retDateString(value, context);
         markers.clear();
-        clearMarkers = true;
         day = value.day;
         month = value.month;
         year = value.year;
-        markers.clear();
+        firstLoad = true;
         SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
           statusBarColor: Colors.white,
         ));
@@ -183,7 +182,6 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
     year = widget.year;
   }
 
-
   @override
   Widget build(BuildContext context) {
     if(firstBuild) {
@@ -216,10 +214,12 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
           stream: _repository.getEvents(day.toString(), month.toString(), year.toString()),
           builder: (context, snapshot) {
             if(snapshot != null && snapshot.data != null
-                && snapshot.data.documents != null && snapshot.data.documents.isNotEmpty) {
+                && snapshot.data.documents != null && snapshot.data.documents.isNotEmpty
+              && firstLoad) {
               events = documentsToEvents(snapshot.data.documents);
               WidgetsBinding.instance
                   .addPostFrameCallback((_) => createMarkers());
+              firstLoad = false;
             }
             return Center(
               child: GoogleMap(
@@ -227,7 +227,7 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
                 mapType: MapType.normal,
                 initialCameraPosition: _initialPosition,
                 rotateGesturesEnabled: false,
-                minMaxZoomPreference: MinMaxZoomPreference(12,16.5),
+                minMaxZoomPreference: MinMaxZoomPreference(0,16.5),
                 markers: markers,
                 myLocationButtonEnabled: location,
                 myLocationEnabled: location,
@@ -237,4 +237,5 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
       ),
     );
   }
+
 }
