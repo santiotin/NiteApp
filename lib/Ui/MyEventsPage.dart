@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/GoingEvent.dart';
+import 'package:niteapp/Ui/EventDetailsPage.dart';
 import 'package:niteapp/Ui/SeeTicket.dart';
 import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Messages.dart';
@@ -83,61 +84,73 @@ class _MyEventsPageState extends State<MyEventsPage> {
             itemCount: snapshot.data.documents.length,
             itemBuilder: (context, index) {
               GoingEvent goingEvent = GoingEvent.fromMap(snapshot.data.documents[index].data, snapshot.data.documents[index].documentID);
-              return TimelineNode(
-                style: getTimeLineNodeStyle(index, snapshot.data.documents.length - 1),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 15.0, left: 5),
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(goingEvent.day + '/' + goingEvent.month + '/' + goingEvent.year,
-                            style: TextStyle(
-                              fontSize: 12,
-                            ),),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: Text(
-                                  goingEvent.name,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Constants.main,
+              return GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      CupertinoPageRoute<Null>(
+                        builder: (context) => EventDetailsPage(eid: goingEvent.id, uid: widget.uid,),
+                        settings: RouteSettings(name: 'EventDetailsPage'),
+                      )
+                  );
+                },
+                child: TimelineNode(
+                  style: getTimeLineNodeStyle(index, snapshot.data.documents.length - 1),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 15.0, left: 5),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.6,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(goingEvent.day + '/' + goingEvent.month + '/' + goingEvent.year,
+                              style: TextStyle(
+                                fontSize: 12,
+                              ),),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10.0),
+                                child: Text(
+                                    goingEvent.name,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Constants.main,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0, bottom: 20),
-                              child: Text(
-                                goingEvent.clubName,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Constants.grey
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5.0, bottom: 20),
+                                child: Text(
+                                  goingEvent.clubName,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Constants.grey
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      if(itsMe && goingEvent.withList)Container(
-                        width: MediaQuery.of(context).size.width * 0.2,
-                        alignment: Alignment.centerRight,
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                CupertinoPageRoute<Null>(
-                                  builder: (context) => SeeTicketPage(uid: widget.uid, eid: goingEvent.id, listWinner: goingEvent.listWinner,),
-                                  settings: RouteSettings(name: 'SeeTicketPage'),
-                                )
-                            );
-                          },
-                          icon: Icon(Icons.content_paste),
-                        )
-                      ),
-                    ],
+                        if(itsMe && goingEvent.withList)Container(
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          alignment: Alignment.centerRight,
+                          child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  CupertinoPageRoute<Null>(
+                                    builder: (context) => SeeTicketPage(uid: widget.uid, eid: goingEvent.id, listWinner: goingEvent.listWinner,),
+                                    settings: RouteSettings(name: 'SeeTicketPage'),
+                                  )
+                              );
+                            },
+                            icon: Icon(Icons.content_paste),
+                          )
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );

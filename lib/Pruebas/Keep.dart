@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/Activity.dart';
-import 'package:niteapp/Models/Notif.dart';
 import 'package:niteapp/Models/Request.dart';
 import 'package:niteapp/Models/User.dart';
-import 'package:niteapp/Ui/Lists/NotifList.dart';
+import 'package:niteapp/Ui/Lists/ActivityList.dart';
 import 'package:niteapp/Ui/Lists/RequestList.dart';
 import 'package:niteapp/Ui/Login/SignInPage.dart';
 import 'package:niteapp/Utils/AppLocalizations.dart';
@@ -111,22 +110,22 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   else if(snapshot.data.documents.isEmpty) return EmptyNotifications(msg: AppLocalizations.of(context).translate('noActivity'),);
                   else {
 
-                    List<Notif> notifs = new List<Notif>();
+                    List<Activity> activities = new List<Activity>();
                     for(int i = 0; i < snapshot.data.documents.length; i++){
-                      notifs.add(Activity.fromMap(snapshot.data.documents[i].data, snapshot.data.documents[i].documentID));
+                      activities.add(Activity.fromMap(snapshot.data.documents[i].data, snapshot.data.documents[i].documentID));
                     }
 
-                    if(notifs.length > 0) {
-                      if(lastActivityTime == null) lastActivityTime = notifs[0].getTime();
-                      else if(lastActivityTime != notifs[0].getTime()){
-                        lastActivityTime = lastActivityTime = notifs[0].getTime();
+                    if(activities.length > 0) {
+                      if(lastActivityTime == null) lastActivityTime = activities[0].time;
+                      else if(lastActivityTime != activities[0].time){
+                        lastActivityTime = lastActivityTime = activities[0].time;
                         WidgetsBinding.instance.addPostFrameCallback((_) {
                           widget.createBadge();
                         });
                       }
                     }
 
-                    return NotifList(notifs: notifs);
+                    return ActivityList(activities: activities);
                   }
                 }
             ),
