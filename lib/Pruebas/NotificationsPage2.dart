@@ -15,18 +15,18 @@ import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Messages.dart';
 import 'package:niteapp/Utils/Constants.dart';
 
-class NotificationsPage extends StatefulWidget {
+class NotificationsPage2 extends StatefulWidget {
 
   final Function createBadge;
 
-  const NotificationsPage({Key key, this.createBadge}) : super(key: key);
+  const NotificationsPage2({Key key, this.createBadge}) : super(key: key);
 
   @override
-  _NotificationsPageState createState() => _NotificationsPageState();
+  _NotificationsPage2State createState() => _NotificationsPage2State();
 
 }
 
-class _NotificationsPageState extends State<NotificationsPage> {
+class _NotificationsPage2State extends State<NotificationsPage2> {
 
   var _repository = new Repository();
   FirebaseUser mUser;
