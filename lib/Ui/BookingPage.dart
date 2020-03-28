@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:niteapp/Backend/repository.dart';
+import 'package:niteapp/Ui/BookingListPage.dart';
+import 'package:niteapp/Ui/BookingTicketPage.dart';
+import 'package:niteapp/Ui/BookingVipPage.dart';
 import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 
@@ -82,9 +85,9 @@ class _BookingPageState  extends State<BookingPage> with SingleTickerProviderSta
         body: TabBarView(
           controller: tabController,
           children: [
-            Container(),
-            Container(),
-            Container(),
+            BookingListPage(),
+            BookingTicketPage(),
+            BookingVipPage(),
           ],
         ),
       ),
