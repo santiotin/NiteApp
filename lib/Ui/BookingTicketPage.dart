@@ -25,124 +25,124 @@ class _BookingTicketPageState extends State<BookingTicketPage> {
   Widget build(BuildContext context) {
     return widget.event.hasTicket ?
       Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Expanded(
-          child: ListView(
-            physics: NeverScrollableScrollPhysics(),
-            children: <Widget>[
-              //evento
-              Padding(
-                padding: EdgeInsets.only(left: 30, top: 30),
-                child: Text(
-                  AppLocalizations.of(context).translate('event'),
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Constants.main,
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+            child: ListView(
+              physics: NeverScrollableScrollPhysics(),
+              children: <Widget>[
+                //evento
+                Padding(
+                  padding: EdgeInsets.only(left: 30, top: 30),
+                  child: Text(
+                    AppLocalizations.of(context).translate('event'),
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Constants.main,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 30, top: 5),
-                child: Text(
-                  widget.event.name + AppLocalizations.of(context).translate('by') + widget.event.clubName,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Constants.grey,
+                Padding(
+                  padding: EdgeInsets.only(left: 30, top: 5),
+                  child: Text(
+                    widget.event.name + AppLocalizations.of(context).translate('by') + widget.event.clubName,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Constants.grey,
+                    ),
                   ),
                 ),
-              ),
-              //horario
-              Padding(
-                padding: EdgeInsets.only(left: 30, top: 20),
-                child: Text(
-                  AppLocalizations.of(context).translate('schedule'),
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Constants.main,
+                //horario
+                Padding(
+                  padding: EdgeInsets.only(left: 30, top: 20),
+                  child: Text(
+                    AppLocalizations.of(context).translate('schedule'),
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Constants.main,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 30, top: 5),
-                child: Text(
-                  AppLocalizations.of(context).translate('the') + widget.event.day + '/' + widget.event.month+ '/'+ widget.event.year + AppLocalizations.of(context).translate('from') + widget.event.startHour + AppLocalizations.of(context).translate('to') + widget.event.endHour,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Constants.grey,
+                Padding(
+                  padding: EdgeInsets.only(left: 30, top: 5),
+                  child: Text(
+                    AppLocalizations.of(context).translate('the') + widget.event.day + '/' + widget.event.month+ '/'+ widget.event.year + AppLocalizations.of(context).translate('from') + widget.event.startHour + AppLocalizations.of(context).translate('to') + widget.event.endHour,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Constants.grey,
+                    ),
                   ),
                 ),
-              ),
-              //descr
-              Padding(
-                padding: EdgeInsets.only(left: 30, top: 20),
-                child: Text(
-                  AppLocalizations.of(context).translate('description'),
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Constants.main,
+                //descr
+                Padding(
+                  padding: EdgeInsets.only(left: 30, top: 20),
+                  child: Text(
+                    AppLocalizations.of(context).translate('description'),
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Constants.main,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 30, top: 5, right: 30),
-                child: Text(
-                  widget.event.ticketDescriptions[0],
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Constants.grey,
+                Padding(
+                  padding: EdgeInsets.only(left: 30, top: 5, right: 30),
+                  child: Text(
+                    widget.event.ticketDescriptions[0],
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Constants.grey,
+                    ),
                   ),
                 ),
-              ),
-              //Precio
-              Padding(
-                padding: EdgeInsets.only(left: 30, top: 20),
-                child: Text(
-                  AppLocalizations.of(context).translate('price'),
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Constants.main,
+                //Precio
+                Padding(
+                  padding: EdgeInsets.only(left: 30, top: 20),
+                  child: Text(
+                    AppLocalizations.of(context).translate('price'),
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Constants.main,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 30, top: 5),
-                child: Text(
-                  widget.event.ticketPrices[0],
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Constants.grey,
+                Padding(
+                  padding: EdgeInsets.only(left: 30, top: 5),
+                  child: Text(
+                    widget.event.ticketPrices[0],
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Constants.grey,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        Container(
-          height: MediaQuery.of(context).size.height * 0.12,
-          width: MediaQuery.of(context).size.width,
-          child:FlatButton(
-            color: Constants.accent,
-            highlightColor: Constants.accent,
-            splashColor: Constants.accentLight,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                  vertical: 20.0),
-              child: Text(
-                AppLocalizations.of(context).translate('buy'),
-                style: TextStyle(
-                    color: Constants.white,
-                    fontSize: 15.0,
-                    fontFamily: "Roboto"
+          Container(
+            height: MediaQuery.of(context).size.height * 0.12,
+            width: MediaQuery.of(context).size.width,
+            child:FlatButton(
+              color: Constants.accent,
+              highlightColor: Constants.accent,
+              splashColor: Constants.accentLight,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 20.0),
+                child: Text(
+                  AppLocalizations.of(context).translate('buy'),
+                  style: TextStyle(
+                      color: Constants.white,
+                      fontSize: 15.0,
+                      fontFamily: "Roboto"
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
-    ) :
-      EmptyTodayAndSearch(msg: 'hi');
+        ],
+      ) :
+      EmptyNotifications(msg: AppLocalizations.of(context).translate('buyNotAvailable'));
   }
 
 
