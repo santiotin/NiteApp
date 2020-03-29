@@ -189,7 +189,7 @@ class _SeeTicketPageState extends State<SeeTicketPage> {
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: <Widget>[
                                         Text(
-                                          event.listDescr,
+                                          event.listDescription,
                                           style: TextStyle(
                                               color: Constants.main,
                                               fontSize: 14.0,

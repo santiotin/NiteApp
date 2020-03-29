@@ -24,7 +24,7 @@ class Event {
   String latitude;
 
   String listPrice;
-  String listDescr;
+  String listDescription;
 
   String longitude;
 
@@ -38,9 +38,13 @@ class Event {
   List<String> searchNames;
   String startHour;
   String ticketPrice;
+  List<String> ticketPrices;
   String ticketDescr;
+  List<String> ticketDescriptions;
   String vipPrice;
+  List<String> vipPrices;
   String vipDescr;
+  List<String> vipDescriptions;
   String webPay;
   String year;
 
@@ -58,14 +62,16 @@ class Event {
     this.description = mapData['description'];
     this.dressCode = mapData['dressCode'];
     this.endHour = mapData['endHour'];
+
     this.hasList = mapData['hasList'];
     this.hasTicket = mapData['hasTicket'];
     this.hasVip = mapData['hasVip'];
+
     this.imageUrl = mapData['imageUrl'];
     this.isSponsored = mapData['isSponsored'];
     this.latitude = mapData['latitude'].toString();
     this.listPrice = mapData['listPrice'];
-    this.listDescr = mapData['listText'];
+    this.listDescription = mapData['listText'];
     this.longitude = mapData['longitude'].toString();
     this.month = mapData['month'].toString();
 
@@ -81,9 +87,13 @@ class Event {
 
     this.startHour = mapData['startHour'];
     this.ticketPrice = mapData['ticketPrice'];
+    this.ticketPrices = mapData['ticketPrices'];
     this.ticketDescr = mapData['ticketText'];
+    this.ticketDescriptions = mapData['ticketDescriptions'];
     this.vipPrice = mapData['vipPrice'];
+    this.vipPrices = mapData['vipPrices'];
     this.vipDescr = mapData['vipText'];
+    this.vipDescriptions = mapData['vipDescriptions'];
     this.webPay = mapData['webPay'];
     this.year = mapData['year'];
 

@@ -5,9 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/Event.dart';
 import 'package:niteapp/Ui/AssistantsPage.dart';
-import 'package:niteapp/Ui/BuyListPage.dart';
+import 'package:niteapp/Ui/BookingPage.dart';
 import 'package:niteapp/Ui/ClubDetailsPage.dart';
-import 'package:niteapp/Ui/TicketsWebView.dart';
 import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Messages.dart';
 import 'package:niteapp/Utils/Constants.dart';
@@ -634,20 +633,36 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     ),
                   ),
 
-                  //title nite list
-                  Padding(
+                  //reservas
+                  if(event.hasList || event.hasTicket || event.hasTicket)Padding(
                     padding: EdgeInsets.fromLTRB(25,40,0,0),
                     child: Row(
                       children: <Widget>[
-                        Icon(
+                        if(event.hasList)Icon(
                           Icons.content_paste,
                           color: Constants.main,
                           size: 20,
                         ),
+                        if(event.hasTicket)Padding(
+                          padding: const EdgeInsets.only(left: 5.0),
+                          child: Icon(
+                            FontAwesomeIcons.ticketAlt,
+                            color: Constants.main,
+                            size: 20,
+                          ),
+                        ),
+                        if(event.hasVip)Padding(
+                          padding: const EdgeInsets.only(left: 5.0),
+                          child: Icon(
+                            Icons.weekend,
+                            color: Constants.main,
+                            size: 20,
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0),
                           child: Text(
-                            AppLocalizations.of(context).translate('niteList'),
+                            AppLocalizations.of(context).translate('bookings'),
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.normal,
@@ -658,60 +673,21 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     ),
                   ),
                   //descr, price list
-                  Padding(
+                  if(event.hasList || event.hasTicket || event.hasTicket)Padding(
                     padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Container(
                           width: MediaQuery.of(context).size.width * 0.62,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                event.listDescr,
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                              //price vips
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Text(
-                                        AppLocalizations.of(context).translate('priceDoubleDots'),
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                      Text(
-                                        event.listPrice,
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Constants.accent,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                      Text(
-                                        '€',
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Constants.accent,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                              ),],
+                          child: Text(
+                            AppLocalizations.of(context).translate('bookingDescription'),
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.normal,
+                            ),
                           ),
                         ),
                         Padding(
@@ -720,145 +696,19 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             child: FlatButton(
                               color: Constants.white,
                               onPressed: (){
-                                if(event.hasList){
-                                  if(going) {
-                                    Navigator.push(
-                                        context,
-                                        CupertinoPageRoute<Null>(
-                                          builder: (context) => BuyListPage(eid: event.id,),
-                                          settings: RouteSettings(name: 'BuyListPage'),
-                                        )
-                                    );
-                                  } else {
-                                    showInSnackBar(AppLocalizations.of(context).translate('joinToConfirm'));
-                                  }
-                                } else {
-                                  showInSnackBar(AppLocalizations.of(context).translate('niteListNotAvailable'));
-                                }
+                                Navigator.push(
+                                    context,
+                                    CupertinoPageRoute<Null>(
+                                      builder: (context) => BookingPage(event: event,),
+                                      settings: RouteSettings(name: 'BookingPage'),
+                                    )
+                                );
                               },
                               shape: CircleBorder(),
                               padding: EdgeInsets.all(10),
                               child: Icon(
                                 Icons.arrow_forward_ios,
-                                color: event.hasList ? Constants.accent : Constants.grey,
-                                size: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(bottom: 40.0),
-                  ),
-                  //title tickets premium
-                  if(false)Padding(
-                      padding: EdgeInsets.fromLTRB(25,40,0,0),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(
-                            FontAwesomeIcons.ticketAlt,
-                            color: Constants.main,
-                            size: 20,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
-                            child: Text(
-                              AppLocalizations.of(context).translate('tickets'),
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  //descr, price ticket
-                  if(false)Padding(
-                    padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.62,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                event.ticketDescr,
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                              //price vips
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Text(
-                                        AppLocalizations.of(context).translate('priceDoubleDots'),
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                      Text(
-                                        event.ticketPrice,
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Constants.accent,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                      Text(
-                                        '€',
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Constants.accent,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                              ),],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 0.0),
-                          child: Center(
-                            child: FlatButton(
-                              color: Constants.white,
-                              onPressed: (){
-                                if(event.hasTicket){
-                                  if(going){
-                                    Navigator.push(
-                                        context,
-                                        CupertinoPageRoute<Null>(
-                                          builder: (context) => TicketWebView(),
-                                          settings: RouteSettings(name: 'TicketWebView'),
-                                        )
-                                    );
-                                  }else {
-                                    showInSnackBar(AppLocalizations.of(context).translate('joinToBuy'));
-                                  }
-                                } else {
-                                  showInSnackBar(AppLocalizations.of(context).translate('buyNotAvailable'),);
-                                }
-                              },
-                              shape: CircleBorder(),
-                              padding: EdgeInsets.all(10),
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                color: event.hasTicket ? Constants.accent : Constants.grey,
+                                color: Constants.accent,
                                 size: 20,
                               ),
                             ),
@@ -868,106 +718,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     ),
                   ),
 
-                  //title vips
-                  if(false)Padding(
-                    padding: EdgeInsets.fromLTRB(25,40,0,0),
-                    child: Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.weekend,
-                          color: Constants.main,
-                          size: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0),
-                          child: Text(
-                            AppLocalizations.of(context).translate('vip'),
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  //descr, price vips
-                  if(false)Padding(
-                    padding: EdgeInsets.fromLTRB(25, 15, 0, 40),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.62,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                event.vipDescr,
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                              //price vips
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Text(
-                                        AppLocalizations.of(context).translate('priceDoubleDots'),
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                      Text(
-                                        event.vipPrice,
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Constants.accent,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                      Text(
-                                        '€',
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Constants.accent,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                              ),],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 0.0),
-                          child: Center(
-                            child: FlatButton(
-                              color: Constants.white,
-                              onPressed: (){
-                                showInSnackBar(AppLocalizations.of(context).translate('soonDots'));
-                              },
-                              shape: CircleBorder(),
-                              padding: EdgeInsets.all(10),
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                color: event.hasVip ? Constants.accent : Constants.grey,
-                                size: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                  //final
+                  Container(
+                    padding: EdgeInsets.only(bottom: 40.0),
                   ),
                 ],
               ),

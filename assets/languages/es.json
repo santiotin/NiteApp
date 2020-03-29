@@ -1,5 +1,9 @@
 {
-
+  "bookingDescription": "Apúntate a la lista Nite, compra entradas y reserva mesas VIP",
+  "bookings": "Reservas",
+  "type": "Tipo",
+  "vips": "VIPs",
+  "buy": "Comprar",
   "map": "Mapa",
   "eventDeleted": "El evento ha sido eliminado de tu perfil",
   "eventAdded": "El evento ha sido añadido a tu perfil",

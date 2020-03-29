@@ -190,7 +190,7 @@ class _TodayPageState extends State<TodayPage> {
                               height: MediaQuery.of(context).size.height * 0.3,
                               child: Image.network(
                                 snapshot.data.documents[0]["imageUrl"],
-                                fit: BoxFit.fill,
+                                fit: BoxFit.cover,
                               ),
                             ),
                             Positioned(
