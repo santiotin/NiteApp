@@ -752,7 +752,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                   Container(
                     padding: EdgeInsets.only(bottom: 40.0),
                   ),
-                  //title tickets
+                  //title tickets premium
                   if(false)Padding(
                       padding: EdgeInsets.fromLTRB(25,40,0,0),
                       child: Row(
