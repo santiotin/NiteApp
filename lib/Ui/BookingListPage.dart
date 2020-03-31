@@ -45,6 +45,12 @@ class _BookingListPageState extends State<BookingListPage> {
     else return AppLocalizations.of(context).translate('join');
   }
 
+  String getTextOfRelationState() {
+    if(inList == null) return AppLocalizations.of(context).translate('???');
+    else if(inList) return AppLocalizations.of(context).translate('joinedNiteList');
+    else return AppLocalizations.of(context).translate('unJoinedNiteList');
+  }
+
   void onGoingBtnPressed(){
     if(inList)  deleteOfList();
     else addToList();
@@ -60,126 +66,129 @@ class _BookingListPageState extends State<BookingListPage> {
   @override
   Widget build(BuildContext context) {
     return widget.event.hasList ?
-      Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            child: ListView(
-              physics: NeverScrollableScrollPhysics(),
-              children: <Widget>[
-                //evento
-                Padding(
-                  padding: EdgeInsets.only(left: 30, top: 30),
-                  child: Text(
-                    AppLocalizations.of(context).translate('event'),
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Constants.main,
-                    ),
-                  ),
+      Scaffold(
+        body: ListView(
+          physics: NeverScrollableScrollPhysics(),
+          children: <Widget>[
+            //evento
+            Padding(
+              padding: EdgeInsets.only(left: 30, top: 30),
+              child: Text(
+                AppLocalizations.of(context).translate('event'),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Constants.main,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 30, top: 5),
-                  child: Text(
-                    widget.event.name + AppLocalizations.of(context).translate('by') + widget.event.clubName,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Constants.grey,
-                    ),
-                  ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 30, top: 5),
+              child: Text(
+                widget.event.name + AppLocalizations.of(context).translate('by') + widget.event.clubName,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Constants.grey,
                 ),
-                //horario
-                Padding(
-                  padding: EdgeInsets.only(left: 30, top: 20),
-                  child: Text(
-                    AppLocalizations.of(context).translate('schedule'),
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Constants.main,
-                    ),
-                  ),
+              ),
+            ),
+            //horario
+            Padding(
+              padding: EdgeInsets.only(left: 30, top: 20),
+              child: Text(
+                AppLocalizations.of(context).translate('schedule'),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Constants.main,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 30, top: 5),
-                  child: Text(
-                    AppLocalizations.of(context).translate('the') + widget.event.day + '/' + widget.event.month+ '/'+ widget.event.year + AppLocalizations.of(context).translate('from') + widget.event.startHour + AppLocalizations.of(context).translate('to') + widget.event.endHour,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Constants.grey,
-                    ),
-                  ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 30, top: 5),
+              child: Text(
+                AppLocalizations.of(context).translate('the') + widget.event.day + '/' + widget.event.month+ '/'+ widget.event.year + AppLocalizations.of(context).translate('from') + widget.event.startHour + AppLocalizations.of(context).translate('to') + widget.event.endHour,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Constants.grey,
                 ),
-                //descr
-                Padding(
-                  padding: EdgeInsets.only(left: 30, top: 20),
-                  child: Text(
-                    AppLocalizations.of(context).translate('description'),
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Constants.main,
-                    ),
-                  ),
+              ),
+            ),
+            //descr
+            Padding(
+              padding: EdgeInsets.only(left: 30, top: 20),
+              child: Text(
+                AppLocalizations.of(context).translate('description'),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Constants.main,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 30, top: 5, right: 30),
-                  child: Text(
-                    widget.event.listDescription,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Constants.grey,
-                    ),
-                  ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 30, top: 5, right: 30),
+              child: Text(
+                widget.event.listDescription,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Constants.grey,
                 ),
-                //Precio
-                Padding(
-                  padding: EdgeInsets.only(left: 30, top: 20),
-                  child: Text(
-                    AppLocalizations.of(context).translate('price'),
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Constants.main,
-                    ),
-                  ),
+              ),
+            ),
+            //Precio
+            Padding(
+              padding: EdgeInsets.only(left: 30, top: 20),
+              child: Text(
+                AppLocalizations.of(context).translate('price'),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Constants.main,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 30, top: 5),
-                  child: Text(
-                    AppLocalizations.of(context).translate('free'),
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Constants.grey,
-                    ),
-                  ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 30, top: 5),
+              child: Text(
+                AppLocalizations.of(context).translate('free'),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Constants.grey,
                 ),
-              ],
+              ),
+            ),
+            //estado
+            Padding(
+              padding: EdgeInsets.only(left: 30, top: 20),
+              child: Text(
+                AppLocalizations.of(context).translate('state'),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Constants.main,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 30, top: 5),
+              child: Text(
+                getTextOfRelationState(),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Constants.grey,
+                ),
+              ),
+            ),
+          ],
+        ),
+        floatingActionButton: inList != null ? FloatingActionButton.extended(
+          backgroundColor: Constants.accent,
+          onPressed: onGoingBtnPressed,
+          label: Text(
+            getTextOfRelation(),
+            style: TextStyle(
+              color: Constants.white,
+              fontSize: 15.0,
+              fontFamily: "Roboto"
             ),
           ),
-          if(inList != null)Container(
-            height: MediaQuery.of(context).size.height * 0.12,
-            width: MediaQuery.of(context).size.width,
-            child:FlatButton(
-                color: Constants.accent,
-                highlightColor: inList ? Constants.accent: Constants.white,
-                splashColor: inList ? Constants.accentLight : Constants.transparentWhite,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 20.0),
-                  child: Text(
-                    getTextOfRelation(),
-                    style: TextStyle(
-                        color: Constants.white,
-                        fontSize: 15.0,
-                        fontFamily: "Roboto"
-                    ),
-                  ),
-                ),
-                onPressed: () {
-                  onGoingBtnPressed();
-                }
-            ),
-          ),
-        ],
+        ) : null,
       ) :
       EmptyNotifications(msg: AppLocalizations.of(context).translate('niteListNotAvailable'));
   }

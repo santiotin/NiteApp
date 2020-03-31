@@ -1,5 +1,12 @@
 {
-  "bookingDescription": "Apúntate a la lista Nite, compra entradas y reserva mesas VIP",
+  "???": "???",
+  "unJoinedNiteList": "Aún no estás apuntado a la lista Nite",
+  "joinedNiteList": "Ya estás apuntado a la lista Nite",
+  "state": "Estado",
+  "total": "Total",
+  "quantity": "Cantidad",
+  "selectOption": "Selecciona una opción:",
+  "bookingDescription": "Apúntate a la lista Nite, compra entradas o reserva mesas VIP",
   "bookings": "Reservas",
   "type": "Tipo",
   "vips": "VIPs",

@@ -1,5 +1,12 @@
 {
-  "bookingDescription": "Join to the Nite list, buy tickets and book VIP tables",
+  "???": "???",
+  "unJoinedNiteList": "Not joinet the Nite list yet",
+  "joinedNiteList": "Already joined the Nite list",
+  "state": "State",
+  "total": "Total",
+  "quantity": "Quantity",
+  "selectOption": "Select one option:",
+  "bookingDescription": "Join to the Nite list, buy tickets or book VIP tables",
   "bookings": "Bookings",
   "type": "Type",
   "vips": "VIPs",
