@@ -22,6 +22,7 @@ class _BookingListPageState extends State<BookingListPage> {
 
   var _repository = new Repository();
   bool inList;
+  bool loading = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   //Show snack bar message
@@ -101,19 +102,27 @@ class _BookingListPageState extends State<BookingListPage> {
     );
   }
 
+
   void isInList() {
     _repository.isInList(widget.event.id).then((value) {
       setState(() {
         inList = value;
+        loading = false;
       });
     });
   }
   void addToList() {
+    setState(() {
+      loading = true;
+    });
     _repository.addToList(widget.event).then((value) {
       isInList();
     });
   }
   void deleteOfList() {
+    setState(() {
+      loading = true;
+    });
     _repository.deleteOfList(widget.event.id).then((value) {
       isInList();
     });
@@ -258,16 +267,26 @@ class _BookingListPageState extends State<BookingListPage> {
           ],
         ),
         floatingActionButton: inList != null ? FloatingActionButton.extended(
-          backgroundColor: Constants.accent,
+          backgroundColor: loading ? Constants.white : Constants.accent,
           onPressed: onGoingBtnPressed,
-          label: Text(
-            getTextOfRelation(),
-            style: TextStyle(
-              color: Constants.white,
-              fontSize: 15.0,
-              fontFamily: "Roboto"
+          label: loading ?
+            Center(
+              child: Container(
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                ),
+              ),
+            ) :
+            Text(
+              getTextOfRelation(),
+              style: TextStyle(
+                color: Constants.white,
+                fontSize: 15.0,
+                fontFamily: "Roboto"
+              ),
             ),
-          ),
         ) : null,
       ) :
       EmptyNotifications(msg: AppLocalizations.of(context).translate('niteListNotAvailable'));
