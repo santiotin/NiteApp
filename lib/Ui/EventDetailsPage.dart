@@ -699,7 +699,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                 Navigator.push(
                                     context,
                                     CupertinoPageRoute<Null>(
-                                      builder: (context) => BookingPage(event: event,),
+                                      builder: (context) => BookingPage(event: event,going: going,),
                                       settings: RouteSettings(name: 'BookingPage'),
                                     )
                                 );

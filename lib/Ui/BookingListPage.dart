@@ -5,6 +5,7 @@ import 'package:niteapp/Models/Event.dart';
 import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:niteapp/Utils/Messages.dart';
+import 'package:flutter/services.dart';
 
 class BookingListPage extends StatefulWidget {
 
@@ -21,6 +22,84 @@ class _BookingListPageState extends State<BookingListPage> {
 
   var _repository = new Repository();
   bool inList;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  //Show snack bar message
+  void showInSnackBar(String value) {
+    _scaffoldKey.currentState?.removeCurrentSnackBar();
+    _scaffoldKey.currentState.showSnackBar(new SnackBar(
+      content: new Text(
+        value,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: 16.0,
+            fontFamily: "Roboto"),
+      ),
+      backgroundColor: Constants.main,
+      duration: Duration(seconds: 3),
+    ));
+  }
+  void showAssistListMsg() {
+    // flutter defined function
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ));
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: null,
+          content: RichText(
+            text: new TextSpan(
+              style: new TextStyle(
+                color: Constants.main,
+                fontSize: 16,
+              ),
+              children: <TextSpan>[
+                if(inList)TextSpan(text: AppLocalizations.of(context).translate('unJoinNiteList'))
+                else TextSpan(text: AppLocalizations.of(context).translate('joinNiteList')),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            FlatButton(
+              child: Text(
+                AppLocalizations.of(context).translate('cancel'),
+                style: TextStyle(
+                  color: Constants.accent,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+                SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+                  statusBarColor: Colors.white,
+                ));
+              },
+            ),
+            FlatButton(
+              child: Text(
+                AppLocalizations.of(context).translate('accept'),
+                style: TextStyle(
+                  color: Constants.accent,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+                if(inList) deleteOfList();
+                else addToList();
+                SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+                  statusBarColor: Colors.white,
+                ));
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   void isInList() {
     _repository.isInList(widget.event.id).then((value) {
@@ -52,8 +131,8 @@ class _BookingListPageState extends State<BookingListPage> {
   }
 
   void onGoingBtnPressed(){
-    if(inList)  deleteOfList();
-    else addToList();
+    if(widget.going) showAssistListMsg();
+    else showInSnackBar(AppLocalizations.of(context).translate('joinToConfirm'));
   }
 
   @override
@@ -67,6 +146,7 @@ class _BookingListPageState extends State<BookingListPage> {
   Widget build(BuildContext context) {
     return widget.event.hasList ?
       Scaffold(
+        key: _scaffoldKey,
         body: ListView(
           physics: NeverScrollableScrollPhysics(),
           children: <Widget>[

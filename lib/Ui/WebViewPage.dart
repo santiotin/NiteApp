@@ -4,15 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class TicketWebView extends StatefulWidget {
+class WebViewPage extends StatefulWidget {
+  final String url;
 
-  const TicketWebView({Key key}) : super(key: key);
+  const WebViewPage({Key key, this.url}) : super(key: key);
 
   @override
-  _TicketWebViewState createState() => _TicketWebViewState();
+  _WebViewPageState createState() => _WebViewPageState();
 
 }
-class _TicketWebViewState extends State<TicketWebView> {
+class _WebViewPageState extends State<WebViewPage> {
 
   Completer<WebViewController> _controller = Completer<WebViewController>();
 
@@ -20,11 +21,11 @@ class _TicketWebViewState extends State<TicketWebView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context).translate('tickets')),
+        title: Text(AppLocalizations.of(context).translate('buy')),
         // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
       ),
       body: WebView(
-        initialUrl: 'https://www.google.com',
+        initialUrl: widget.url,
         onWebViewCreated: (WebViewController webViewController) {
           _controller.complete(webViewController);
         },
