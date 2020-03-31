@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:niteapp/Backend/repository.dart';
 import 'package:niteapp/Models/Event.dart';
+import 'package:niteapp/Ui/WebViewPage.dart';
 import 'package:niteapp/Utils/AppLocalizations.dart';
 import 'package:niteapp/Utils/Constants.dart';
 import 'package:niteapp/Utils/Messages.dart';
@@ -28,17 +29,10 @@ class _BookingTicketPageState extends State<BookingTicketPage> {
 
   int quanty = 0;
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   bool isSelected(int index) {
     return index == selectedOption;
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    widget.event.hasTicket = true;
-    widget.event.ticketDescriptions = textDescrs;
-    widget.event.ticketPrices = textPrices;
   }
 
   void incrementQuanty() {
@@ -57,10 +51,50 @@ class _BookingTicketPageState extends State<BookingTicketPage> {
     else return (quanty * int.parse(textPrices[selectedOption])).toString();
   }
 
+  void showInSnackBar(String value) {
+    _scaffoldKey.currentState?.removeCurrentSnackBar();
+    _scaffoldKey.currentState.showSnackBar(new SnackBar(
+      content: new Text(
+        value,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: 16.0,
+            fontFamily: "Roboto"),
+      ),
+      backgroundColor: Constants.main,
+      duration: Duration(seconds: 2),
+    ));
+  }
+
+  void onBuyButtonPressed() {
+    if(selectedOption < 0)showInSnackBar(AppLocalizations.of(context).translate('selectOption'));
+    else if(quanty <= 0)showInSnackBar(AppLocalizations.of(context).translate('selectOption'));
+    else {
+      Navigator.push(
+          context,
+          CupertinoPageRoute<Null>(
+            builder: (context) => WebViewPage(url: 'www.google.com',),
+            settings: RouteSettings(name: 'WebViewPage'),
+          )
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    widget.event.hasTicket = true;
+    widget.event.ticketDescriptions = textDescrs;
+    widget.event.ticketPrices = textPrices;
+  }
+
   @override
   Widget build(BuildContext context) {
     return widget.event.hasTicket ?
       Scaffold(
+        key: _scaffoldKey,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +102,7 @@ class _BookingTicketPageState extends State<BookingTicketPage> {
             Padding(
               padding: EdgeInsets.only(left: 30, top: 30),
               child: Text(
-                AppLocalizations.of(context).translate('selectOption'),
+                AppLocalizations.of(context).translate('selectOption') + ':',
                 style: TextStyle(
                   fontSize: 18,
                   color: Constants.main,
@@ -176,6 +210,7 @@ class _BookingTicketPageState extends State<BookingTicketPage> {
                 ),
               ),
               FloatingActionButton.extended(
+                onPressed: onBuyButtonPressed,
                 backgroundColor: Constants.accent,
                 label: Text(
                   AppLocalizations.of(context).translate('buy'),

@@ -68,7 +68,7 @@ class _BookingVipPageState extends State<BookingVipPage> {
             Padding(
               padding: EdgeInsets.only(left: 30, top: 30),
               child: Text(
-                AppLocalizations.of(context).translate('selectOption'),
+                AppLocalizations.of(context).translate('selectOption') + ':',
                 style: TextStyle(
                   fontSize: 18,
                   color: Constants.main,
