@@ -267,6 +267,7 @@ class _BookingListPageState extends State<BookingListPage> {
           ],
         ),
         floatingActionButton: inList != null ? FloatingActionButton.extended(
+          heroTag: null,
           backgroundColor: loading ? Constants.white : Constants.accent,
           onPressed: onGoingBtnPressed,
           label: loading ?

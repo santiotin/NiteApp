@@ -17,19 +17,32 @@ class _WebViewPageState extends State<WebViewPage> {
 
   Completer<WebViewController> _controller = Completer<WebViewController>();
 
+  bool loadingUrl = true;
+
   @override
   Widget build(BuildContext context) {
+    print(loadingUrl.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).translate('buy')),
         // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
       ),
-      body: WebView(
-        initialUrl: widget.url,
-        onWebViewCreated: (WebViewController webViewController) {
-          _controller.complete(webViewController);
-        },
-      ),
+      body:
+        WebView(
+          javascriptMode: JavascriptMode.unrestricted,
+          initialUrl: widget.url,
+          onWebViewCreated: (WebViewController webViewController) {
+            setState(() {
+              _controller.complete(webViewController);
+              loadingUrl = false;
+            });
+          },
+          onPageFinished: (value) {
+            setState(() {
+              loadingUrl = false;
+            });
+          },
+        ),
     );
   }
 }

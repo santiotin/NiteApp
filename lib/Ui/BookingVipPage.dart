@@ -119,6 +119,7 @@ class _BookingVipPageState extends State<BookingVipPage> {
                         Transform.scale(
                           scale: 0.75,
                           child: FloatingActionButton(
+                            heroTag: null,
                             onPressed: decrementQuanty,
                             backgroundColor: Constants.accent,
                             child: Icon(
@@ -141,6 +142,7 @@ class _BookingVipPageState extends State<BookingVipPage> {
                         Transform.scale(
                           scale: 0.75,
                           child: FloatingActionButton(
+                            heroTag: null,
                             onPressed: incrementQuanty,
                             backgroundColor: Constants.accent,
                             child: Icon(
@@ -163,10 +165,9 @@ class _BookingVipPageState extends State<BookingVipPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              FloatingActionButton.extended(
-                backgroundColor: Constants.white,
-                elevation: 0,
-                label: Text(
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
                   AppLocalizations.of(context).translate('total') + ': ' + getTotalAmount() + '€',
                   style: TextStyle(
                       color: Constants.main,
@@ -176,6 +177,7 @@ class _BookingVipPageState extends State<BookingVipPage> {
                 ),
               ),
               FloatingActionButton.extended(
+                heroTag: null,
                 backgroundColor: Constants.accent,
                 label: Text(
                   AppLocalizations.of(context).translate('buy'),

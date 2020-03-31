@@ -74,7 +74,7 @@ class _BookingTicketPageState extends State<BookingTicketPage> {
       Navigator.push(
           context,
           CupertinoPageRoute<Null>(
-            builder: (context) => WebViewPage(url: 'www.google.com',),
+            builder: (context) => WebViewPage(url: 'https://www.bpremium.com',),
             settings: RouteSettings(name: 'WebViewPage'),
           )
       );
@@ -153,6 +153,7 @@ class _BookingTicketPageState extends State<BookingTicketPage> {
                         Transform.scale(
                           scale: 0.75,
                           child: FloatingActionButton(
+                            heroTag: null,
                             onPressed: decrementQuanty,
                             backgroundColor: Constants.accent,
                             child: Icon(
@@ -175,6 +176,7 @@ class _BookingTicketPageState extends State<BookingTicketPage> {
                         Transform.scale(
                           scale: 0.75,
                           child: FloatingActionButton(
+                            heroTag: null,
                             onPressed: incrementQuanty,
                             backgroundColor: Constants.accent,
                             child: Icon(
@@ -196,11 +198,11 @@ class _BookingTicketPageState extends State<BookingTicketPage> {
           padding: const EdgeInsets.all(16.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              FloatingActionButton.extended(
-                backgroundColor: Constants.white,
-                elevation: 0,
-                label: Text(
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
                   AppLocalizations.of(context).translate('total') + ': ' + getTotalAmount() + '€',
                   style: TextStyle(
                       color: Constants.main,
@@ -210,6 +212,7 @@ class _BookingTicketPageState extends State<BookingTicketPage> {
                 ),
               ),
               FloatingActionButton.extended(
+                heroTag: null,
                 onPressed: onBuyButtonPressed,
                 backgroundColor: Constants.accent,
                 label: Text(
