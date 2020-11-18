@@ -1,17 +1,16 @@
-# niteapp
-
-A new Flutter application.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 # NiteApp
+Nite es la red social para saber a qué discotecas salen tus amigos sin tener que preguntar. Mira qué eventos hay cada día, dónde estarán tus amigos, apúntate a listas y compra entradas para no hacer cola. Estarás informado de lo que pasa cada noche, podrás saber todo tipo de información de los eventos que hay como el tipo de música, los horarios, la cola en estado real… y mucho más!
+
+## Funcionalidades
+- Autenticación mediante correo y google
+- Sistema de notificaciones
+- Integración con Google Maps
+- Integración con Apis y backend
+- Internacionalización
+- Programación reactiva
+- State Management
+
+## Tecnologías utilizadas
+- Flutter
+- Dart
+- Firebase
